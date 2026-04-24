@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreamZone — Official IPTV Subscriptions</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --red: #E50914; --red-dark: #b00710;
+    --black: #0a0a0a; --dark: #141414; --card-bg: rgba(20, 20, 20, 0.85);
+    --border: rgba(255,255,255,0.12); --text: #ffffff;
+    --muted: #ccc; --gold: #f5c518; --cyan: #00d4ff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--text); overflow-x: hidden; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 64px;
+  }
+  .nav-logo { font-size: 26px; font-weight: 900; color: var(--cyan); letter-spacing: -1px; }
+  .nav-logo span { color: white; font-weight: 400; font-size: 14px; margin-left: 8px; opacity: 0.6; }
+  .nav-cta {
+    background: var(--red); color: white; border: none;
+    padding: 9px 22px; border-radius: 6px; font-family: 'Inter', sans-serif;
+    font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--red-dark); }
+
+  /* Hero Section - العرض التقديمي */
+  .hero {
+    position: relative; min-height: 550px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 24px 80px; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,0.15) 0%, transparent 70%),
+                linear-gradient(180deg, #0a0a0a 0%, #141414 60%, #0a0a0a 100%);
+  }
+  .hero-badge {
+    position: relative; display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(0,212,255,0.12); border: 1px solid rgba(0,212,255,0.4);
+    color: #00d4ff; font-size: 13px; font-weight: 600;
+    padding: 6px 20px; border-radius: 40px; margin-bottom: 28px;
+    letter-spacing: 0.5px;
+  }
+  .hero-badge::before { content: '●'; font-size: 8px; animation: pulse 1.5s infinite; margin-left: 6px; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  .hero h1 {
+    position: relative; font-size: clamp(42px, 7vw, 80px); font-weight: 900;
+    line-height: 1.08; letter-spacing: -2px; margin-bottom: 24px;
+    background: linear-gradient(135deg, #fff 0%, #00d4ff 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero h1 em { color: var(--cyan); font-style: normal; background: none; -webkit-text-fill-color: var(--cyan); }
+  .hero p { position: relative; font-size: 17px; color: var(--muted); max-width: 550px; line-height: 1.7; margin-bottom: 40px; }
+  .hero-actions { position: relative; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    background: var(--cyan); color: var(--black); border: none;
+    padding: 14px 36px; border-radius: 10px; font-family: 'Inter', sans-serif;
+    font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: #00b8e6; transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent; color: white; border: 1px solid rgba(255,255,255,0.25);
+    padding: 14px 36px; border-radius: 10px; font-family: 'Inter', sans-serif;
+    font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+
+  /* Plans Section with Background Image */
+  .plans-section {
+    position: relative;
+    background: url('https://images.pexels.com/photos/4098169/pexels-photo-4098169.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-size: cover;
+    background-position: center 30%;
+    background-attachment: fixed;
+  }
+  .plans-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.75) 100%);
+    z-index: 1;
+  }
+  .plans-section > * {
+    position: relative;
+    z-index: 2;
+  }
+  
+  section { padding: 72px 24px; max-width: 1100px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 48px; }
+  .section-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; color: var(--cyan); text-transform: uppercase; margin-bottom: 12px; }
+  .section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -1px; }
+  .section-sub { font-size: 15px; color: var(--muted); margin-top: 10px; }
+
+  .plans {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;
+  }
+  .plan {
+    background: var(--card-bg);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 28px;
+    position: relative;
+    transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    text-align: center;
+  }
+  .plan:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.5); box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5); background: rgba(20,20,20,0.92); }
+  .plan.popular { border-color: var(--cyan); background: linear-gradient(160deg, rgba(0,50,60,0.85) 0%, rgba(20,20,20,0.85) 100%); }
+  .popular-badge {
+    position: absolute; top: -12px; left: 24px; background: var(--cyan); color: var(--black);
+    font-size: 12px; font-weight: 800; padding: 4px 14px; border-radius: 20px;
+  }
+  .plan-duration {
+    font-size: 42px; font-weight: 900; margin-bottom: 8px; letter-spacing: -2px;
+  }
+  .plan-duration span { font-size: 16px; font-weight: 500; color: var(--muted); }
+  .plan-price {
+    font-size: 38px; font-weight: 800; color: var(--gold); margin: 16px 0 8px;
+  }
+  .plan-price sub { font-size: 13px; color: var(--muted); font-weight: 400; }
+  .save-badge {
+    background: rgba(245,197,24,0.2); color: var(--gold); font-size: 12px;
+    font-weight: 700; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 16px;
+  }
+  .price-per-month {
+    font-size: 13px; color: var(--muted); margin-bottom: 20px;
+  }
+  .price-per-month strong { color: var(--gold); font-size: 15px; }
+  .plan-divider { height: 1px; background: var(--border); margin: 20px 0; }
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; text-align: left; }
+  .plan-features li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #ddd; }
+  .feat-check { color: #00c853; font-size: 16px; flex-shrink: 0; }
+  .plan-btn {
+    width: 100%; padding: 13px; border-radius: 12px; font-family: 'Inter', sans-serif;
+    font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; border: none;
+  }
+  .plan-btn-red { background: var(--cyan); color: var(--black); }
+  .plan-btn-red:hover { background: #00b8e6; transform: translateY(-2px); }
+  .plan-btn-outline { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2) !important; }
+  .plan-btn-outline:hover { background: rgba(0,212,255,0.2); }
+
+  .payment-section { background: var(--dark); }
+  .payment-inner { max-width: 1100px; margin: 0 auto; padding: 72px 24px; }
+  .payment-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 48px; }
+  .payment-card {
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 16px; text-align: center; cursor: pointer; transition: all 0.2s;
+  }
+  .payment-card:hover, .payment-card.selected { border-color: var(--cyan); background: rgba(0,212,255,0.1); }
+  .payment-logo { font-size: 28px; margin-bottom: 8px; }
+  .payment-name { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+  .payment-note { font-size: 12px; color: var(--muted); }
+
+  .order-form {
+    background: var(--card-bg); backdrop-filter: blur(4px);
+    border: 1px solid var(--border); border-radius: 24px;
+    padding: 36px; max-width: 680px; margin: 0 auto;
+  }
+  .form-title { font-size: 22px; font-weight: 800; margin-bottom: 24px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group.full { grid-column: 1 / -1; }
+  label { font-size: 13px; font-weight: 600; color: #bbb; }
+  input, select {
+    background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 12px;
+    padding: 12px 14px; color: white; font-family: 'Inter', sans-serif; font-size: 14px;
+    transition: border-color 0.2s; outline: none;
+  }
+  input:focus, select:focus { border-color: var(--cyan); }
+  select option { background: #1a1a1a; }
+  .form-submit {
+    width: 100%; padding: 15px; margin-top: 8px; background: var(--cyan); color: var(--black);
+    border: none; border-radius: 12px; font-family: 'Inter', sans-serif;
+    font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s;
+  }
+  .form-submit:hover { background: #00b8e6; }
+  .form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; }
+
+  .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .faq-q {
+    width: 100%; text-align: left; background: none; border: none; color: white;
+    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+    padding: 18px 20px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .faq-q:hover { background: rgba(0,212,255,0.05); }
+  .faq-arrow { font-size: 18px; color: var(--cyan); transition: transform 0.25s; flex-shrink: 0; }
+  .faq-a {
+    max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
+    font-size: 14px; color: var(--muted); line-height: 1.8; padding: 0 20px;
+  }
+  .faq-item.open .faq-a { max-height: 200px; padding: 0 20px 18px; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  /* Trust Section - أسفل الصفحة */
+  .trust-footer {
+    background: linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 40px 24px;
+    margin-top: 20px;
+  }
+  .trust-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    color: #bbb;
+    font-weight: 500;
+  }
+  .trust-icon { font-size: 22px; }
+
+  footer { background: var(--dark); border-top: 1px solid var(--border); text-align: center; padding: 36px 24px; }
+  footer .footer-logo { font-size: 22px; font-weight: 900; color: var(--cyan); margin-bottom: 8px; }
+  footer p { font-size: 13px; color: var(--muted); }
+
+  .toast {
+    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: #1a1a1a; border: 1px solid rgba(0,212,255,0.4); color: white;
+    padding: 14px 28px; border-radius: 10px; font-size: 14px; font-weight: 600;
+    z-index: 9999; transition: transform 0.4s ease; white-space: nowrap;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Modal Popup Styles */
+  .modal {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95); backdrop-filter: blur(8px); z-index: 1000;
+    justify-content: center; align-items: center;
+  }
+  .modal-content {
+    background: var(--card-bg); backdrop-filter: blur(8px);
+    border: 1px solid var(--border); border-radius: 24px;
+    padding: 32px; max-width: 450px; width: 90%; position: relative;
+    animation: modalFadeIn 0.3s ease;
+  }
+  @keyframes modalFadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px; font-size: 28px; cursor: pointer;
+    color: var(--muted); transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--cyan); }
+  .modal-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
+  .modal-sub { font-size: 14px; color: var(--cyan); margin-bottom: 24px; }
+  .modal-input {
+    width: 100%; margin-bottom: 16px; padding: 14px;
+    background: rgba(255,255,255,0.1); border: 1px solid var(--border);
+    border-radius: 12px; color: white; font-family: 'Inter', sans-serif;
+    font-size: 14px; outline: none;
+  }
+  .modal-input:focus { border-color: var(--cyan); }
+  .modal-btn {
+    width: 100%; padding: 14px; background: var(--cyan); color: var(--black);
+    border: none; border-radius: 12px; font-family: 'Inter', sans-serif;
+    font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 8px;
+  }
+  .modal-btn:hover { background: #00b8e6; }
+  .modal-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 16px; }
+
+  @media (max-width: 600px) {
+    nav { padding: 0 16px; }
+    .trust-container { gap: 20px; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: 1; }
+    .plans { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">STREAM<span>ZONE</span></div>
+  <button class="nav-cta" onclick="openWhatsApp()">Buy Now</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-badge">100% Official IPTV Subscriptions</div>
+  <h1>Subscribe to <em>StreamZone</em><br>Best Prices</h1>
+  <p>Official IPTV subscriptions — thousands of channels in HD, Full HD & 4K. Instant delivery after payment.</p>
+  <div class="hero-actions">
+    <a href="#plans" class="btn-primary">View Plans</a>
+    <button class="btn-ghost" onclick="openWhatsApp()">How It Works?</button>
+  </div>
+</div>
+
+<!-- Plans Section with Background Image -->
+<div class="plans-section" id="plans">
+  <section>
+    <div class="section-header">
+      <div class="section-label">PLANS</div>
+      <h2 class="section-title">Choose Your Duration</h2>
+      <p class="section-sub">All plans include all channels & content — no restrictions</p>
+    </div>
+    <div class="plans">
+      <!-- 3 Months Plan -->
+      <div class="plan">
+        <div class="plan-duration">3 <span>Months</span></div>
+        <div class="plan-price">$19 <sub>USD</sub></div>
+        <div class="save-badge">Save 37%</div>
+        <div class="price-per-month">Monthly: <strong>$6.3/month</strong></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 20,000+ Live Channels</li>
+          <li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li>
+          <li><span class="feat-check">✓</span> All Sports Channels</li>
+          <li><span class="feat-check">✓</span> Arabic & International</li>
+          <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
+          <li><span class="feat-check">✓</span> All Devices Support</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline" onclick="openModal('3 Months', 19)">Select Plan</button>
+      </div>
+
+      <!-- 6 Months Plan -->
+      <div class="plan">
+        <div class="plan-duration">6 <span>Months</span></div>
+        <div class="plan-price">$29 <sub>USD</sub></div>
+        <div class="save-badge">Save 52%</div>
+        <div class="price-per-month">Monthly: <strong>$4.8/month</strong></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 20,000+ Live Channels</li>
+          <li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li>
+          <li><span class="feat-check">✓</span> All Sports Channels</li>
+          <li><span class="feat-check">✓</span> Arabic & International</li>
+          <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
+          <li><span class="feat-check">✓</span> All Devices Support</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline" onclick="openModal('6 Months', 29)">Select Plan</button>
+      </div>
+
+      <!-- 12 Months Plan (Most Popular) -->
+      <div class="plan popular">
+        <div class="popular-badge">🔥 Best Value</div>
+        <div class="plan-duration">12 <span>Months</span></div>
+        <div class="plan-price">$59 <sub>USD</sub></div>
+        <div class="save-badge">Save 67%</div>
+        <div class="price-per-month">Monthly: <strong>$4.9/month</strong></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 20,000+ Live Channels</li>
+          <li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li>
+          <li><span class="feat-check">✓</span> All Sports Channels</li>
+          <li><span class="feat-check">✓</span> Arabic & International</li>
+          <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
+          <li><span class="feat-check">✓</span> All Devices Support</li>
+          <li><span class="feat-check">✓</span> Bonus: 1 Month Free</li>
+        </ul>
+        <button class="plan-btn plan-btn-red" onclick="openModal('12 Months', 59)">Select Plan</button>
+      </div>
+
+      <!-- 24 Months Plan -->
+      <div class="plan">
+        <div class="plan-duration">24 <span>Months</span></div>
+        <div class="plan-price">$99 <sub>USD</sub></div>
+        <div class="save-badge">Save 72%</div>
+        <div class="price-per-month">Monthly: <strong>$4.1/month</strong></div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li><span class="feat-check">✓</span> 20,000+ Live Channels</li>
+          <li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li>
+          <li><span class="feat-check">✓</span> All Sports Channels</li>
+          <li><span class="feat-check">✓</span> Arabic & International</li>
+          <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
+          <li><span class="feat-check">✓</span> All Devices Support</li>
+          <li><span class="feat-check">✓</span> Best Value — Save 72%</li>
+        </ul>
+        <button class="plan-btn plan-btn-outline" onclick="openModal('24 Months', 99)">Select Plan</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="payment-section" id="order">
+  <div class="payment-inner">
+    <div class="section-header">
+      <div class="section-label">PAYMENT METHODS</div>
+      <h2 class="section-title">Pay Your Way</h2>
+      <p class="section-sub">Secure & fast payment options available worldwide</p>
+    </div>
+    <div class="payment-methods">
+      <div class="payment-card" onclick="selectPayment(this,'Credit Card / Debit Card')">
+        <div class="payment-logo">💳</div>
+        <div class="payment-name">Credit / Debit Card</div>
+        <div class="payment-note">Visa · Mastercard</div>
+      </div>
+      <div class="payment-card" onclick="selectPayment(this,'PayPal')">
+        <div class="payment-logo">🇵🇾</div>
+        <div class="payment-name">PayPal</div>
+        <div class="payment-note">Secure PayPal</div>
+      </div>
+      <div class="payment-card" onclick="selectPayment(this,'Bank Transfer')">
+        <div class="payment-logo">🏦</div>
+        <div class="payment-name">Bank Transfer</div>
+        <div class="payment-note">CIB · Attijari · BMCE</div>
+      </div>
+      <div class="payment-card" onclick="selectPayment(this,'Crypto')">
+        <div class="payment-logo">₿</div>
+        <div class="payment-name">Cryptocurrency</div>
+        <div class="payment-note">BTC · USDT · ETH</div>
+      </div>
+      <div class="payment-card" onclick="selectPayment(this,'Wise / Revolut')">
+        <div class="payment-logo">🌍</div>
+        <div class="payment-name">Wise / Revolut</div>
+        <div class="payment-note">International Transfer</div>
+      </div>
+      <div class="payment-card" onclick="selectPayment(this,'Western Union')">
+        <div class="payment-logo">📮</div>
+        <div class="payment-name">Western Union</div>
+        <div class="payment-note">Cash Pickup</div>
+      </div>
+    </div>
+    <div class="order-form">
+      <div class="form-title">📋 Complete Your Order</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="inp-name" placeholder="John Doe">
+        </div>
+        <div class="form-group">
+          <label>Phone / WhatsApp</label>
+          <input type="tel" id="inp-phone" placeholder="+1 234 567 8900">
+        </div>
+        <div class="form-group full">
+          <label>Email Address</label>
+          <input type="email" id="inp-email" placeholder="example@gmail.com">
+        </div>
+        <div class="form-group">
+          <label>Plan</label>
+          <select id="inp-plan">
+            <option value="">Select plan...</option>
+            <option>3 Months — $19 USD</option>
+            <option>6 Months — $29 USD</option>
+            <option>12 Months — $59 USD</option>
+            <option>24 Months — $99 USD</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Payment Method</label>
+          <select id="inp-payment">
+            <option value="">Select payment method...</option>
+            <option>Credit Card / Debit Card</option>
+            <option>PayPal</option>
+            <option>Bank Transfer</option>
+            <option>Crypto (BTC/USDT/ETH)</option>
+            <option>Wise / Revolut</option>
+            <option>Western Union</option>
+          </select>
+        </div>
+      </div>
+      <button class="form-submit" onclick="submitOrder()">🚀 Send Order via WhatsApp</button>
+      <p class="form-note">🔒 Your information is secure — We'll contact you on WhatsApp to confirm your order and payment</p>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="section-header">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Are these official IPTV subscriptions?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Yes, 100% official subscriptions directly from IPTV providers. No shared accounts or anything unofficial.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How do I receive my subscription?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">After payment confirmation, we send your subscription details via email or WhatsApp within less than 1 hour.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Is there a guarantee if I have issues?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">Yes, if you have any problem with your subscription, we provide a full refund or replacement. Contact us on WhatsApp and we'll solve it immediately.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How can I contact support?
+        <span class="faq-arrow">▾</span>
+      </button>
+      <div class="faq-a">You can reach us via WhatsApp (click the Buy Now button or send the order form). Support is available 7 days a week.</div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Section - أسفل الصفحة -->
+<div class="trust-footer">
+  <div class="trust-container">
+    <div class="trust-item"><span class="trust-icon">🔒</span> 100% Official Subscriptions</div>
+    <div class="trust-item"><span class="trust-icon">⚡</span> Instant Delivery</div>
+    <div class="trust-item"><span class="trust-icon">📺</span> 20,000+ Channels & VOD</div>
+    <div class="trust-item"><span class="trust-icon">💬</span> WhatsApp Support</div>
+    <div class="trust-item"><span class="trust-icon">↩️</span> Money-Back Guarantee</div>
+    <div class="trust-item"><span class="trust-icon">🌍</span> Worldwide Payment</div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">STREAMZONE</div>
+  <p>Official Subscriptions · Instant Delivery · 24/7 Support</p>
+  <p style="margin-top:8px;font-size:12px;">This store is an independent reseller of official IPTV subscriptions.</p>
+</footer>
+
+<div class="toast" id="toast">✅ Done!</div>
+
+<!-- Modal Popup -->
+<div id="orderModal" class="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <div class="modal-title">Complete Your Order</div>
+    <div class="modal-sub" id="modalPlanInfo">Plan: --</div>
+    <input type="text" id="modalName" class="modal-input" placeholder="Full Name">
+    <input type="tel" id="modalPhone" class="modal-input" placeholder="Phone / WhatsApp">
+    <input type="email" id="modalEmail" class="modal-input" placeholder="Email Address">
+    <button class="modal-btn" onclick="submitModalOrder()">Submit Order →</button>
+    <div class="modal-note">🔒 We'll send you payment details via email</div>
+  </div>
+</div>
+
+<script>
+let selectedPlan = { name: '', price: 0 };
+const ADMIN_EMAIL = 'karimakon08@gmail.com';
+const WHATSAPP_NUMBER = '212670965351';
+
+function openModal(planName, price) {
+  selectedPlan = { name: planName, price: price };
+  document.getElementById('modalPlanInfo').innerHTML = `📦 ${planName} — $${price} USD`;
+  document.getElementById('orderModal').style.display = 'flex';
+  document.getElementById('modalName').value = '';
+  document.getElementById('modalPhone').value = '';
+  document.getElementById('modalEmail').value = '';
+}
+
+function closeModal() {
+  document.getElementById('orderModal').style.display = 'none';
+}
+
+function submitModalOrder() {
+  const name = document.getElementById('modalName').value.trim();
+  const phone = document.getElementById('modalPhone').value.trim();
+  const email = document.getElementById('modalEmail').value.trim();
+  
+  if (!name || !phone || !email) {
+    showToast('⚠️ Please fill all fields');
+    return;
+  }
+  
+  const subject = `New StreamZone Order: ${selectedPlan.name}`;
+  const body = `New StreamZone IPTV Order!\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📦 Plan: ${selectedPlan.name}\n💰 Price: $${selectedPlan.price} USD\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n⏰ Date: ${new Date().toLocaleString()}`;
+  
+  window.location.href = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  
+  const whatsappMsg = `*NEW STREAMZONE ORDER*%0A%0A📦 Plan: ${selectedPlan.name} — $${selectedPlan.price}%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}`;
+  window.open('https://wa.me/${WHATSAPP_NUMBER}?text=' + whatsappMsg, '_blank');
+  
+  closeModal();
+  showToast('✅ Order sent! Check your email');
+}
+
+function openWhatsApp() {
+  window.open('https://wa.me/${WHATSAPP_NUMBER}', '_blank');
+}
+
+function selectPayment(card, name) {
+  document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  const sel = document.getElementById('inp-payment');
+  for (let o of sel.options) { 
+    if (o.text === name || (name === 'Credit Card / Debit Card' && o.text === 'Credit Card / Debit Card') ||
+        (name === 'Crypto' && o.text.includes('Crypto')) ||
+        (name === 'Bank Transfer' && o.text === 'Bank Transfer') ||
+        (name === 'Wise / Revolut' && o.text === 'Wise / Revolut') ||
+        (name === 'Western Union' && o.text === 'Western Union')) {
+      sel.value = o.text;
+      break;
+    }
+  }
+}
+
+function submitOrder() {
+  const name = document.getElementById('inp-name').value.trim();
+  const phone = document.getElementById('inp-phone').value.trim();
+  const email = document.getElementById('inp-email').value.trim();
+  const plan = document.getElementById('inp-plan').value;
+  const payment = document.getElementById('inp-payment').value;
+  
+  if (!name || !phone || !email || !plan || !payment) {
+    showToast('⚠️ Please fill all fields'); 
+    return;
+  }
+  
+  const msg = `*NEW STREAMZONE ORDER*%0A%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}%0A📦 Plan: ${plan}%0A💳 Payment: ${payment}`;
+  window.open('https://wa.me/${WHATSAPP_NUMBER}?text=' + msg, '_blank');
+  showToast('📱 Opening WhatsApp...');
+}
+
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById('orderModal');
+  if (event.target === modal) closeModal();
+}
+</script>
+</body>
+</html>
