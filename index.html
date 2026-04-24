@@ -209,25 +209,29 @@
     border-radius: 20px;
   }
 
-  /* Hover Preview Modal */
+  /* Hover Preview Modal - instant hide on mouse leave */
   .preview-overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.9);
+    background: rgba(0,0,0,0.85);
     backdrop-filter: blur(15px);
     z-index: 2000;
+    display: flex;
     justify-content: center;
     align-items: center;
+    visibility: hidden;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: visibility 0s linear 0.2s, opacity 0.2s ease;
+    pointer-events: none; /* Allow clicking through when hidden */
   }
   .preview-overlay.show {
-    display: flex;
+    visibility: visible;
     opacity: 1;
+    transition: visibility 0s linear 0s, opacity 0.2s ease;
+    pointer-events: auto; /* Enable interaction when visible */
   }
   .preview-content {
     max-width: 500px;
@@ -238,7 +242,8 @@
     text-align: center;
     border: 1px solid var(--cyan);
     box-shadow: 0 0 40px rgba(0,212,255,0.3);
-    animation: previewZoom 0.3s ease;
+    animation: previewZoom 0.25s ease;
+    pointer-events: none; /* So mouse leave works immediately without interfering */
   }
   @keyframes previewZoom {
     from { transform: scale(0.9); opacity: 0; }
@@ -268,6 +273,8 @@
     cursor: pointer;
     color: white;
     transition: color 0.2s;
+    background: none;
+    border: none;
   }
   .preview-close:hover {
     color: var(--cyan);
@@ -452,6 +459,7 @@
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
 
+  /* Other Modals (for forms) */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -592,10 +600,9 @@
   </div>
 </div>
 
-<!-- Hover Preview Modal -->
-<div id="previewModal" class="preview-overlay" onclick="closePreview()">
-  <span class="preview-close" onclick="closePreview()">&times;</span>
-  <div class="preview-content" onclick="event.stopPropagation()">
+<!-- Hover Preview Modal (instant hide on leave) -->
+<div id="previewModal" class="preview-overlay">
+  <div class="preview-content">
     <img id="previewImage" class="preview-image" src="" alt="Preview">
     <div id="previewTitle" class="preview-title"></div>
     <div id="previewInfo" class="preview-info"></div>
@@ -836,7 +843,7 @@
 
 <div class="toast" id="toast">✅ Done!</div>
 
-<!-- Modals -->
+<!-- Modals for Forms -->
 <div id="trialModal" class="modal-overlay">
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal('trialModal')">&times;</span>
@@ -872,24 +879,30 @@ const upcomingMatches = [
   { homeTeam: "Atletico Madrid", awayTeam: "Sevilla", league: "La Liga", time: "Tuesday 22:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/atletico-madrid.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/sevilla.png" }
 ];
 
-function showPreview(imageUrl, title, info) {
-  document.getElementById('previewImage').src = imageUrl;
-  document.getElementById('previewTitle').innerHTML = title;
-  document.getElementById('previewInfo').innerHTML = info;
-  const modal = document.getElementById('previewModal');
-  modal.classList.add('show');
+// DOM elements for preview
+const previewModal = document.getElementById('previewModal');
+const previewImage = document.getElementById('previewImage');
+const previewTitle = document.getElementById('previewTitle');
+const previewInfo = document.getElementById('previewInfo');
+
+function showPreview(imageUrl, title, infoHtml) {
+  previewImage.src = imageUrl;
+  previewTitle.innerHTML = title;
+  previewInfo.innerHTML = infoHtml;
+  previewModal.classList.add('show');
 }
 
-function closePreview() {
-  const modal = document.getElementById('previewModal');
-  modal.classList.remove('show');
+function hidePreview() {
+  previewModal.classList.remove('show');
 }
 
 function loadMarqueeMatches() {
   const container = document.getElementById('marqueeMatches');
   const doubledMatches = [...upcomingMatches, ...upcomingMatches];
   const matchesHTML = doubledMatches.map((match, idx) => `
-    <div class="match-item" onmouseenter="showMatchPreview('${match.homeTeam}', '${match.awayTeam}', '${match.league}', '${match.time}', '${match.homeLogo}', '${match.awayLogo}')">
+    <div class="match-item" 
+         onmouseenter="showMatchPreview('${match.homeTeam}', '${match.awayTeam}', '${match.league}', '${match.time}', '${match.homeLogo}', '${match.awayLogo}')"
+         onmouseleave="hidePreview()">
       <span class="league-badge">${match.league}</span>
       <img class="team-logo" src="${match.homeLogo}" alt="${match.homeTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
       <span class="team-name">${match.homeTeam}</span>
@@ -903,7 +916,7 @@ function loadMarqueeMatches() {
 }
 
 function showMatchPreview(homeTeam, awayTeam, league, time, homeLogo, awayLogo) {
-  const previewHtml = `
+  const infoHtml = `
     <div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 20px;">
       <div style="text-align: center;">
         <img src="${homeLogo}" style="width: 80px; height: 80px; object-fit: contain; background: white; border-radius: 50%; padding: 10px;" onerror="this.src='https://placehold.co/80x80/00d4ff/white?text=FC'">
@@ -918,16 +931,16 @@ function showMatchPreview(homeTeam, awayTeam, league, time, homeLogo, awayLogo) 
     <div><strong>📋 League:</strong> ${league}</div>
     <div><strong>⏰ Time:</strong> ${time}</div>
   `;
-  showPreview(homeLogo, `${homeTeam} vs ${awayTeam}`, previewHtml);
+  showPreview(homeLogo, `${homeTeam} vs ${awayTeam}`, infoHtml);
 }
 
 function showMoviePreview(posterUrl, title, year, rating) {
-  const previewHtml = `
+  const infoHtml = `
     <div><strong>📅 Year:</strong> ${year}</div>
     <div><strong>⭐ Rating:</strong> ${rating}/10</div>
-    <div style="margin-top: 12px;"><em>Hover preview from TMDB</em></div>
+    <div style="margin-top: 12px;"><em>Latest from TMDB</em></div>
   `;
-  showPreview(posterUrl, title, previewHtml);
+  showPreview(posterUrl, title, infoHtml);
 }
 
 async function loadLatestMoviesMarquee() {
@@ -939,16 +952,24 @@ async function loadLatestMoviesMarquee() {
     const data = await response.json();
     const movies = data.results.slice(0, 20);
     const doubledMovies = [...movies, ...movies];
-    const moviesHTML = doubledMovies.map(movie => `
-      <div class="movie-marquee-item" onmouseenter="showMoviePreview('${movie.poster_path ? TMDB_IMAGE_URL + movie.poster_path : 'https://placehold.co/200x300/00d4ff/white?text=No+Poster'}', '${movie.title.replace(/'/g, "\\'")}', '${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'}', '${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}')">
-        <img class="movie-marquee-poster" src="${movie.poster_path ? TMDB_IMAGE_URL + movie.poster_path : 'https://placehold.co/200x300/00d4ff/white?text=No+Poster'}" alt="${movie.title}">
-        <div class="movie-marquee-info">
-          <div class="movie-marquee-title">${movie.title.length > 25 ? movie.title.substring(0, 22) + '...' : movie.title}</div>
-          <div class="movie-marquee-year">${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'}</div>
-          <div class="movie-marquee-rating">⭐ ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}/10</div>
+    const moviesHTML = doubledMovies.map(movie => {
+      const poster = movie.poster_path ? TMDB_IMAGE_URL + movie.poster_path : 'https://placehold.co/200x300/00d4ff/white?text=No+Poster';
+      const title = movie.title.replace(/'/g, "\\'");
+      const year = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
+      const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
+      return `
+        <div class="movie-marquee-item" 
+             onmouseenter="showMoviePreview('${poster}', '${title}', '${year}', '${rating}')"
+             onmouseleave="hidePreview()">
+          <img class="movie-marquee-poster" src="${poster}" alt="${movie.title}">
+          <div class="movie-marquee-info">
+            <div class="movie-marquee-title">${movie.title.length > 25 ? movie.title.substring(0, 22) + '...' : movie.title}</div>
+            <div class="movie-marquee-year">${year}</div>
+            <div class="movie-marquee-rating">⭐ ${rating}/10</div>
+          </div>
         </div>
-      </div>
-    `).join('');
+      `;
+    }).join('');
     container.innerHTML = moviesHTML;
   } catch (error) {
     console.error('Error loading movies:', error);
@@ -956,6 +977,7 @@ async function loadLatestMoviesMarquee() {
   }
 }
 
+// --- Form and utility functions (unchanged) ---
 function sendPaymentRequest(method, methodName) { const name = document.getElementById('inp-name').value.trim(); const phone = document.getElementById('inp-phone').value.trim(); const email = document.getElementById('inp-email').value.trim(); const plan = document.getElementById('inp-plan').value; if (!name || !phone || !email || !plan) { showToast('⚠️ Please fill your name, phone, email and select a plan first'); return; } const sel = document.getElementById('inp-payment'); for (let o of sel.options) { if (o.text === method) { sel.value = o.text; break; } } const msg = `━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A💰 *NEW PAYMENT REQUEST - STREAMZONE* 💰%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A👤 *Customer Name:* ${name}%0A📞 *Phone:* ${phone}%0A📧 *Email:* ${email}%0A📦 *Plan:* ${plan}%0A💳 *Payment Method:* ${methodName}%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A📌 *Action Required:*%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A✅ Please send the customer the payment details for ${method}%0A✅ Send bank account / CashPlus / CashExpress information%0A✅ Ask for payment receipt confirmation%0A✅ After confirmation, send IPTV login details%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A⏰ Request sent at: ${new Date().toLocaleString()}%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank'); showToast(`📱 Opening WhatsApp with ${method} payment request`); }
 function openOrderModal(planName, price) { selectedPlan = { name: planName, price: price }; document.getElementById('modalPlanInfo').innerHTML = `📦 ${planName} — $${price} USD`; document.getElementById('orderModal').style.display = 'flex'; document.getElementById('modalName').value = ''; document.getElementById('modalPhone').value = ''; document.getElementById('modalEmail').value = ''; }
 function openTrialModal() { document.getElementById('trialModal').style.display = 'flex'; }
