@@ -108,38 +108,28 @@
   .league-item:hover {
     transform: translateY(-3px);
   }
-  .league-icon {
-    width: 60px;
-    height: 60px;
+  .league-img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
     background: rgba(255,255,255,0.05);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 32px;
+    padding: 8px;
     border: 1px solid var(--border);
     transition: all 0.2s;
   }
-  .league-item:hover .league-icon {
+  .league-item:hover .league-img {
     border-color: var(--cyan);
     background: rgba(0,212,255,0.1);
     box-shadow: 0 0 15px rgba(0,212,255,0.2);
   }
   .league-name {
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 700;
     color: var(--muted);
     letter-spacing: 0.5px;
+    text-align: center;
   }
-  /* Special styling for specific leagues */
-  .league-icon.premier { background: linear-gradient(135deg, #37003c, #1e3a8a); }
-  .league-icon.ucl { background: linear-gradient(135deg, #0a2f6c, #020024); }
-  .league-icon.laliga { background: linear-gradient(135deg, #9b111e, #1a1a1a); }
-  .league-icon.bundesliga { background: linear-gradient(135deg, #d20505, #000000); }
-  .league-icon.seriea { background: linear-gradient(135deg, #0066cc, #003366); }
-  .league-icon.fifa { background: linear-gradient(135deg, #1a3c5e, #0a1a2a); }
-  .league-icon.arab { background: linear-gradient(135deg, #006233, #b8860b); }
-  .league-icon.africa { background: linear-gradient(135deg, #ff8c00, #006400); }
 
   /* ========== SWIPER SLIDER ========== */
   .movies-slider-section {
@@ -376,8 +366,8 @@
     .payment-logo { font-size: 30px; }
     .swiper-slide { width: 160px; }
     .movie-title { font-size: 11px; white-space: normal; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; }
-    .league-icon { width: 50px; height: 50px; font-size: 26px; }
-    .league-name { font-size: 10px; }
+    .league-img { width: 55px; height: 55px; }
+    .league-name { font-size: 9px; }
     .leagues-container { gap: 25px; }
   }
 </style>
@@ -411,42 +401,9 @@
   </div>
 </div>
 
-<!-- LEAGUES SECTION (شعارات وأيقونات البطولات) -->
+<!-- LEAGUES SECTION (شعارات البطولات - جاهز لاستقبال صورك من GitHub) -->
 <div class="leagues-section">
-  <div class="leagues-container">
-    <div class="league-item">
-      <div class="league-icon premier">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div>
-      <div class="league-name">PREMIER LEAGUE</div>
-    </div>
-    <div class="league-item">
-      <div class="league-icon ucl">🌟</div>
-      <div class="league-name">CHAMPIONS LEAGUE</div>
-    </div>
-    <div class="league-item">
-      <div class="league-icon laliga">🇪🇸</div>
-      <div class="league-name">LA LIGA</div>
-    </div>
-    <div class="league-item">
-      <div class="league-icon bundesliga">🇩🇪</div>
-      <div class="league-name">BUNDESLIGA</div>
-    </div>
-    <div class="league-item">
-      <div class="league-icon seriea">🇮🇹</div>
-      <div class="league-name">SERIE A</div>
-    </div>
-    <div class="league-item">
-      <div class="league-icon fifa">🏆</div>
-      <div class="league-name">FIFA WORLD CUP</div>
-    </div>
-    <div class="league-item">
-      <div class="league-icon arab">🇦🇪</div>
-      <div class="league-name">ARAB LEAGUES</div>
-    </div>
-    <div class="league-item">
-      <div class="league-icon africa">🇲🇦</div>
-      <div class="league-name">AFRICAN FOOTBALL</div>
-    </div>
-  </div>
+  <div class="leagues-container" id="leaguesContainer"></div>
 </div>
 
 <!-- Swiper Slider Section (Movie Carousel with central zoom + AUTOPLAY) -->
@@ -501,14 +458,68 @@ const WHATSAPP_NUMBER = '212670965351';
 const TMDB_API_KEY = '0de67f2ee06f23a99475aaffe093d1e7';
 const TMDB_IMAGE_URL = 'https://image.tmdb.org/t/p/w300';
 
-// DOM elements
+// ========== LEAGUE IMAGES (ضع روابط صورك من GitHub هنا) ==========
+// 👇👇👇 استبدل هذه الروابط بروابط صورك المباشرة من GitHub 👇👇👇
+const leagueImages = {
+  "PREMIER LEAGUE": "https://raw.githubusercontent.com/your-username/your-repo/main/premier-league.png",
+  "CHAMPIONS LEAGUE": "https://raw.githubusercontent.com/your-username/your-repo/main/champions-league.png",
+  "LA LIGA": "https://raw.githubusercontent.com/your-username/your-repo/main/la-liga.png",
+  "BUNDESLIGA": "https://raw.githubusercontent.com/your-username/your-repo/main/bundesliga.png",
+  "SERIE A": "https://raw.githubusercontent.com/your-username/your-repo/main/serie-a.png",
+  "FIFA WORLD CUP": "https://raw.githubusercontent.com/your-username/your-repo/main/fifa-worldcup.png",
+  "ARAB LEAGUES": "https://raw.githubusercontent.com/your-username/your-repo/main/arab-leagues.png",
+  "AFRICAN FOOTBALL": "https://raw.githubusercontent.com/your-username/your-repo/main/african-football.png"
+};
+
+// استخدام صور احتياطية (emoji) في حالة فشل تحميل الصور
+const fallbackIcons = {
+  "PREMIER LEAGUE": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+  "CHAMPIONS LEAGUE": "🌟",
+  "LA LIGA": "🇪🇸",
+  "BUNDESLIGA": "🇩🇪",
+  "SERIE A": "🇮🇹",
+  "FIFA WORLD CUP": "🏆",
+  "ARAB LEAGUES": "🇦🇪",
+  "AFRICAN FOOTBALL": "🇲🇦"
+};
+
+// ========== عرض البطولات في الصفحة ==========
+function loadLeagues() {
+  const container = document.getElementById('leaguesContainer');
+  const leagues = [
+    "PREMIER LEAGUE", "CHAMPIONS LEAGUE", "LA LIGA", "BUNDESLIGA",
+    "SERIE A", "FIFA WORLD CUP", "ARAB LEAGUES", "AFRICAN FOOTBALL"
+  ];
+  
+  container.innerHTML = leagues.map(league => {
+    const imgUrl = leagueImages[league];
+    // التحقق مما إذا كان الرابط لا يزال افتراضياً (يحتوي على your-username)
+    if (imgUrl && !imgUrl.includes('your-username')) {
+      return `
+        <div class="league-item">
+          <img class="league-img" src="${imgUrl}" alt="${league}" loading="lazy" onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="league-name" style="font-size:11px;">${league}</div>
+        </div>
+      `;
+    } else {
+      // إذا لم يتم رفع الصور بعد، نعرض أيقونة افتراضية
+      return `
+        <div class="league-item">
+          <div class="league-icon" style="width:70px;height:70px;background:rgba(0,212,255,0.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:32px;border:1px solid var(--border);">${fallbackIcons[league]}</div>
+          <div class="league-name">${league}</div>
+        </div>
+      `;
+    }
+  }).join('');
+}
+
+// ========== PREVIEW FUNCTIONS ==========
 const previewModal = document.getElementById('previewModal');
 const previewImage = document.getElementById('previewImage');
 const previewTitle = document.getElementById('previewTitle');
 const previewInfo = document.getElementById('previewInfo');
 let swiperInstance = null;
 
-// ========== PREVIEW FUNCTIONS ==========
 function showPreview(imageUrl, title, infoHtml) {
   previewImage.src = imageUrl;
   previewTitle.innerHTML = title;
@@ -552,7 +563,7 @@ async function fetchAndInitSwiper() {
     
     swiperWrapper.innerHTML = slidesHTML;
     
-    // Initialize Swiper with AUTOPLAY (slow speed)
+    // Initialize Swiper with AUTOPLAY
     if (swiperInstance) swiperInstance.destroy(true, true);
     swiperInstance = new Swiper('.mySwiper', {
       slidesPerView: 'auto',
@@ -562,11 +573,11 @@ async function fetchAndInitSwiper() {
       grabCursor: true,
       slideToClickedSlide: true,
       autoplay: {
-        delay: 3000,  // 3 seconds between transitions
-        disableOnInteraction: false,  // continues after user interaction
-        pauseOnMouseEnter: true,  // pauses when mouse enters
+        delay: 3000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
       },
-      speed: 800,  // transition speed (smooth)
+      speed: 800,
       navigation: {
         nextEl: '.swiper-button-next-custom',
         prevEl: '.swiper-button-prev-custom',
@@ -598,7 +609,8 @@ function toggleFaq(btn) { const item = btn.parentElement; const isOpen = item.cl
 function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
 window.onclick = function(event) { if (event.target.classList.contains('modal-overlay')) { event.target.style.display = 'none'; } }
 
-// Initialize everything
+// ========== INITIALIZE ==========
+loadLeagues();
 fetchAndInitSwiper();
 </script>
 </body>
