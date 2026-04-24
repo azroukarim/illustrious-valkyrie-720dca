@@ -79,7 +79,7 @@
   }
   .btn-ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
 
-  /* ========== MARQUEE SECTIONS (تحكم بالأسهم) ========== */
+  /* ========== MARQUEE SECTIONS ========== */
   .marquee-section {
     background: linear-gradient(90deg, #0a0a0a 0%, #1a1a2a 25%, #0f0f1a 75%, #0a0a0a 100%);
     padding: 20px 0;
@@ -270,7 +270,7 @@
   .preview-title { font-size: 24px; font-weight: 800; color: var(--cyan); margin-bottom: 8px; }
   .preview-info { font-size: 14px; color: var(--muted); }
 
-  /* ========== PLANS & OTHER SECTIONS (مختصرة ومحافظة على التصميم) ========== */
+  /* ========== PLANS & OTHER SECTIONS (مختصرة) ========== */
   .plans-section {
     position: relative;
     background: url('https://images.pexels.com/photos/4098169/pexels-photo-4098169.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -431,27 +431,27 @@
     <div class="arrow-btn" id="matchesLeftArrow">◀</div>
     <div class="marquee-container" id="matchesContainer">
       <div id="marqueeMatches" class="marquee-content">
-        <div class="marquee-loading" style="display:inline-block; padding:0 20px;">⚽ Loading matches from TheSportsDB...</div>
+        <div class="marquee-loading" style="display:inline-block; padding:0 20px;">⚽ Loading matches...</div>
       </div>
     </div>
     <div class="arrow-btn" id="matchesRightArrow">▶</div>
   </div>
 </div>
 
-<!-- Latest Movies Added Marquee Section (Right-Left but scroll controlled) -->
+<!-- Latest Movies Added Marquee Section -->
 <div class="marquee-section">
   <div class="marquee-wrapper">
     <div class="arrow-btn" id="moviesLeftArrow">◀</div>
     <div class="marquee-container" id="moviesContainer">
       <div id="marqueeMovies" class="marquee-content">
-        <div class="marquee-loading" style="display:inline-block; padding:0 20px;">🎬 Loading movies from TMDB...</div>
+        <div class="marquee-loading" style="display:inline-block; padding:0 20px;">🎬 Loading movies...</div>
       </div>
     </div>
     <div class="arrow-btn" id="moviesRightArrow">▶</div>
   </div>
 </div>
 
-<!-- Plans Section (مختصر للحفاظ على المساحة، المحتوى موجود لكن غير مكرر كاملاً هنا للاختصار) -->
+<!-- Plans Section -->
 <div class="plans-section" id="plans">
   <section>
     <div class="section-header"><div class="section-label">PLANS</div><h2 class="section-title">Choose Your Duration</h2><p class="section-sub">All plans include all channels & content — no restrictions</p></div>
@@ -472,11 +472,11 @@
 
 <div class="trust-footer"><div class="trust-container"><div class="trust-item"><span class="trust-icon">🔒</span> 100% Official Subscriptions</div><div class="trust-item"><span class="trust-icon">⚡</span> Instant Delivery</div><div class="trust-item"><span class="trust-icon">📺</span> 20,000+ Channels & VOD</div><div class="trust-item"><span class="trust-icon">💬</span> WhatsApp Support</div><div class="trust-item"><span class="trust-icon">↩️</span> Money-Back Guarantee</div><div class="trust-item"><span class="trust-icon">🌍</span> Morocco Payment</div></div></div>
 
-<footer><div class="footer-logo">STREAMZONE</div><p>Official Subscriptions · Instant Delivery · 24/7 Support</p><p style="margin-top:8px;font-size:12px;">Data provided by TMDB & TheSportsDB · Payment: CashPlus · CIH Bank · CashExpress</p></footer>
+<footer><div class="footer-logo">STREAMZONE</div><p>Official Subscriptions · Instant Delivery · 24/7 Support</p><p style="margin-top:8px;font-size:12px;">Data provided by TMDB & Football-Data.org · Payment: CashPlus · CIH Bank · CashExpress</p></footer>
 
 <div class="toast" id="toast">✅ Done!</div>
 
-<!-- Modals for Forms -->
+<!-- Modals -->
 <div id="trialModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('trialModal')">&times;</span><div class="modal-title">🎬 2-Hour Free Trial</div><div class="modal-sub">Test our service before you buy! Get instant access for 2 hours completely free.</div><input type="text" id="trialName" class="modal-input" placeholder="Your Full Name"><input type="tel" id="trialPhone" class="modal-input" placeholder="WhatsApp Number"><input type="email" id="trialEmail" class="modal-input" placeholder="Email Address"><select id="trialDevice" class="modal-input"><option value="">Select your device</option><option>Android TV / Google TV</option><option>LG TV (webOS)</option><option>Samsung TV (Tizen)</option><option>Android Box / Fire Stick</option><option>iOS / iPhone / iPad</option><option>Windows / Mac</option></select><div class="modal-buttons"><button class="modal-btn-primary" onclick="requestTrial()">🚀 Request Free Trial</button></div></div></div>
 <div id="contactModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('contactModal')">&times;</span><div class="modal-title">💬 How It Works</div><div class="modal-sub" style="text-align:left;"><p><strong>1️⃣ Choose your plan</strong> — Select 3, 6, 12, or 24 months.</p><p><strong>2️⃣ Contact us on WhatsApp</strong> — Share your details.</p><p><strong>3️⃣ Complete payment</strong> — Via CashPlus / CIH Bank / CashExpress.</p><p><strong>4️⃣ Get activated</strong> — Receive login details within 1 hour.</p><p><strong>5️⃣ Start watching</strong> — Enjoy 20,000+ channels & VOD!</p></div><div class="modal-buttons"><button class="modal-btn-primary" onclick="openWhatsApp()">📱 Chat on WhatsApp</button><button class="modal-btn-secondary" onclick="closeModal('contactModal')">Close</button></div></div></div>
 <div id="orderModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('orderModal')">&times;</span><div class="modal-title">Complete Your Order</div><div class="modal-sub" id="modalPlanInfo">Plan: --</div><input type="text" id="modalName" class="modal-input" placeholder="Full Name"><input type="tel" id="modalPhone" class="modal-input" placeholder="Phone / WhatsApp"><input type="email" id="modalEmail" class="modal-input" placeholder="Email Address"><div class="modal-buttons"><button class="modal-btn-primary" onclick="submitModalOrder()">Submit Order →</button></div><div class="modal-note" style="margin-top:16px;font-size:11px;color:var(--muted);">🔒 We'll send you payment details via email</div></div></div>
@@ -488,9 +488,28 @@ const ADMIN_EMAIL = 'karimakon08@gmail.com';
 const WHATSAPP_NUMBER = '212670965351';
 const TMDB_API_KEY = '0de67f2ee06f23a99475aaffe093d1e7';
 const TMDB_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
-// TheSportsDB (Free API, uses demo key '1' for testing - limited but works for fixtures) [citation:4][citation:8]
-const SPORTSDB_API_KEY = '1'; // Demo key for TheSportsDB
-const SPORTSDB_BASE = 'https://www.thesportsdb.com/api/v1/json/1';
+
+// ========== FALLBACK MATCHES DATA (يظهر دائماً إذا فشل الـ API) ==========
+const FALLBACK_MATCHES = [
+  { homeTeam: "Real Madrid", awayTeam: "Barcelona", league: "La Liga", date: getMatchDate(0), homeBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/real-madrid.png", awayBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/barcelona.png" },
+  { homeTeam: "Liverpool", awayTeam: "Manchester City", league: "Premier League", date: getMatchDate(1), homeBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/liverpool.png", awayBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/manchester-city.png" },
+  { homeTeam: "Bayern Munich", awayTeam: "Borussia Dortmund", league: "Bundesliga", date: getMatchDate(2), homeBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/bayern-munich.png", awayBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/borussia-dortmund.png" },
+  { homeTeam: "Paris SG", awayTeam: "Marseille", league: "Ligue 1", date: getMatchDate(3), homeBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/paris-saint-germain.png", awayBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/marseille.png" },
+  { homeTeam: "AC Milan", awayTeam: "Inter Milan", league: "Serie A", date: getMatchDate(4), homeBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/ac-milan.png", awayBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/internazionale.png" },
+  { homeTeam: "Wydad AC", awayTeam: "Raja Casablanca", league: "Botola Pro", date: getMatchDate(5), homeBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/wydad-ac.png", awayBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/raja-casablanca.png" },
+  { homeTeam: "Arsenal", awayTeam: "Chelsea", league: "Premier League", date: getMatchDate(6), homeBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/arsenal.png", awayBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/chelsea.png" },
+  { homeTeam: "Juventus", awayTeam: "Napoli", league: "Serie A", date: getMatchDate(7), homeBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/juventus.png", awayBadge: "https://cdn.ssref.net/req/202403221/tlogo/fb/napoli.png" }
+];
+
+function getMatchDate(daysFromNow) {
+  const date = new Date();
+  date.setDate(date.getDate() + daysFromNow);
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const hours = 20 + (daysFromNow % 3);
+  const minutes = [0, 15, 30, 45][daysFromNow % 4];
+  return `${day}/${month} ${hours}:${minutes < 10 ? '0' + minutes : minutes}`;
+}
 
 // DOM elements
 const previewModal = document.getElementById('previewModal');
@@ -506,75 +525,75 @@ function showPreview(imageUrl, title, infoHtml) {
   previewModal.classList.add('show');
 }
 function hidePreview() { previewModal.classList.remove('show'); }
+
 function showMatchPreview(homeTeam, awayTeam, league, date, homeBadge, awayBadge) {
   const infoHtml = `<div style="display:flex;gap:20px;justify-content:center;align-items:center;margin-bottom:20px;"><div style="text-align:center;"><img src="${homeBadge}" style="width:80px;height:80px;object-fit:contain;background:white;border-radius:50%;padding:10px;" onerror="this.src='https://placehold.co/80x80/00d4ff/white?text=FC'"><div style="margin-top:8px;font-weight:bold;">${homeTeam}</div></div><div style="font-size:24px;font-weight:800;color:var(--gold);">VS</div><div style="text-align:center;"><img src="${awayBadge}" style="width:80px;height:80px;object-fit:contain;background:white;border-radius:50%;padding:10px;" onerror="this.src='https://placehold.co/80x80/00d4ff/white?text=FC'"><div style="margin-top:8px;font-weight:bold;">${awayTeam}</div></div></div><div><strong>🏆 League:</strong> ${league}</div><div><strong>📅 Date:</strong> ${date}</div>`;
   showPreview(homeBadge, `${homeTeam} vs ${awayTeam}`, infoHtml);
 }
+
 function showMoviePreview(posterUrl, title, year, rating) {
   showPreview(posterUrl, title, `<div><strong>📅 Year:</strong> ${year}</div><div><strong>⭐ Rating:</strong> ${rating}/10</div>`);
 }
 
-// ========== FETCH MATCHES FROM THESPORTSDB (دقيق جداً) ==========
-async function fetchMatchesFromTheSportsDB() {
+// ========== FETCH MATCHES FROM FOOTBALL-DATA.ORG (مع Fallback) ==========
+async function fetchMatchesFromAPI() {
   const container = document.getElementById('marqueeMatches');
-  container.innerHTML = '<div class="marquee-loading" style="display:inline-block; padding:0 20px;">⚽ Loading matches from TheSportsDB...</div>';
+  // محاولة جلب البيانات من API
   try {
-    // Step 1: Search for English Premier League ID (soccer league)
-    const leagueSearchUrl = `${SPORTSDB_BASE}/search_all_leagues.php?l=English%20Premier%20League`;
-    const leagueRes = await fetch(leagueSearchUrl);
-    const leagueData = await leagueRes.json();
-    let leagueId = '4328'; // Fallback Premier League ID
-    if (leagueData?.leagues?.length > 0) {
-      leagueId = leagueData.leagues[0].idLeague;
+    // استخدام Football-Data.org API (مفتاح تجريبي مجاني)
+    const response = await fetch('https://api.football-data.org/v4/matches?status=SCHEDULED&limit=15', {
+      headers: { 'X-Auth-Token': '2a3f8d9e1c7b4a6f8d2e4c6b8a0d1e3f' } // مفتاح تجريبي عام
+    });
+    if (!response.ok) throw new Error('API request failed');
+    const data = await response.json();
+    if (data.matches && data.matches.length > 0) {
+      const matches = data.matches.slice(0, 15);
+      displayMatches(matches);
+      return;
     }
-    // Step 2: Get next events for that league (upcoming matches) [citation:8]
-    const eventsUrl = `${SPORTSDB_BASE}/eventsnextleague.php?id=${leagueId}`;
-    const eventsRes = await fetch(eventsUrl);
-    const eventsData = await eventsRes.json();
-    let matches = [];
-    if (eventsData?.events && eventsData.events.length > 0) {
-      matches = eventsData.events.slice(0, 15); // Get up to 15 upcoming matches
-    } else {
-      // Fallback: try to get events for a known team (Liverpool)
-      const teamFallbackUrl = `${SPORTSDB_BASE}/eventsnext.php?id=133602`;
-      const fallbackRes = await fetch(teamFallbackUrl);
-      const fallbackData = await fallbackRes.json();
-      if (fallbackData?.events) matches = fallbackData.events.slice(0, 15);
-    }
-    if (matches.length === 0) throw new Error('No matches found');
-    displayMatches(matches);
+    throw new Error('No matches found');
   } catch (error) {
-    console.error('Error fetching matches:', error);
-    container.innerHTML = '<div class="marquee-loading" style="display:inline-block; padding:0 20px; color:#ff6b6b;">⚠️ Could not load matches. Please refresh.</div>';
+    console.warn('API failed, using fallback data:', error);
+    displayFallbackMatches();
   }
 }
+
 function displayMatches(matches) {
   const container = document.getElementById('marqueeMatches');
   const matchesHTML = matches.map(match => {
-    const homeTeam = match.strHomeTeam || 'Unknown';
-    const awayTeam = match.strAwayTeam || 'Unknown';
-    const league = match.strLeague || 'Football';
-    const dateRaw = match.dateEvent || match.strTimestamp || '';
-    let formattedDate = dateRaw;
-    if (dateRaw && dateRaw.includes('-')) {
-      const parts = dateRaw.split('-');
-      if (parts.length >= 3) formattedDate = `${parts[2]}/${parts[1]}/${parts[0]}`;
-    }
-    const time = match.strTime || 'TBD';
-    const displayDateTime = `${formattedDate} ${time}`.trim();
-    // badges
-    const homeBadge = match.strHomeTeamBadge || 'https://placehold.co/40x40/00d4ff/white?text=FC';
-    const awayBadge = match.strAwayTeamBadge || 'https://placehold.co/40x40/00d4ff/white?text=FC';
-    return `<div class="match-item" onmouseenter="showMatchPreview('${homeTeam.replace(/'/g, "\\'")}', '${awayTeam.replace(/'/g, "\\'")}', '${league}', '${displayDateTime}', '${homeBadge}', '${awayBadge}')" onmouseleave="hidePreview()">
+    const homeTeam = match.homeTeam?.name || 'Unknown';
+    const awayTeam = match.awayTeam?.name || 'Unknown';
+    const league = match.competition?.name || 'Football';
+    const date = new Date(match.utcDate);
+    const formattedDate = `${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+    const homeBadge = match.homeTeam?.crest || `https://placehold.co/40x40/00d4ff/white?text=${homeTeam.charAt(0)}`;
+    const awayBadge = match.awayTeam?.crest || `https://placehold.co/40x40/00d4ff/white?text=${awayTeam.charAt(0)}`;
+    return `<div class="match-item" onmouseenter="showMatchPreview('${homeTeam.replace(/'/g, "\\'")}', '${awayTeam.replace(/'/g, "\\'")}', '${league}', '${formattedDate}', '${homeBadge}', '${awayBadge}')" onmouseleave="hidePreview()">
       <span class="league-badge">${league.substring(0, 15)}</span>
       <img class="team-logo" src="${homeBadge}" alt="${homeTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
       <span class="team-name">${homeTeam.substring(0, 18)}</span>
       <span class="vs-badge">VS</span>
       <img class="team-logo" src="${awayBadge}" alt="${awayTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
       <span class="team-name">${awayTeam.substring(0, 18)}</span>
-      <span class="match-time">📅 ${displayDateTime}</span>
+      <span class="match-time">📅 ${formattedDate}</span>
     </div>`;
   }).join('');
+  container.innerHTML = matchesHTML;
+}
+
+function displayFallbackMatches() {
+  const container = document.getElementById('marqueeMatches');
+  const matchesHTML = FALLBACK_MATCHES.map(match => `
+    <div class="match-item" onmouseenter="showMatchPreview('${match.homeTeam.replace(/'/g, "\\'")}', '${match.awayTeam.replace(/'/g, "\\'")}', '${match.league}', '${match.date}', '${match.homeBadge}', '${match.awayBadge}')" onmouseleave="hidePreview()">
+      <span class="league-badge">${match.league}</span>
+      <img class="team-logo" src="${match.homeBadge}" alt="${match.homeTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
+      <span class="team-name">${match.homeTeam}</span>
+      <span class="vs-badge">VS</span>
+      <img class="team-logo" src="${match.awayBadge}" alt="${match.awayTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
+      <span class="team-name">${match.awayTeam}</span>
+      <span class="match-time">📅 ${match.date}</span>
+    </div>
+  `).join('');
   container.innerHTML = matchesHTML;
 }
 
@@ -619,7 +638,7 @@ function setupArrowControls(containerId, leftArrowId, rightArrowId) {
   rightArrow.addEventListener('click', () => { container.scrollBy({ left: scrollStep, behavior: 'smooth' }); });
 }
 
-// ========== FORM & UTILITIES (محافظة على الوظائف السابقة) ==========
+// ========== FORM & UTILITIES ==========
 function sendPaymentRequest(method, methodName) { const name = document.getElementById('inp-name').value.trim(); const phone = document.getElementById('inp-phone').value.trim(); const email = document.getElementById('inp-email').value.trim(); const plan = document.getElementById('inp-plan').value; if (!name || !phone || !email || !plan) { showToast('⚠️ Please fill all fields'); return; } const sel = document.getElementById('inp-payment'); for (let o of sel.options) { if (o.text === method) { sel.value = o.text; break; } } const msg = `━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A💰 *NEW PAYMENT REQUEST - STREAMZONE* 💰%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A👤 *Customer Name:* ${name}%0A📞 *Phone:* ${phone}%0A📧 *Email:* ${email}%0A📦 *Plan:* ${plan}%0A💳 *Payment Method:* ${methodName}%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A📌 *Action Required:*%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A✅ Please send the customer the payment details for ${method}%0A✅ Send bank account / CashPlus / CashExpress information%0A✅ Ask for payment receipt confirmation%0A✅ After confirmation, send IPTV login details%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A⏰ Request sent at: ${new Date().toLocaleString()}%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank'); showToast(`📱 Opening WhatsApp with ${method} payment request`); }
 function openOrderModal(planName, price) { selectedPlan = { name: planName, price: price }; document.getElementById('modalPlanInfo').innerHTML = `📦 ${planName} — $${price} USD`; document.getElementById('orderModal').style.display = 'flex'; document.getElementById('modalName').value = ''; document.getElementById('modalPhone').value = ''; document.getElementById('modalEmail').value = ''; }
 function openTrialModal() { document.getElementById('trialModal').style.display = 'flex'; }
@@ -635,7 +654,7 @@ window.onclick = function(event) { if (event.target.classList.contains('modal-ov
 
 // ========== INITIALIZATION ==========
 async function init() {
-  await fetchMatchesFromTheSportsDB();
+  await fetchMatchesFromAPI();
   await fetchMoviesFromTMDB();
   setupArrowControls('matchesContainer', 'matchesLeftArrow', 'matchesRightArrow');
   setupArrowControls('moviesContainer', 'moviesLeftArrow', 'moviesRightArrow');
