@@ -6,77 +6,221 @@
 <title>StreamZone — Official IPTV Subscriptions</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --red: #E50914; --red-dark: #b00710;
-    --black: #0a0a0a; --dark: #141414; --card-bg: rgba(20, 20, 20, 0.85);
-    --border: rgba(255,255,255,0.12); --text: #ffffff;
-    --muted: #ccc; --gold: #f5c518; --cyan: #00d4ff;
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Inter', sans-serif; background: var(--black); color: var(--text); overflow-x: hidden; }
+
+  :root {
+    --red: #E50914;
+    --red-dark: #b00710;
+    --black: #0a0a0a;
+    --dark: #141414;
+    --card-bg: rgba(20, 20, 20, 0.85);
+    --border: rgba(255, 255, 255, 0.12);
+    --text: #ffffff;
+    --muted: #ccc;
+    --gold: #f5c518;
+    --cyan: #00d4ff;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--black);
+    color: var(--text);
+    overflow-x: hidden;
+  }
 
   nav {
-    position: sticky; top: 0; z-index: 100;
-    background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 64px;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
   }
-  .nav-logo { font-size: 26px; font-weight: 900; color: var(--cyan); letter-spacing: -1px; }
-  .nav-logo span { color: white; font-weight: 400; font-size: 14px; margin-left: 8px; opacity: 0.6; }
+
+  .nav-logo {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--cyan);
+    letter-spacing: -1px;
+  }
+
+  .nav-logo span {
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    margin-left: 8px;
+    opacity: 0.6;
+  }
+
   .nav-cta {
-    background: var(--red); color: white; border: none;
-    padding: 9px 22px; border-radius: 6px; font-family: 'Inter', sans-serif;
-    font-size: 14px; font-weight: 600; cursor: pointer; transition: background 0.2s;
+    background: var(--red);
+    color: white;
+    border: none;
+    padding: 9px 22px;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
   }
-  .nav-cta:hover { background: var(--red-dark); }
+
+  .nav-cta:hover {
+    background: var(--red-dark);
+  }
 
   .hero {
-    position: relative; min-height: 550px;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 100px 24px 80px; overflow: hidden;
+    position: relative;
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 24px 80px;
+    overflow: hidden;
   }
+
   .hero-bg {
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,0.15) 0%, transparent 70%),
-                linear-gradient(180deg, #0a0a0a 0%, #141414 60%, #0a0a0a 100%);
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0, 212, 255, 0.15) 0%, transparent 70%),
+      linear-gradient(180deg, #0a0a0a 0%, #141414 60%, #0a0a0a 100%);
   }
+
   .hero-badge {
-    position: relative; display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(0,212,255,0.12); border: 1px solid rgba(0,212,255,0.4);
-    color: #00d4ff; font-size: 13px; font-weight: 600;
-    padding: 6px 20px; border-radius: 40px; margin-bottom: 28px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 212, 255, 0.12);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    color: #00d4ff;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 20px;
+    border-radius: 40px;
+    margin-bottom: 28px;
     letter-spacing: 0.5px;
   }
-  .hero-badge::before { content: '●'; font-size: 8px; animation: pulse 1.5s infinite; margin-left: 6px; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  .hero-badge::before {
+    content: '●';
+    font-size: 8px;
+    animation: pulse 1.5s infinite;
+    margin-left: 6px;
+  }
+
+  @keyframes pulse {
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.3;
+    }
+  }
+
   .hero h1 {
-    position: relative; font-size: clamp(42px, 7vw, 80px); font-weight: 900;
-    line-height: 1.08; letter-spacing: -2px; margin-bottom: 24px;
+    position: relative;
+    font-size: clamp(42px, 7vw, 80px);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
     background: linear-gradient(135deg, #fff 0%, #00d4ff 80%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .hero h1 em { color: var(--cyan); font-style: normal; background: none; -webkit-text-fill-color: var(--cyan); }
-  .hero p { position: relative; font-size: 17px; color: var(--muted); max-width: 550px; line-height: 1.7; margin-bottom: 40px; }
-  .hero-actions { position: relative; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-  .btn-primary {
-    background: var(--cyan); color: var(--black); border: none;
-    padding: 14px 28px; border-radius: 10px; font-family: 'Inter', sans-serif;
-    font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-primary:hover { background: #00b8e6; transform: translateY(-2px); }
-  .btn-ghost {
-    background: transparent; color: white; border: 1px solid rgba(255,255,255,0.25);
-    padding: 14px 28px; border-radius: 10px; font-family: 'Inter', sans-serif;
-    font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s;
-    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
 
-  /* Movies Marquee Section */
+  .hero h1 em {
+    color: var(--cyan);
+    font-style: normal;
+    background: none;
+    -webkit-text-fill-color: var(--cyan);
+  }
+
+  .hero p {
+    position: relative;
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 550px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    position: relative;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn-primary {
+    background: var(--cyan);
+    color: var(--black);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-primary:hover {
+    background: #00b8e6;
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-ghost:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-2px);
+  }
+
+  /* Movies Marquee Sections */
   .movies-marquee-section {
     background: linear-gradient(90deg, #0a0a0a 0%, #1a1a2a 25%, #0f0f1a 75%, #0a0a0a 100%);
     padding: 30px 0;
@@ -85,63 +229,84 @@
     overflow: hidden;
     position: relative;
   }
+
   .marquee-container {
     width: 100%;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
   }
-  .marquee-content-right-to-left {
+
+  /* Animation base classes - will be toggled by JS on hover */
+  .animate-right-to-left {
+    animation: scrollRightToLeft 40s linear infinite;
+  }
+
+  .animate-left-to-right {
+    animation: scrollLeftToRight 40s linear infinite;
+  }
+
+  @keyframes scrollRightToLeft {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes scrollLeftToRight {
+    0% {
+      transform: translateX(-50%);
+    }
+
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .marquee-content {
     display: inline-flex;
     align-items: center;
     gap: 25px;
-    animation: scrollRightToLeft 40s linear infinite;
   }
-  .marquee-content-right-to-left:hover {
-    animation-play-state: paused;
-  }
-  @keyframes scrollRightToLeft {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  .marquee-content-left-to-right {
-    display: inline-flex;
-    align-items: center;
-    gap: 30px;
-    animation: scrollLeftToRight 40s linear infinite;
-  }
-  .marquee-content-left-to-right:hover {
-    animation-play-state: paused;
-  }
-  @keyframes scrollLeftToRight {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
-  }
-  .movie-marquee-item {
+
+  /* Individual items */
+  .movie-marquee-item,
+  .match-item {
     display: inline-flex;
     align-items: center;
     gap: 12px;
-    background: rgba(0,212,255,0.1);
+    background: rgba(0, 212, 255, 0.1);
     padding: 8px 20px;
     border-radius: 50px;
-    border: 1px solid rgba(0,212,255,0.3);
+    border: 1px solid rgba(0, 212, 255, 0.3);
     backdrop-filter: blur(4px);
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease, background 0.2s ease;
+    will-change: transform;
   }
-  .movie-marquee-item:hover {
-    transform: scale(1.02);
-    background: rgba(0,212,255,0.2);
+
+  .movie-marquee-item:hover,
+  .match-item:hover {
+    transform: scale(1.08);
+    background: rgba(0, 212, 255, 0.25);
+    z-index: 5;
+    position: relative;
   }
+
   .movie-marquee-poster {
     width: 45px;
     height: 60px;
     object-fit: cover;
     border-radius: 8px;
   }
+
   .movie-marquee-info {
     text-align: left;
   }
+
   .movie-marquee-title {
     font-size: 13px;
     font-weight: 700;
@@ -151,29 +316,17 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   .movie-marquee-year {
     font-size: 11px;
     color: var(--gold);
   }
+
   .movie-marquee-rating {
     font-size: 10px;
     color: var(--muted);
   }
 
-  .match-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(0,212,255,0.1);
-    padding: 8px 20px;
-    border-radius: 50px;
-    border: 1px solid rgba(0,212,255,0.3);
-    backdrop-filter: blur(4px);
-    cursor: pointer;
-  }
-  .match-item:hover {
-    background: rgba(0,212,255,0.2);
-  }
   .team-logo {
     width: 35px;
     height: 35px;
@@ -182,41 +335,45 @@
     border-radius: 50%;
     padding: 3px;
   }
+
   .team-name {
     font-size: 13px;
     font-weight: 700;
     color: white;
   }
+
   .vs-badge {
     font-size: 11px;
     font-weight: 800;
     color: var(--gold);
   }
+
   .match-time {
     font-size: 11px;
     color: var(--cyan);
     font-weight: 600;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     padding: 4px 10px;
     border-radius: 20px;
   }
+
   .league-badge {
     font-size: 10px;
     color: var(--muted);
     margin-right: 5px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     padding: 3px 8px;
     border-radius: 20px;
   }
 
-  /* Hover Preview Modal - instant hide on mouse leave */
+  /* Hover Preview Modal */
   .preview-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(15px);
     z-index: 2000;
     display: flex;
@@ -225,14 +382,16 @@
     visibility: hidden;
     opacity: 0;
     transition: visibility 0s linear 0.2s, opacity 0.2s ease;
-    pointer-events: none; /* Allow clicking through when hidden */
+    pointer-events: none;
   }
+
   .preview-overlay.show {
     visibility: visible;
     opacity: 1;
     transition: visibility 0s linear 0s, opacity 0.2s ease;
-    pointer-events: auto; /* Enable interaction when visible */
+    pointer-events: auto;
   }
+
   .preview-content {
     max-width: 500px;
     width: 90%;
@@ -241,45 +400,43 @@
     padding: 20px;
     text-align: center;
     border: 1px solid var(--cyan);
-    box-shadow: 0 0 40px rgba(0,212,255,0.3);
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
     animation: previewZoom 0.25s ease;
-    pointer-events: none; /* So mouse leave works immediately without interfering */
+    pointer-events: none;
   }
+
   @keyframes previewZoom {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+      transform: scale(0.9);
+      opacity: 0;
+    }
+
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
   }
+
   .preview-image {
     width: 100%;
     max-width: 300px;
     border-radius: 16px;
     margin-bottom: 16px;
   }
+
   .preview-title {
     font-size: 24px;
     font-weight: 800;
     color: var(--cyan);
     margin-bottom: 8px;
   }
+
   .preview-info {
     font-size: 14px;
     color: var(--muted);
   }
-  .preview-close {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 40px;
-    cursor: pointer;
-    color: white;
-    transition: color 0.2s;
-    background: none;
-    border: none;
-  }
-  .preview-close:hover {
-    color: var(--cyan);
-  }
 
+  /* Plans & other sections (unchanged but kept for consistency) */
   .plans-section {
     position: relative;
     background: url('https://images.pexels.com/photos/4098169/pexels-photo-4098169.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -287,6 +444,7 @@
     background-position: center 30%;
     background-attachment: fixed;
   }
+
   .plans-section::before {
     content: '';
     position: absolute;
@@ -294,18 +452,27 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.75) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.75) 100%);
     z-index: 1;
   }
-  .plans-section > * {
+
+  .plans-section>* {
     position: relative;
     z-index: 2;
   }
-  
-  section { padding: 72px 24px; max-width: 1100px; margin: 0 auto; }
-  .plans {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;
+
+  section {
+    padding: 72px 24px;
+    max-width: 1100px;
+    margin: 0 auto;
   }
+
+  .plans {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+  }
+
   .plan {
     background: var(--card-bg);
     backdrop-filter: blur(4px);
@@ -316,110 +483,349 @@
     transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
     text-align: center;
   }
-  .plan:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.5); box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5); background: rgba(20,20,20,0.92); }
-  .plan.popular { border-color: var(--cyan); background: linear-gradient(160deg, rgba(0,50,60,0.85) 0%, rgba(20,20,20,0.85) 100%); }
-  .popular-badge {
-    position: absolute; top: -12px; left: 24px; background: var(--cyan); color: var(--black);
-    font-size: 12px; font-weight: 800; padding: 4px 14px; border-radius: 20px;
-  }
-  .plan-duration {
-    font-size: 42px; font-weight: 900; margin-bottom: 8px; letter-spacing: -2px;
-  }
-  .plan-duration span { font-size: 16px; font-weight: 500; color: var(--muted); }
-  .plan-price {
-    font-size: 38px; font-weight: 800; color: var(--gold); margin: 16px 0 8px;
-  }
-  .plan-price sub { font-size: 13px; color: var(--muted); font-weight: 400; }
-  .save-badge {
-    background: rgba(245,197,24,0.2); color: var(--gold); font-size: 12px;
-    font-weight: 700; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 16px;
-  }
-  .price-per-month {
-    font-size: 13px; color: var(--muted); margin-bottom: 20px;
-  }
-  .price-per-month strong { color: var(--gold); font-size: 15px; }
-  .plan-divider { height: 1px; background: var(--border); margin: 20px 0; }
-  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; text-align: left; }
-  .plan-features li { display: flex; align-items: center; gap: 10px; font-size: 13px; color: #ddd; }
-  .feat-check { color: #00c853; font-size: 16px; flex-shrink: 0; }
-  .plan-btn {
-    width: 100%; padding: 13px; border-radius: 12px; font-family: 'Inter', sans-serif;
-    font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s; border: none;
-  }
-  .plan-btn-red { background: var(--cyan); color: var(--black); }
-  .plan-btn-red:hover { background: #00b8e6; transform: translateY(-2px); }
-  .plan-btn-outline { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2) !important; }
-  .plan-btn-outline:hover { background: rgba(0,212,255,0.2); }
 
-  .payment-section { background: var(--dark); }
-  .payment-inner { max-width: 1100px; margin: 0 auto; padding: 72px 24px; }
-  .payment-methods { 
-    display: flex; 
-    justify-content: center; 
-    gap: 30px; 
-    flex-wrap: wrap; 
-    margin-bottom: 48px; 
+  .plan:hover {
+    transform: translateY(-6px);
+    border-color: rgba(0, 212, 255, 0.5);
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5);
+    background: rgba(20, 20, 20, 0.92);
   }
+
+  .plan.popular {
+    border-color: var(--cyan);
+    background: linear-gradient(160deg, rgba(0, 50, 60, 0.85) 0%, rgba(20, 20, 20, 0.85) 100%);
+  }
+
+  .popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 24px;
+    background: var(--cyan);
+    color: var(--black);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+
+  .plan-duration {
+    font-size: 42px;
+    font-weight: 900;
+    margin-bottom: 8px;
+    letter-spacing: -2px;
+  }
+
+  .plan-duration span {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--muted);
+  }
+
+  .plan-price {
+    font-size: 38px;
+    font-weight: 800;
+    color: var(--gold);
+    margin: 16px 0 8px;
+  }
+
+  .plan-price sub {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  .save-badge {
+    background: rgba(245, 197, 24, 0.2);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .price-per-month {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .price-per-month strong {
+    color: var(--gold);
+    font-size: 15px;
+  }
+
+  .plan-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 20px 0;
+  }
+
+  .plan-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .plan-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: #ddd;
+  }
+
+  .feat-check {
+    color: #00c853;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .plan-btn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+
+  .plan-btn-red {
+    background: var(--cyan);
+    color: var(--black);
+  }
+
+  .plan-btn-red:hover {
+    background: #00b8e6;
+    transform: translateY(-2px);
+  }
+
+  .plan-btn-outline {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  }
+
+  .plan-btn-outline:hover {
+    background: rgba(0, 212, 255, 0.2);
+  }
+
+  .payment-section {
+    background: var(--dark);
+  }
+
+  .payment-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 72px 24px;
+  }
+
+  .payment-methods {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
   .payment-card {
-    background: var(--card-bg); 
-    border: 1px solid var(--border); 
+    background: var(--card-bg);
+    border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 25px 30px; 
-    text-align: center; 
-    cursor: pointer; 
+    padding: 25px 30px;
+    text-align: center;
+    cursor: pointer;
     transition: all 0.2s;
     min-width: 160px;
   }
-  .payment-card:hover, .payment-card.selected { 
-    border-color: var(--cyan); 
-    background: rgba(0,212,255,0.1); 
+
+  .payment-card:hover,
+  .payment-card.selected {
+    border-color: var(--cyan);
+    background: rgba(0, 212, 255, 0.1);
     transform: translateY(-3px);
   }
-  .payment-logo { font-size: 40px; margin-bottom: 12px; }
-  .payment-name { font-size: 18px; font-weight: 800; margin-bottom: 6px; color: var(--cyan); }
-  .payment-note { font-size: 12px; color: var(--muted); }
+
+  .payment-logo {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .payment-name {
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: var(--cyan);
+  }
+
+  .payment-note {
+    font-size: 12px;
+    color: var(--muted);
+  }
 
   .order-form {
-    background: var(--card-bg); backdrop-filter: blur(4px);
-    border: 1px solid var(--border); border-radius: 24px;
-    padding: 36px; max-width: 680px; margin: 0 auto;
+    background: var(--card-bg);
+    backdrop-filter: blur(4px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 36px;
+    max-width: 680px;
+    margin: 0 auto;
   }
-  .form-title { font-size: 22px; font-weight: 800; margin-bottom: 24px; }
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; }
-  .form-group.full { grid-column: 1 / -1; }
-  label { font-size: 13px; font-weight: 600; color: #bbb; }
-  input, select {
-    background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 12px;
-    padding: 12px 14px; color: white; font-family: 'Inter', sans-serif;
-    font-size: 14px; transition: border-color 0.2s; outline: none;
-  }
-  input:focus, select:focus { border-color: var(--cyan); }
-  select option { background: #1a1a1a; }
-  .form-submit {
-    width: 100%; padding: 15px; margin-top: 8px; background: var(--cyan); color: var(--black);
-    border: none; border-radius: 12px; font-family: 'Inter', sans-serif;
-    font-size: 16px; font-weight: 700; cursor: pointer; transition: background 0.2s;
-  }
-  .form-submit:hover { background: #00b8e6; }
-  .form-note { font-size: 12px; color: var(--muted); text-align: center; margin-top: 12px; }
 
-  .faq-list { max-width: 720px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-  .faq-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .form-title {
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 24px;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .form-group.full {
+    grid-column: 1 / -1;
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #bbb;
+  }
+
+  input,
+  select {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    outline: none;
+  }
+
+  input:focus,
+  select:focus {
+    border-color: var(--cyan);
+  }
+
+  select option {
+    background: #1a1a1a;
+  }
+
+  .form-submit {
+    width: 100%;
+    padding: 15px;
+    margin-top: 8px;
+    background: var(--cyan);
+    color: var(--black);
+    border: none;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .form-submit:hover {
+    background: #00b8e6;
+  }
+
+  .form-note {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 12px;
+  }
+
+  .channel-category ul {
+    list-style: none;
+  }
+
+  .channel-category li {
+    padding: 6px 0;
+    color: #ccc;
+  }
+
+  .faq-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
   .faq-q {
-    width: 100%; text-align: left; background: none; border: none; color: white;
-    font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
-    padding: 18px 20px; cursor: pointer;
-    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 18px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
   }
-  .faq-q:hover { background: rgba(0,212,255,0.05); }
-  .faq-arrow { font-size: 18px; color: var(--cyan); transition: transform 0.25s; flex-shrink: 0; }
+
+  .faq-q:hover {
+    background: rgba(0, 212, 255, 0.05);
+  }
+
+  .faq-arrow {
+    font-size: 18px;
+    color: var(--cyan);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+
   .faq-a {
-    max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease;
-    font-size: 14px; color: var(--muted); line-height: 1.8; padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    padding: 0 20px;
   }
-  .faq-item.open .faq-a { max-height: 200px; padding: 0 20px 18px; }
-  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  .faq-item.open .faq-a {
+    max-height: 200px;
+    padding: 0 20px 18px;
+  }
+
+  .faq-item.open .faq-arrow {
+    transform: rotate(180deg);
+  }
 
   .trust-footer {
     background: linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 100%);
@@ -428,6 +834,7 @@
     padding: 40px 24px;
     margin-top: 20px;
   }
+
   .trust-container {
     max-width: 1100px;
     margin: 0 auto;
@@ -436,6 +843,7 @@
     gap: 48px;
     flex-wrap: wrap;
   }
+
   .trust-item {
     display: flex;
     align-items: center;
@@ -444,22 +852,53 @@
     color: #bbb;
     font-weight: 500;
   }
-  .trust-icon { font-size: 22px; }
 
-  footer { background: var(--dark); border-top: 1px solid var(--border); text-align: center; padding: 36px 24px; }
-  footer .footer-logo { font-size: 22px; font-weight: 900; color: var(--cyan); margin-bottom: 8px; }
-  footer p { font-size: 13px; color: var(--muted); }
+  .trust-icon {
+    font-size: 22px;
+  }
+
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    padding: 36px 24px;
+  }
+
+  footer .footer-logo {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+
+  footer p {
+    font-size: 13px;
+    color: var(--muted);
+  }
 
   .toast {
-    position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(100px);
-    background: #1a1a1a; border: 1px solid rgba(0,212,255,0.4); color: white;
-    padding: 14px 28px; border-radius: 10px; font-size: 14px; font-weight: 600;
-    z-index: 9999; transition: transform 0.4s ease; white-space: nowrap;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: #1a1a1a;
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    z-index: 9999;
+    transition: transform 0.4s ease;
+    white-space: nowrap;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
   }
-  .toast.show { transform: translateX(-50%) translateY(0); }
 
-  /* Other Modals (for forms) */
+  .toast.show {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Modal Overlay for forms */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -467,12 +906,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.95);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(8px);
     z-index: 1000;
     justify-content: center;
     align-items: center;
   }
+
   .modal-content {
     background: var(--card-bg);
     backdrop-filter: blur(8px);
@@ -485,10 +925,19 @@
     animation: modalFadeIn 0.3s ease;
     text-align: center;
   }
+
   @keyframes modalFadeIn {
-    from { opacity: 0; transform: scale(0.95); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
+
   .modal-close {
     position: absolute;
     top: 16px;
@@ -498,26 +947,34 @@
     color: var(--muted);
     transition: color 0.2s;
   }
-  .modal-close:hover { color: var(--cyan); }
+
+  .modal-close:hover {
+    color: var(--cyan);
+  }
+
   .modal-title {
     font-size: 28px;
     font-weight: 800;
     margin-bottom: 16px;
     color: var(--cyan);
   }
+
   .modal-sub {
     font-size: 16px;
     color: var(--muted);
     margin-bottom: 24px;
     line-height: 1.6;
   }
+
   .modal-buttons {
     display: flex;
     flex-direction: column;
     gap: 12px;
     margin-top: 20px;
   }
-  .modal-btn-primary, .modal-btn-secondary {
+
+  .modal-btn-primary,
+  .modal-btn-secondary {
     padding: 14px 20px;
     border-radius: 12px;
     font-family: 'Inter', sans-serif;
@@ -532,27 +989,32 @@
     gap: 10px;
     text-decoration: none;
   }
+
   .modal-btn-primary {
     background: var(--cyan);
     color: var(--black);
   }
+
   .modal-btn-primary:hover {
     background: #00b8e6;
     transform: translateY(-2px);
   }
+
   .modal-btn-secondary {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     color: white;
     border: 1px solid var(--border);
   }
+
   .modal-btn-secondary:hover {
-    background: rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.2);
   }
+
   .modal-input {
     width: 100%;
     margin-bottom: 16px;
     padding: 14px;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
     border: 1px solid var(--border);
     border-radius: 12px;
     color: white;
@@ -560,23 +1022,75 @@
     font-size: 14px;
     outline: none;
   }
-  .modal-input:focus { border-color: var(--cyan); }
+
+  .modal-input:focus {
+    border-color: var(--cyan);
+  }
 
   @media (max-width: 600px) {
-    nav { padding: 0 16px; }
-    .trust-container { gap: 20px; }
-    .form-grid { grid-template-columns: 1fr; }
-    .form-group.full { grid-column: 1; }
-    .plans { gap: 16px; }
-    .hero-actions { gap: 10px; }
-    .btn-primary, .btn-ghost { padding: 10px 18px; font-size: 13px; }
-    .payment-methods { gap: 15px; }
-    .payment-card { padding: 15px 20px; min-width: 120px; }
-    .payment-logo { font-size: 30px; }
-    .match-item, .movie-marquee-item { padding: 5px 12px; gap: 8px; }
-    .team-logo { width: 25px; height: 25px; }
-    .team-name, .movie-marquee-title { font-size: 11px; }
-    .movie-marquee-poster { width: 35px; height: 50px; }
+    nav {
+      padding: 0 16px;
+    }
+
+    .trust-container {
+      gap: 20px;
+    }
+
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .form-group.full {
+      grid-column: 1;
+    }
+
+    .plans {
+      gap: 16px;
+    }
+
+    .hero-actions {
+      gap: 10px;
+    }
+
+    .btn-primary,
+    .btn-ghost {
+      padding: 10px 18px;
+      font-size: 13px;
+    }
+
+    .payment-methods {
+      gap: 15px;
+    }
+
+    .payment-card {
+      padding: 15px 20px;
+      min-width: 120px;
+    }
+
+    .payment-logo {
+      font-size: 30px;
+    }
+
+    .match-item,
+    .movie-marquee-item {
+      padding: 5px 12px;
+      gap: 8px;
+    }
+
+    .team-logo {
+      width: 25px;
+      height: 25px;
+    }
+
+    .team-name,
+    .movie-marquee-title {
+      font-size: 11px;
+    }
+
+    .movie-marquee-poster {
+      width: 35px;
+      height: 50px;
+    }
   }
 </style>
 </head>
@@ -600,7 +1114,7 @@
   </div>
 </div>
 
-<!-- Hover Preview Modal (instant hide on leave) -->
+<!-- Hover Preview Modal -->
 <div id="previewModal" class="preview-overlay">
   <div class="preview-content">
     <img id="previewImage" class="preview-image" src="" alt="Preview">
@@ -609,21 +1123,17 @@
   </div>
 </div>
 
-<!-- Football Matches Marquee Section (LEFT TO RIGHT) -->
+<!-- Football Matches Marquee Section -->
 <div class="movies-marquee-section" id="matches">
   <div class="marquee-container">
-    <div id="marqueeMatches" class="marquee-content-left-to-right">
-      <div class="marquee-loading">⚽ Loading upcoming matches...</div>
-    </div>
+    <div id="marqueeMatches" class="marquee-content animate-left-to-right"></div>
   </div>
 </div>
 
-<!-- Latest Movies Added Marquee Section (RIGHT TO LEFT) -->
+<!-- Latest Movies Added Marquee Section -->
 <div class="movies-marquee-section">
   <div class="marquee-container">
-    <div id="marqueeMovies" class="marquee-content-right-to-left">
-      <div class="marquee-loading">🎬 Loading latest movies from TMDB...</div>
-    </div>
+    <div id="marqueeMovies" class="marquee-content animate-right-to-left"></div>
   </div>
 </div>
 
@@ -782,46 +1292,57 @@
     <div class="channel-category" style="background:var(--card-bg);border-radius:20px;padding:24px;border:1px solid var(--border);">
       <div style="font-size:28px;margin-bottom:12px;">📺</div>
       <div style="font-size:20px;font-weight:800;color:var(--cyan);margin-bottom:16px;">LIVE Channels</div>
-      <ul style="list-style:none;">
-        <li style="padding:6px 0;color:#ccc;">✓ ✯عيدكم مبارك✯ · ✯☾رمضان يجمعنا☽✯</li>
-        <li style="padding:6px 0;color:#ccc;">✓ MBC · SYRIA · LEBANON · IRAQ · EGYPT · MOROCCO</li>
-        <li style="padding:6px 0;color:#ccc;">✓ BEIN SPORTS (8K/SS/F/BE/UHD) · TOD SPORT PPV</li>
-        <li style="padding:6px 0;color:#ccc;">✓ UEFA CHAMPIONS LEAGUE · STARZPLAY SPORT</li>
-        <li style="padding:6px 0;color:#ccc;">✓ NETFLIX · PRIME VIDEO · HBO · Disney+</li>
-        <li style="padding:6px 0;color:#ccc;">✓ All Arab Countries + International (US, UK, FR, DE, IT, ES, TR, IR, IN, PK, BR)</li>
+      <ul>
+        <li>✓ ✯عيدكم مبارك✯ · ✯☾رمضان يجمعنا☽✯</li>
+        <li>✓ MBC · SYRIA · LEBANON · IRAQ · EGYPT · MOROCCO</li>
+        <li>✓ BEIN SPORTS (8K/SS/F/BE/UHD) · TOD SPORT PPV</li>
+        <li>✓ UEFA CHAMPIONS LEAGUE · STARZPLAY SPORT</li>
+        <li>✓ NETFLIX · PRIME VIDEO · HBO · Disney+</li>
+        <li>✓ All Arab Countries + International (US, UK, FR, DE, IT, ES, TR, IR, IN, PK, BR)</li>
       </ul>
     </div>
     <div class="channel-category" style="background:var(--card-bg);border-radius:20px;padding:24px;border:1px solid var(--border);">
       <div style="font-size:28px;margin-bottom:12px;">🎬</div>
       <div style="font-size:20px;font-weight:800;color:var(--cyan);margin-bottom:16px;">MOVIES</div>
-      <ul style="list-style:none;">
-        <li style="padding:6px 0;color:#ccc;">✓ 4K افلام عربية فائقة الوضوح</li>
-        <li style="padding:6px 0;color:#ccc;">✓ افلام عادل امام · احمد حلمي · كريم عبد العزيز</li>
-        <li style="padding:6px 0;color:#ccc;">✓ MARVEL · DC · جيمس بوند</li>
-        <li style="padding:6px 0;color:#ccc;">✓ افلام اسيوية · هندية · تركية · المانية</li>
-        <li style="padding:6px 0;color:#ccc;">✓ NETFLIX · DISNEY+ · APPLE+ · PRIME VIDEO</li>
+      <ul>
+        <li>✓ 4K افلام عربية فائقة الوضوح</li>
+        <li>✓ افلام عادل امام · احمد حلمي · كريم عبد العزيز</li>
+        <li>✓ MARVEL · DC · جيمس بوند</li>
+        <li>✓ افلام اسيوية · هندية · تركية · المانية</li>
+        <li>✓ NETFLIX · DISNEY+ · APPLE+ · PRIME VIDEO</li>
       </ul>
     </div>
     <div class="channel-category" style="background:var(--card-bg);border-radius:20px;padding:24px;border:1px solid var(--border);">
       <div style="font-size:28px;margin-bottom:12px;">📺</div>
       <div style="font-size:20px;font-weight:800;color:var(--cyan);margin-bottom:16px;">SERIES</div>
-      <ul style="list-style:none;">
-        <li style="padding:6px 0;color:#ccc;">✓ يعرض الان (عربي · تركي · اجنبي · هندي · انمي)</li>
-        <li style="padding:6px 0;color:#ccc;">✓ 4K رمضانك فائق الوضوح 2026</li>
-        <li style="padding:6px 0;color:#ccc;">✓ مسلسلات شاهد · واتش ات · تود · فيو الأصلية</li>
-        <li style="padding:6px 0;color:#ccc;">✓ مسلسلات تركية (مترجمة · مدبلجة) ☪</li>
-        <li style="padding:6px 0;color:#ccc;">✓ NETFLIX · PRIME VIDEO · DISNEY+ · APPLE+</li>
+      <ul>
+        <li>✓ يعرض الان (عربي · تركي · اجنبي · هندي · انمي)</li>
+        <li>✓ 4K رمضانك فائق الوضوح 2026</li>
+        <li>✓ مسلسلات شاهد · واتش ات · تود · فيو الأصلية</li>
+        <li>✓ مسلسلات تركية (مترجمة · مدبلجة) ☪</li>
+        <li>✓ NETFLIX · PRIME VIDEO · DISNEY+ · APPLE+</li>
       </ul>
     </div>
   </div>
 </section>
 
 <div class="faq-list" style="max-width:720px;margin:40px auto;padding:0 24px;">
-  <div class="section-header"><div class="section-label">FAQ</div><h2 class="section-title">Frequently Asked Questions</h2></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Are these official IPTV subscriptions?<span class="faq-arrow">▾</span></button><div class="faq-a">Yes, 100% official subscriptions directly from IPTV providers. No shared accounts or anything unofficial.</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I receive my subscription?<span class="faq-arrow">▾</span></button><div class="faq-a">After payment confirmation, we send your subscription details via email or WhatsApp within less than 1 hour.</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is there a guarantee if I have issues?<span class="faq-arrow">▾</span></button><div class="faq-a">Yes, if you have any problem with your subscription, we provide a full refund or replacement. Contact us on WhatsApp and we'll solve it immediately.</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How can I contact support?<span class="faq-arrow">▾</span></button><div class="faq-a">You can reach us via WhatsApp (click the Buy Now button or send the order form). Support is available 7 days a week.</div></div>
+  <div class="section-header">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+  </div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Are these official IPTV subscriptions?<span class="faq-arrow">▾</span></button>
+    <div class="faq-a">Yes, 100% official subscriptions directly from IPTV providers. No shared accounts or anything unofficial.</div>
+  </div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I receive my subscription?<span class="faq-arrow">▾</span></button>
+    <div class="faq-a">After payment confirmation, we send your subscription details via email or WhatsApp within less than 1 hour.</div>
+  </div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is there a guarantee if I have issues?<span class="faq-arrow">▾</span></button>
+    <div class="faq-a">Yes, if you have any problem with your subscription, we provide a full refund or replacement. Contact us on WhatsApp and we'll solve it immediately.</div>
+  </div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How can I contact support?<span class="faq-arrow">▾</span></button>
+    <div class="faq-a">You can reach us via WhatsApp (click the Buy Now button or send the order form). Support is available 7 days a week.</div>
+  </div>
 </div>
 
 <div class="trust-footer">
@@ -852,148 +1373,386 @@
     <input type="text" id="trialName" class="modal-input" placeholder="Your Full Name">
     <input type="tel" id="trialPhone" class="modal-input" placeholder="WhatsApp Number">
     <input type="email" id="trialEmail" class="modal-input" placeholder="Email Address">
-    <select id="trialDevice" class="modal-input"><option value="">Select your device</option><option>Android TV / Google TV</option><option>LG TV (webOS)</option><option>Samsung TV (Tizen)</option><option>Android Box / Fire Stick</option><option>iOS / iPhone / iPad</option><option>Windows / Mac</option></select>
+    <select id="trialDevice" class="modal-input">
+      <option value="">Select your device</option>
+      <option>Android TV / Google TV</option>
+      <option>LG TV (webOS)</option>
+      <option>Samsung TV (Tizen)</option>
+      <option>Android Box / Fire Stick</option>
+      <option>iOS / iPhone / iPad</option>
+      <option>Windows / Mac</option>
+    </select>
     <div class="modal-buttons"><button class="modal-btn-primary" onclick="requestTrial()">🚀 Request Free Trial</button></div>
   </div>
 </div>
-<div id="contactModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('contactModal')">&times;</span><div class="modal-title">💬 How It Works</div><div class="modal-sub" style="text-align:left;"><p><strong>1️⃣ Choose your plan</strong> — Select 3, 6, 12, or 24 months.</p><p><strong>2️⃣ Contact us on WhatsApp</strong> — Share your details.</p><p><strong>3️⃣ Complete payment</strong> — Via CashPlus / CIH Bank / CashExpress.</p><p><strong>4️⃣ Get activated</strong> — Receive login details within 1 hour.</p><p><strong>5️⃣ Start watching</strong> — Enjoy 20,000+ channels & VOD!</p></div><div class="modal-buttons"><button class="modal-btn-primary" onclick="openWhatsApp()">📱 Chat on WhatsApp</button><button class="modal-btn-secondary" onclick="closeModal('contactModal')">Close</button></div></div></div>
-<div id="orderModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('orderModal')">&times;</span><div class="modal-title">Complete Your Order</div><div class="modal-sub" id="modalPlanInfo">Plan: --</div><input type="text" id="modalName" class="modal-input" placeholder="Full Name"><input type="tel" id="modalPhone" class="modal-input" placeholder="Phone / WhatsApp"><input type="email" id="modalEmail" class="modal-input" placeholder="Email Address"><div class="modal-buttons"><button class="modal-btn-primary" onclick="submitModalOrder()">Submit Order →</button></div><div class="modal-note" style="margin-top:16px;font-size:11px;color:var(--muted);">🔒 We'll send you payment details via email</div></div></div>
+<div id="contactModal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal('contactModal')">&times;</span>
+    <div class="modal-title">💬 How It Works</div>
+    <div class="modal-sub" style="text-align:left;">
+      <p><strong>1️⃣ Choose your plan</strong> — Select 3, 6, 12, or 24 months.</p>
+      <p><strong>2️⃣ Contact us on WhatsApp</strong> — Share your details.</p>
+      <p><strong>3️⃣ Complete payment</strong> — Via CashPlus / CIH Bank / CashExpress.</p>
+      <p><strong>4️⃣ Get activated</strong> — Receive login details within 1 hour.</p>
+      <p><strong>5️⃣ Start watching</strong> — Enjoy 20,000+ channels & VOD!</p>
+    </div>
+    <div class="modal-buttons"><button class="modal-btn-primary" onclick="openWhatsApp()">📱 Chat on WhatsApp</button><button class="modal-btn-secondary" onclick="closeModal('contactModal')">Close</button></div>
+  </div>
+</div>
+<div id="orderModal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal('orderModal')">&times;</span>
+    <div class="modal-title">Complete Your Order</div>
+    <div class="modal-sub" id="modalPlanInfo">Plan: --</div>
+    <input type="text" id="modalName" class="modal-input" placeholder="Full Name">
+    <input type="tel" id="modalPhone" class="modal-input" placeholder="Phone / WhatsApp">
+    <input type="email" id="modalEmail" class="modal-input" placeholder="Email Address">
+    <div class="modal-buttons"><button class="modal-btn-primary" onclick="submitModalOrder()">Submit Order →</button></div>
+    <div class="modal-note" style="margin-top:16px;font-size:11px;color:var(--muted);">🔒 We'll send you payment details via email</div>
+  </div>
+</div>
 
 <script>
-let selectedPlan = { name: '', price: 0 };
-const ADMIN_EMAIL = 'karimakon08@gmail.com';
-const WHATSAPP_NUMBER = '212670965351';
-const TMDB_API_KEY = '0de67f2ee06f23a99475aaffe093d1e7';
-const TMDB_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+  // Data and configuration
+  let selectedPlan = { name: '', price: 0 };
+  const ADMIN_EMAIL = 'karimakon08@gmail.com';
+  const WHATSAPP_NUMBER = '212670965351';
+  const TMDB_API_KEY = '0de67f2ee06f23a99475aaffe093d1e7';
+  const TMDB_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
-// Upcoming matches data
-const upcomingMatches = [
-  { homeTeam: "Real Madrid", awayTeam: "Barcelona", league: "La Liga", time: "Today 21:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/real-madrid.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/barcelona.png" },
-  { homeTeam: "Liverpool", awayTeam: "Manchester City", league: "Premier League", time: "Today 18:30", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/liverpool.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/manchester-city.png" },
-  { homeTeam: "Bayern Munich", awayTeam: "Borussia Dortmund", league: "Bundesliga", time: "Tomorrow 19:30", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/bayern-munich.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/borussia-dortmund.png" },
-  { homeTeam: "Paris SG", awayTeam: "Marseille", league: "Ligue 1", time: "Tomorrow 21:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/paris-saint-germain.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/marseille.png" },
-  { homeTeam: "AC Milan", awayTeam: "Inter Milan", league: "Serie A", time: "Sunday 20:45", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/ac-milan.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/internazionale.png" },
-  { homeTeam: "Wydad AC", awayTeam: "Raja Casablanca", league: "Botola Pro", time: "Monday 20:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/wydad-ac.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/raja-casablanca.png" },
-  { homeTeam: "Arsenal", awayTeam: "Chelsea", league: "Premier League", time: "Monday 21:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/arsenal.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/chelsea.png" },
-  { homeTeam: "Juventus", awayTeam: "Napoli", league: "Serie A", time: "Tuesday 20:45", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/juventus.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/napoli.png" },
-  { homeTeam: "Atletico Madrid", awayTeam: "Sevilla", league: "La Liga", time: "Tuesday 22:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/atletico-madrid.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/sevilla.png" }
-];
+  // Upcoming matches data (logos are illustrative)
+  const upcomingMatches = [{
+      homeTeam: "Real Madrid",
+      awayTeam: "Barcelona",
+      league: "La Liga",
+      time: "Today 21:00",
+      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/real-madrid.png",
+      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/barcelona.png"
+    },
+    {
+      homeTeam: "Liverpool",
+      awayTeam: "Manchester City",
+      league: "Premier League",
+      time: "Today 18:30",
+      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/liverpool.png",
+      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/manchester-city.png"
+    },
+    {
+      homeTeam: "Bayern Munich",
+      awayTeam: "Borussia Dortmund",
+      league: "Bundesliga",
+      time: "Tomorrow 19:30",
+      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/bayern-munich.png",
+      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/borussia-dortmund.png"
+    },
+    {
+      homeTeam: "Paris SG",
+      awayTeam: "Marseille",
+      league: "Ligue 1",
+      time: "Tomorrow 21:00",
+      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/paris-saint-germain.png",
+      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/marseille.png"
+    },
+    {
+      homeTeam: "AC Milan",
+      awayTeam: "Inter Milan",
+      league: "Serie A",
+      time: "Sunday 20:45",
+      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/ac-milan.png",
+      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/internazionale.png"
+    },
+    {
+      homeTeam: "Wydad AC",
+      awayTeam: "Raja Casablanca",
+      league: "Botola Pro",
+      time: "Monday 20:00",
+      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/wydad-ac.png",
+      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/raja-casablanca.png"
+    },
+    {
+      homeTeam: "Arsenal",
+      awayTeam: "Chelsea",
+      league: "Premier League",
+      time: "Monday 21:00",
+      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/arsenal.png",
+      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/chelsea.png"
+    },
+    {
+      homeTeam: "Juventus",
+      awayTeam: "Napoli",
+      league: "Serie A",
+      time: "Tuesday 20:45",
+      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/juventus.png",
+      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/napoli.png"
+    },
+    {
+      homeTeam: "Atletico Madrid",
+      awayTeam: "Sevilla",
+      league: "La Liga",
+      time: "Tuesday 22:00",
+      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/atletico-madrid.png",
+      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/sevilla.png"
+    }
+  ];
 
-// DOM elements for preview
-const previewModal = document.getElementById('previewModal');
-const previewImage = document.getElementById('previewImage');
-const previewTitle = document.getElementById('previewTitle');
-const previewInfo = document.getElementById('previewInfo');
+  // DOM elements
+  const previewModal = document.getElementById('previewModal');
+  const previewImage = document.getElementById('previewImage');
+  const previewTitle = document.getElementById('previewTitle');
+  const previewInfo = document.getElementById('previewInfo');
+  const marqueeMatchesEl = document.getElementById('marqueeMatches');
+  const marqueeMoviesEl = document.getElementById('marqueeMovies');
 
-function showPreview(imageUrl, title, infoHtml) {
-  previewImage.src = imageUrl;
-  previewTitle.innerHTML = title;
-  previewInfo.innerHTML = infoHtml;
-  previewModal.classList.add('show');
-}
-
-function hidePreview() {
-  previewModal.classList.remove('show');
-}
-
-function loadMarqueeMatches() {
-  const container = document.getElementById('marqueeMatches');
-  const doubledMatches = [...upcomingMatches, ...upcomingMatches];
-  const matchesHTML = doubledMatches.map((match, idx) => `
-    <div class="match-item" 
-         onmouseenter="showMatchPreview('${match.homeTeam}', '${match.awayTeam}', '${match.league}', '${match.time}', '${match.homeLogo}', '${match.awayLogo}')"
-         onmouseleave="hidePreview()">
-      <span class="league-badge">${match.league}</span>
-      <img class="team-logo" src="${match.homeLogo}" alt="${match.homeTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
-      <span class="team-name">${match.homeTeam}</span>
-      <span class="vs-badge">VS</span>
-      <img class="team-logo" src="${match.awayLogo}" alt="${match.awayTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
-      <span class="team-name">${match.awayTeam}</span>
-      <span class="match-time">⏰ ${match.time}</span>
-    </div>
-  `).join('');
-  container.innerHTML = matchesHTML;
-}
-
-function showMatchPreview(homeTeam, awayTeam, league, time, homeLogo, awayLogo) {
-  const infoHtml = `
-    <div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 20px;">
-      <div style="text-align: center;">
-        <img src="${homeLogo}" style="width: 80px; height: 80px; object-fit: contain; background: white; border-radius: 50%; padding: 10px;" onerror="this.src='https://placehold.co/80x80/00d4ff/white?text=FC'">
-        <div style="margin-top: 8px; font-weight: bold;">${homeTeam}</div>
-      </div>
-      <div style="font-size: 24px; font-weight: 800; color: var(--gold);">VS</div>
-      <div style="text-align: center;">
-        <img src="${awayLogo}" style="width: 80px; height: 80px; object-fit: contain; background: white; border-radius: 50%; padding: 10px;" onerror="this.src='https://placehold.co/80x80/00d4ff/white?text=FC'">
-        <div style="margin-top: 8px; font-weight: bold;">${awayTeam}</div>
-      </div>
-    </div>
-    <div><strong>📋 League:</strong> ${league}</div>
-    <div><strong>⏰ Time:</strong> ${time}</div>
-  `;
-  showPreview(homeLogo, `${homeTeam} vs ${awayTeam}`, infoHtml);
-}
-
-function showMoviePreview(posterUrl, title, year, rating) {
-  const infoHtml = `
-    <div><strong>📅 Year:</strong> ${year}</div>
-    <div><strong>⭐ Rating:</strong> ${rating}/10</div>
-    <div style="margin-top: 12px;"><em>Latest from TMDB</em></div>
-  `;
-  showPreview(posterUrl, title, infoHtml);
-}
-
-async function loadLatestMoviesMarquee() {
-  const container = document.getElementById('marqueeMovies');
-  try {
-    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US&page=1`;
-    const response = await fetch(url);
-    if (!response.ok) throw new Error('Failed to fetch movies');
-    const data = await response.json();
-    const movies = data.results.slice(0, 20);
-    const doubledMovies = [...movies, ...movies];
-    const moviesHTML = doubledMovies.map(movie => {
-      const poster = movie.poster_path ? TMDB_IMAGE_URL + movie.poster_path : 'https://placehold.co/200x300/00d4ff/white?text=No+Poster';
-      const title = movie.title.replace(/'/g, "\\'");
-      const year = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
-      const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
-      return `
-        <div class="movie-marquee-item" 
-             onmouseenter="showMoviePreview('${poster}', '${title}', '${year}', '${rating}')"
-             onmouseleave="hidePreview()">
-          <img class="movie-marquee-poster" src="${poster}" alt="${movie.title}">
-          <div class="movie-marquee-info">
-            <div class="movie-marquee-title">${movie.title.length > 25 ? movie.title.substring(0, 22) + '...' : movie.title}</div>
-            <div class="movie-marquee-year">${year}</div>
-            <div class="movie-marquee-rating">⭐ ${rating}/10</div>
-          </div>
-        </div>
-      `;
-    }).join('');
-    container.innerHTML = moviesHTML;
-  } catch (error) {
-    console.error('Error loading movies:', error);
-    container.innerHTML = '<div class="marquee-error">⚠️ Unable to load latest movies. Please refresh.</div>';
+  // Helper: pause / resume animations
+  function pauseMarquee(container, pause) {
+    if (pause) {
+      container.style.animationPlayState = 'paused';
+    } else {
+      container.style.animationPlayState = 'running';
+    }
   }
-}
 
-// --- Form and utility functions (unchanged) ---
-function sendPaymentRequest(method, methodName) { const name = document.getElementById('inp-name').value.trim(); const phone = document.getElementById('inp-phone').value.trim(); const email = document.getElementById('inp-email').value.trim(); const plan = document.getElementById('inp-plan').value; if (!name || !phone || !email || !plan) { showToast('⚠️ Please fill your name, phone, email and select a plan first'); return; } const sel = document.getElementById('inp-payment'); for (let o of sel.options) { if (o.text === method) { sel.value = o.text; break; } } const msg = `━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A💰 *NEW PAYMENT REQUEST - STREAMZONE* 💰%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A👤 *Customer Name:* ${name}%0A📞 *Phone:* ${phone}%0A📧 *Email:* ${email}%0A📦 *Plan:* ${plan}%0A💳 *Payment Method:* ${methodName}%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A📌 *Action Required:*%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A✅ Please send the customer the payment details for ${method}%0A✅ Send bank account / CashPlus / CashExpress information%0A✅ Ask for payment receipt confirmation%0A✅ After confirmation, send IPTV login details%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A⏰ Request sent at: ${new Date().toLocaleString()}%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank'); showToast(`📱 Opening WhatsApp with ${method} payment request`); }
-function openOrderModal(planName, price) { selectedPlan = { name: planName, price: price }; document.getElementById('modalPlanInfo').innerHTML = `📦 ${planName} — $${price} USD`; document.getElementById('orderModal').style.display = 'flex'; document.getElementById('modalName').value = ''; document.getElementById('modalPhone').value = ''; document.getElementById('modalEmail').value = ''; }
-function openTrialModal() { document.getElementById('trialModal').style.display = 'flex'; }
-function openContactModal() { document.getElementById('contactModal').style.display = 'flex'; }
-function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
-function requestTrial() { const name = document.getElementById('trialName').value.trim(); const phone = document.getElementById('trialPhone').value.trim(); const email = document.getElementById('trialEmail').value.trim(); const device = document.getElementById('trialDevice').value; if (!name || !phone || !email || !device) { showToast('⚠️ Please fill all fields'); return; } const msg = `*FREE TRIAL REQUEST - STREAMZONE*%0A%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}%0A📱 Device: ${device}%0A⏰ Requested: 2-Hour Trial%0A%0APlease send trial access details.`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank'); closeModal('trialModal'); showToast('🎬 Trial request sent! Check WhatsApp'); }
-function submitModalOrder() { const name = document.getElementById('modalName').value.trim(); const phone = document.getElementById('modalPhone').value.trim(); const email = document.getElementById('modalEmail').value.trim(); if (!name || !phone || !email) { showToast('⚠️ Please fill all fields'); return; } const subject = `New StreamZone Order: ${selectedPlan.name}`; const body = `New StreamZone IPTV Order!\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📦 Plan: ${selectedPlan.name}\n💰 Price: $${selectedPlan.price} USD\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n⏰ Date: ${new Date().toLocaleString()}`; window.location.href = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; const whatsappMsg = `*NEW STREAMZONE ORDER*%0A%0A📦 Plan: ${selectedPlan.name} — $${selectedPlan.price}%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`, '_blank'); closeModal('orderModal'); showToast('✅ Order sent! Check your email'); }
-function openWhatsApp() { window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank'); }
-function submitOrder() { const name = document.getElementById('inp-name').value.trim(); const phone = document.getElementById('inp-phone').value.trim(); const email = document.getElementById('inp-email').value.trim(); const plan = document.getElementById('inp-plan').value; const payment = document.getElementById('inp-payment').value; if (!name || !phone || !email || !plan || !payment) { showToast('⚠️ Please fill all fields'); return; } const msg = `*NEW STREAMZONE ORDER*%0A%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}%0A📦 Plan: ${plan}%0A💳 Payment: ${payment}%0A%0A━━━━━━━━━━━━━━━━━━━━%0A📌 Please send payment details for ${payment}`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank'); showToast('📱 Opening WhatsApp...'); }
-function toggleFaq(btn) { const item = btn.parentElement; const isOpen = item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); if (!isOpen) item.classList.add('open'); }
-function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
-window.onclick = function(event) { if (event.target.classList.contains('modal-overlay')) { event.target.style.display = 'none'; } }
-window.addEventListener('load', () => {
-  loadMarqueeMatches();
-  loadLatestMoviesMarquee();
-});
+  // Preview functions
+  function showPreview(imageUrl, title, infoHtml) {
+    previewImage.src = imageUrl;
+    previewTitle.innerHTML = title;
+    previewInfo.innerHTML = infoHtml;
+    previewModal.classList.add('show');
+  }
+
+  function hidePreview() {
+    previewModal.classList.remove('show');
+  }
+
+  function showMatchPreview(homeTeam, awayTeam, league, time, homeLogo, awayLogo) {
+    const infoHtml = `
+      <div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 20px;">
+        <div style="text-align: center;">
+          <img src="${homeLogo}" style="width: 80px; height: 80px; object-fit: contain; background: white; border-radius: 50%; padding: 10px;" onerror="this.src='https://placehold.co/80x80/00d4ff/white?text=FC'">
+          <div style="margin-top: 8px; font-weight: bold;">${homeTeam}</div>
+        </div>
+        <div style="font-size: 24px; font-weight: 800; color: var(--gold);">VS</div>
+        <div style="text-align: center;">
+          <img src="${awayLogo}" style="width: 80px; height: 80px; object-fit: contain; background: white; border-radius: 50%; padding: 10px;" onerror="this.src='https://placehold.co/80x80/00d4ff/white?text=FC'">
+          <div style="margin-top: 8px; font-weight: bold;">${awayTeam}</div>
+        </div>
+      </div>
+      <div><strong>📋 League:</strong> ${league}</div>
+      <div><strong>⏰ Time:</strong> ${time}</div>
+    `;
+    showPreview(homeLogo, `${homeTeam} vs ${awayTeam}`, infoHtml);
+  }
+
+  function showMoviePreview(posterUrl, title, year, rating) {
+    const infoHtml = `
+      <div><strong>📅 Year:</strong> ${year}</div>
+      <div><strong>⭐ Rating:</strong> ${rating}/10</div>
+      <div style="margin-top: 12px;"><em>Latest from TMDB</em></div>
+    `;
+    showPreview(posterUrl, title, infoHtml);
+  }
+
+  // Build matches marquee
+  function buildMatchesMarquee() {
+    const doubledMatches = [...upcomingMatches, ...upcomingMatches];
+    const matchesHTML = doubledMatches.map(match => `
+      <div class="match-item" 
+           onmouseenter="showMatchPreview('${match.homeTeam.replace(/'/g, "\\'")}', '${match.awayTeam.replace(/'/g, "\\'")}', '${match.league}', '${match.time}', '${match.homeLogo}', '${match.awayLogo}')"
+           onmouseleave="hidePreview()">
+        <span class="league-badge">${match.league}</span>
+        <img class="team-logo" src="${match.homeLogo}" alt="${match.homeTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
+        <span class="team-name">${match.homeTeam}</span>
+        <span class="vs-badge">VS</span>
+        <img class="team-logo" src="${match.awayLogo}" alt="${match.awayTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
+        <span class="team-name">${match.awayTeam}</span>
+        <span class="match-time">⏰ ${match.time}</span>
+      </div>
+    `).join('');
+    marqueeMatchesEl.innerHTML = matchesHTML;
+  }
+
+  // Build movies marquee from TMDB
+  async function buildMoviesMarquee() {
+    try {
+      const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US&page=1`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Failed to fetch movies');
+      const data = await response.json();
+      const movies = data.results.slice(0, 20);
+      const doubledMovies = [...movies, ...movies];
+      const moviesHTML = doubledMovies.map(movie => {
+        const poster = movie.poster_path ? TMDB_IMAGE_URL + movie.poster_path : 'https://placehold.co/200x300/00d4ff/white?text=No+Poster';
+        const title = movie.title.replace(/'/g, "\\'");
+        const year = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
+        const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
+        return `
+          <div class="movie-marquee-item" 
+               onmouseenter="showMoviePreview('${poster}', '${title}', '${year}', '${rating}')"
+               onmouseleave="hidePreview()">
+            <img class="movie-marquee-poster" src="${poster}" alt="${movie.title}">
+            <div class="movie-marquee-info">
+              <div class="movie-marquee-title">${movie.title.length > 25 ? movie.title.substring(0, 22) + '...' : movie.title}</div>
+              <div class="movie-marquee-year">${year}</div>
+              <div class="movie-marquee-rating">⭐ ${rating}/10</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+      marqueeMoviesEl.innerHTML = moviesHTML;
+    } catch (error) {
+      console.error('Error loading movies:', error);
+      marqueeMoviesEl.innerHTML = '<div class="marquee-error" style="display:inline-block; padding:0 20px;">⚠️ Unable to load latest movies. Please refresh.</div>';
+    }
+  }
+
+  // Set up hover pause/resume for entire marquee areas
+  function setupMarqueePause(marqueeElement, containerElement) {
+    if (!marqueeElement || !containerElement) return;
+    const marqueeContent = marqueeElement.querySelector('.marquee-content');
+    if (!marqueeContent) return;
+    containerElement.addEventListener('mouseenter', () => {
+      marqueeContent.style.animationPlayState = 'paused';
+    });
+    containerElement.addEventListener('mouseleave', () => {
+      marqueeContent.style.animationPlayState = 'running';
+    });
+  }
+
+  // Initialize all
+  function init() {
+    buildMatchesMarquee();
+    buildMoviesMarquee().then(() => {
+      // After movies are loaded, attach pause/resume to the containers
+      const matchesContainer = document.querySelector('#matches .marquee-container');
+      const moviesContainer = document.querySelector('#matches + .movies-marquee-section .marquee-container');
+      if (matchesContainer && marqueeMatchesEl) {
+        setupMarqueePause(matchesContainer, matchesContainer);
+      }
+      if (moviesContainer && marqueeMoviesEl) {
+        setupMarqueePause(moviesContainer, moviesContainer);
+      }
+    });
+  }
+
+  // --- Form and utility functions (unchanged from previous working version) ---
+  function sendPaymentRequest(method, methodName) {
+    const name = document.getElementById('inp-name').value.trim();
+    const phone = document.getElementById('inp-phone').value.trim();
+    const email = document.getElementById('inp-email').value.trim();
+    const plan = document.getElementById('inp-plan').value;
+    if (!name || !phone || !email || !plan) {
+      showToast('⚠️ Please fill your name, phone, email and select a plan first');
+      return;
+    }
+    const sel = document.getElementById('inp-payment');
+    for (let o of sel.options) {
+      if (o.text === method) {
+        sel.value = o.text;
+        break;
+      }
+    }
+    const msg = `━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A💰 *NEW PAYMENT REQUEST - STREAMZONE* 💰%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A👤 *Customer Name:* ${name}%0A📞 *Phone:* ${phone}%0A📧 *Email:* ${email}%0A📦 *Plan:* ${plan}%0A💳 *Payment Method:* ${methodName}%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A📌 *Action Required:*%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A✅ Please send the customer the payment details for ${method}%0A✅ Send bank account / CashPlus / CashExpress information%0A✅ Ask for payment receipt confirmation%0A✅ After confirmation, send IPTV login details%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A⏰ Request sent at: ${new Date().toLocaleString()}%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+    showToast(`📱 Opening WhatsApp with ${method} payment request`);
+  }
+
+  function openOrderModal(planName, price) {
+    selectedPlan = {
+      name: planName,
+      price: price
+    };
+    document.getElementById('modalPlanInfo').innerHTML = `📦 ${planName} — $${price} USD`;
+    document.getElementById('orderModal').style.display = 'flex';
+    document.getElementById('modalName').value = '';
+    document.getElementById('modalPhone').value = '';
+    document.getElementById('modalEmail').value = '';
+  }
+
+  function openTrialModal() {
+    document.getElementById('trialModal').style.display = 'flex';
+  }
+
+  function openContactModal() {
+    document.getElementById('contactModal').style.display = 'flex';
+  }
+
+  function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+  }
+
+  function requestTrial() {
+    const name = document.getElementById('trialName').value.trim();
+    const phone = document.getElementById('trialPhone').value.trim();
+    const email = document.getElementById('trialEmail').value.trim();
+    const device = document.getElementById('trialDevice').value;
+    if (!name || !phone || !email || !device) {
+      showToast('⚠️ Please fill all fields');
+      return;
+    }
+    const msg = `*FREE TRIAL REQUEST - STREAMZONE*%0A%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}%0A📱 Device: ${device}%0A⏰ Requested: 2-Hour Trial%0A%0APlease send trial access details.`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+    closeModal('trialModal');
+    showToast('🎬 Trial request sent! Check WhatsApp');
+  }
+
+  function submitModalOrder() {
+    const name = document.getElementById('modalName').value.trim();
+    const phone = document.getElementById('modalPhone').value.trim();
+    const email = document.getElementById('modalEmail').value.trim();
+    if (!name || !phone || !email) {
+      showToast('⚠️ Please fill all fields');
+      return;
+    }
+    const subject = `New StreamZone Order: ${selectedPlan.name}`;
+    const body = `New StreamZone IPTV Order!\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📦 Plan: ${selectedPlan.name}\n💰 Price: $${selectedPlan.price} USD\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n⏰ Date: ${new Date().toLocaleString()}`;
+    window.location.href = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const whatsappMsg = `*NEW STREAMZONE ORDER*%0A%0A📦 Plan: ${selectedPlan.name} — $${selectedPlan.price}%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`, '_blank');
+    closeModal('orderModal');
+    showToast('✅ Order sent! Check your email');
+  }
+
+  function openWhatsApp() {
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank');
+  }
+
+  function submitOrder() {
+    const name = document.getElementById('inp-name').value.trim();
+    const phone = document.getElementById('inp-phone').value.trim();
+    const email = document.getElementById('inp-email').value.trim();
+    const plan = document.getElementById('inp-plan').value;
+    const payment = document.getElementById('inp-payment').value;
+    if (!name || !phone || !email || !plan || !payment) {
+      showToast('⚠️ Please fill all fields');
+      return;
+    }
+    const msg = `*NEW STREAMZONE ORDER*%0A%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}%0A📦 Plan: ${plan}%0A💳 Payment: ${payment}%0A%0A━━━━━━━━━━━━━━━━━━━━%0A📌 Please send payment details for ${payment}`;
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank');
+    showToast('📱 Opening WhatsApp...');
+  }
+
+  function toggleFaq(btn) {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+
+  window.onclick = function(event) {
+    if (event.target.classList.contains('modal-overlay')) {
+      event.target.style.display = 'none';
+    }
+  }
+
+  // Start everything
+  init();
 </script>
 </body>
 </html>
