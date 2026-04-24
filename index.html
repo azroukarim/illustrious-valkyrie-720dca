@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StreamZone — Official IPTV Subscriptions</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <style>
   /* ========== RESET & VARIABLES ========== */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -79,129 +81,100 @@
   }
   .btn-ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
 
-  /* ========== MOVIES MARQUEE SECTION (شريط متحرك مع بوستر كبير) ========== */
-  .movies-marquee-section {
+  /* ========== SWIPER SLIDER (CENTRAL SLIDE ZOOM) ========== */
+  .movies-slider-section {
     background: linear-gradient(90deg, #0a0a0a 0%, #1a1a2a 25%, #0f0f1a 75%, #0a0a0a 100%);
-    padding: 30px 0;
+    padding: 40px 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    overflow: hidden;
     position: relative;
   }
-  .marquee-container {
+  .swiper {
     width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
-    position: relative;
+    padding: 20px 0 40px 0;
   }
-  .marquee-content {
-    display: inline-flex;
-    align-items: center;
-    gap: 30px;
-    animation: scrollRightToLeft 50s linear infinite;
+  .swiper-slide {
+    transition: all 0.3s ease;
+    opacity: 0.6;
+    transform: scale(0.85);
+    width: 220px;
   }
-  .marquee-content:hover {
-    animation-play-state: paused;
+  .swiper-slide-active {
+    opacity: 1;
+    transform: scale(1.1);
+    z-index: 10;
   }
-  @keyframes scrollRightToLeft {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-  /* بطاقة الفيلم - بوستر كبير */
-  .movie-marquee-item {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+  .movie-card {
     background: rgba(0, 212, 255, 0.08);
-    padding: 12px;
-    border-radius: 16px;
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
     border: 1px solid rgba(0, 212, 255, 0.2);
     backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
     cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-    width: 180px;
-    text-align: center;
   }
-  .movie-marquee-item:hover {
-    transform: scale(1.05);
-    background: rgba(0, 212, 255, 0.2);
+  .swiper-slide-active .movie-card {
     border-color: var(--cyan);
+    background: rgba(0, 212, 255, 0.15);
+    box-shadow: 0 0 25px rgba(0,212,255,0.2);
   }
-  .movie-marquee-poster {
-    width: 160px;
-    height: 240px;
+  .movie-card:hover {
+    transform: translateY(-5px);
+  }
+  .movie-poster {
+    width: 100%;
+    aspect-ratio: 2/3;
     object-fit: cover;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    margin-bottom: 12px;
   }
-  .movie-marquee-title {
+  .movie-title {
     font-size: 14px;
     font-weight: 700;
     color: white;
-    max-width: 160px;
-    white-space: normal;
-    word-break: break-word;
+    margin-bottom: 4px;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    line-height: 1.3;
   }
-  .movie-marquee-year {
-    font-size: 11px;
+  .movie-year {
+    font-size: 12px;
     color: var(--gold);
   }
-  .movie-marquee-rating {
+  .movie-rating {
     font-size: 11px;
     color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    justify-content: center;
+    margin-top: 4px;
   }
-
-  /* ========== HOVER PREVIEW MODAL ========== */
-  .preview-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.85);
-    backdrop-filter: blur(15px);
-    z-index: 2000;
+  /* Custom navigation buttons */
+  .swiper-nav {
     display: flex;
     justify-content: center;
-    align-items: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 0s linear 0.2s, opacity 0.2s ease;
-    pointer-events: none;
+    gap: 20px;
+    margin-top: 20px;
   }
-  .preview-overlay.show {
-    visibility: visible;
-    opacity: 1;
-    transition: visibility 0s linear 0s, opacity 0.2s ease;
-    pointer-events: auto;
-  }
-  .preview-content {
-    max-width: 500px;
-    width: 90%;
-    background: var(--card-bg);
-    border-radius: 24px;
-    padding: 20px;
-    text-align: center;
+  .swiper-button-custom {
+    background: rgba(0, 212, 255, 0.15);
     border: 1px solid var(--cyan);
-    box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
-    animation: previewZoom 0.25s ease;
-    pointer-events: none;
+    color: var(--cyan);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 24px;
+    font-weight: bold;
   }
-  @keyframes previewZoom { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-  .preview-image { width: 100%; max-width: 280px; border-radius: 16px; margin-bottom: 16px; }
-  .preview-title { font-size: 24px; font-weight: 800; color: var(--cyan); margin-bottom: 8px; }
-  .preview-info { font-size: 14px; color: var(--muted); }
+  .swiper-button-custom:hover {
+    background: var(--cyan);
+    color: var(--black);
+    transform: scale(1.05);
+  }
 
   /* ========== PLANS SECTION ========== */
   .plans-section {
@@ -234,6 +207,7 @@
   .plan-duration { font-size: 42px; font-weight: 900; margin-bottom: 8px; letter-spacing: -2px; }
   .plan-duration span { font-size: 16px; font-weight: 500; color: var(--muted); }
   .plan-price { font-size: 38px; font-weight: 800; color: var(--gold); margin: 16px 0 8px; }
+  .plan-price sub { font-size: 13px; color: var(--muted); font-weight: 400; }
   .save-badge { background: rgba(245,197,24,0.2); color: var(--gold); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; display: inline-block; margin-bottom: 16px; }
   .price-per-month { font-size: 13px; color: var(--muted); margin-bottom: 20px; }
   .price-per-month strong { color: var(--gold); font-size: 15px; }
@@ -294,11 +268,49 @@
   footer .footer-logo { font-size: 22px; font-weight: 900; color: var(--cyan); margin-bottom: 8px; }
   footer p { font-size: 13px; color: var(--muted); }
 
-  /* ========== TOAST ========== */
+  /* ========== TOAST & MODAL ========== */
   .toast { position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%) translateY(100px); background: #1a1a1a; border: 1px solid rgba(0,212,255,0.4); color: white; padding: 14px 28px; border-radius: 10px; font-size: 14px; font-weight: 600; z-index: 9999; transition: transform 0.4s ease; white-space: nowrap; box-shadow: 0 8px 32px rgba(0,0,0,0.6); }
   .toast.show { transform: translateX(-50%) translateY(0); }
+  .preview-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(15px);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s linear 0.2s, opacity 0.2s ease;
+    pointer-events: none;
+  }
+  .preview-overlay.show {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s linear 0s, opacity 0.2s ease;
+    pointer-events: auto;
+  }
+  .preview-content {
+    max-width: 500px;
+    width: 90%;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.3);
+    animation: previewZoom 0.25s ease;
+    pointer-events: none;
+  }
+  @keyframes previewZoom { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .preview-image { width: 100%; max-width: 280px; border-radius: 16px; margin-bottom: 16px; }
+  .preview-title { font-size: 24px; font-weight: 800; color: var(--cyan); margin-bottom: 8px; }
+  .preview-info { font-size: 14px; color: var(--muted); }
 
-  /* ========== MODAL OVERLAY ========== */
   .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(8px); z-index: 1000; justify-content: center; align-items: center; }
   .modal-content { background: var(--card-bg); backdrop-filter: blur(8px); border: 1px solid var(--border); border-radius: 24px; padding: 32px; max-width: 500px; width: 90%; position: relative; animation: modalFadeIn 0.3s ease; text-align: center; }
   @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
@@ -326,9 +338,9 @@
     .payment-methods { gap: 15px; }
     .payment-card { padding: 15px 20px; min-width: 120px; }
     .payment-logo { font-size: 30px; }
-    .movie-marquee-item { width: 140px; padding: 8px; }
-    .movie-marquee-poster { width: 120px; height: 180px; }
-    .movie-marquee-title { font-size: 11px; }
+    .swiper-slide { width: 160px; }
+    .movie-title { font-size: 11px; white-space: normal; -webkit-line-clamp: 2; display: -webkit-box; -webkit-box-orient: vertical; }
+    .movie-poster { aspect-ratio: 2/3; }
   }
 </style>
 </head>
@@ -361,12 +373,16 @@
   </div>
 </div>
 
-<!-- Movies Marquee Section (شريط متحرك مع بوستر كبير) -->
-<div class="movies-marquee-section">
-  <div class="marquee-container">
-    <div id="marqueeMovies" class="marquee-content">
-      <div class="loading-text" style="display:inline-block; padding:0 20px; color:var(--cyan);">🎬 Loading latest movies...</div>
+<!-- Swiper Slider Section (Movie Carousel with central zoom) -->
+<div class="movies-slider-section">
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper" id="swiperWrapper">
+      <div class="swiper-slide loading-slide">Loading movies...</div>
     </div>
+  </div>
+  <div class="swiper-nav">
+    <div class="swiper-button-custom swiper-button-prev-custom">◀</div>
+    <div class="swiper-button-custom swiper-button-next-custom">▶</div>
   </div>
 </div>
 
@@ -391,7 +407,7 @@
 
 <div class="trust-footer"><div class="trust-container"><div class="trust-item"><span class="trust-icon">🔒</span> 100% Official Subscriptions</div><div class="trust-item"><span class="trust-icon">⚡</span> Instant Delivery</div><div class="trust-item"><span class="trust-icon">📺</span> 20,000+ Channels & VOD</div><div class="trust-item"><span class="trust-icon">💬</span> WhatsApp Support</div><div class="trust-item"><span class="trust-icon">↩️</span> Money-Back Guarantee</div><div class="trust-item"><span class="trust-icon">🌍</span> Morocco Payment</div></div></div>
 
-<footer><div class="footer-logo">STREAMZONE</div><p>Official Subscriptions · Instant Delivery · 24/7 Support</p><p style="margin-top:8px;font-size:12px;">Data provided by TMDB · Payment: CashPlus · CIH Bank · CashExpress</p></footer>
+<footer><div class="footer-logo">STREAMZONE</div><p>Official Subscriptions · Instant Delivery · 24/7 Support</p><p style="margin-top:8px;font-size:12px;">Powered by TMDB · Payment: CashPlus · CIH Bank · CashExpress</p></footer>
 
 <div class="toast" id="toast">✅ Done!</div>
 
@@ -400,6 +416,7 @@
 <div id="contactModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('contactModal')">&times;</span><div class="modal-title">💬 How It Works</div><div class="modal-sub" style="text-align:left;"><p><strong>1️⃣ Choose your plan</strong> — Select 3, 6, 12, or 24 months.</p><p><strong>2️⃣ Contact us on WhatsApp</strong> — Share your details.</p><p><strong>3️⃣ Complete payment</strong> — Via CashPlus / CIH Bank / CashExpress.</p><p><strong>4️⃣ Get activated</strong> — Receive login details within 1 hour.</p><p><strong>5️⃣ Start watching</strong> — Enjoy 20,000+ channels & VOD!</p></div><div class="modal-buttons"><button class="modal-btn-primary" onclick="openWhatsApp()">📱 Chat on WhatsApp</button><button class="modal-btn-secondary" onclick="closeModal('contactModal')">Close</button></div></div></div>
 <div id="orderModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('orderModal')">&times;</span><div class="modal-title">Complete Your Order</div><div class="modal-sub" id="modalPlanInfo">Plan: --</div><input type="text" id="modalName" class="modal-input" placeholder="Full Name"><input type="tel" id="modalPhone" class="modal-input" placeholder="Phone / WhatsApp"><input type="email" id="modalEmail" class="modal-input" placeholder="Email Address"><div class="modal-buttons"><button class="modal-btn-primary" onclick="submitModalOrder()">Submit Order →</button></div><div class="modal-note" style="margin-top:16px;font-size:11px;color:var(--muted);">🔒 We'll send you payment details via email</div></div></div>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
 // ========== CONFIGURATION ==========
 let selectedPlan = { name: '', price: 0 };
@@ -413,6 +430,7 @@ const previewModal = document.getElementById('previewModal');
 const previewImage = document.getElementById('previewImage');
 const previewTitle = document.getElementById('previewTitle');
 const previewInfo = document.getElementById('previewInfo');
+let swiperInstance = null;
 
 // ========== PREVIEW FUNCTIONS ==========
 function showPreview(imageUrl, title, infoHtml) {
@@ -427,35 +445,60 @@ function showMoviePreview(posterUrl, title, year, rating) {
   showPreview(posterUrl, title, `<div><strong>📅 Year:</strong> ${year}</div><div><strong>⭐ Rating:</strong> ${rating}/10</div><div style="margin-top:12px;"><em>Latest from TMDB</em></div>`);
 }
 
-// ========== FETCH MOVIES FROM TMDB ==========
-async function fetchMoviesFromTMDB() {
-  const container = document.getElementById('marqueeMovies');
+// ========== FETCH MOVIES AND INIT SWIPER ==========
+async function fetchAndInitSwiper() {
+  const swiperWrapper = document.getElementById('swiperWrapper');
+  swiperWrapper.innerHTML = '<div class="swiper-slide">Loading movies...</div>';
+  
   try {
     const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US&page=1`;
     const response = await fetch(url);
     if (!response.ok) throw new Error('Failed to fetch movies');
     const data = await response.json();
-    const movies = data.results.slice(0, 20);
-    // Duplicate movies for seamless scrolling
-    const doubledMovies = [...movies, ...movies];
-    const moviesHTML = doubledMovies.map(movie => {
-      const poster = movie.poster_path ? TMDB_IMAGE_URL + movie.poster_path : 'https://placehold.co/200x300/00d4ff/white?text=No+Poster';
+    const movies = data.results.slice(0, 15);
+    
+    const slidesHTML = movies.map(movie => {
+      const poster = movie.poster_path ? TMDB_IMAGE_URL + movie.poster_path : 'https://placehold.co/300x450/00d4ff/white?text=No+Poster';
       const title = movie.title.replace(/'/g, "\\'");
       const year = movie.release_date ? movie.release_date.split('-')[0] : 'N/A';
       const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
       return `
-        <div class="movie-marquee-item" onmouseenter="showMoviePreview('${poster}', '${title}', '${year}', '${rating}')" onmouseleave="hidePreview()">
-          <img class="movie-marquee-poster" src="${poster}" alt="${movie.title}" loading="lazy">
-          <div class="movie-marquee-title">${movie.title.length > 35 ? movie.title.substring(0,32)+'...' : movie.title}</div>
-          <div class="movie-marquee-year">${year}</div>
-          <div class="movie-marquee-rating">⭐ ${rating}/10</div>
+        <div class="swiper-slide" onmouseenter="showMoviePreview('${poster}', '${title}', '${year}', '${rating}')" onmouseleave="hidePreview()">
+          <div class="movie-card">
+            <img class="movie-poster" src="${poster}" alt="${movie.title}" loading="lazy">
+            <div class="movie-title">${movie.title.length > 25 ? movie.title.substring(0,22)+'...' : movie.title}</div>
+            <div class="movie-year">${year}</div>
+            <div class="movie-rating">⭐ ${rating}/10</div>
+          </div>
         </div>
       `;
     }).join('');
-    container.innerHTML = moviesHTML;
+    
+    swiperWrapper.innerHTML = slidesHTML;
+    
+    // Initialize Swiper after slides are added
+    if (swiperInstance) swiperInstance.destroy(true, true);
+    swiperInstance = new Swiper('.mySwiper', {
+      slidesPerView: 'auto',
+      centeredSlides: true,
+      spaceBetween: 20,
+      loop: true,
+      grabCursor: true,
+      slideToClickedSlide: true,
+      navigation: {
+        nextEl: '.swiper-button-next-custom',
+        prevEl: '.swiper-button-prev-custom',
+      },
+      breakpoints: {
+        320: { slidesPerView: 1.2, spaceBetween: 15 },
+        640: { slidesPerView: 2.2, spaceBetween: 20 },
+        1024: { slidesPerView: 3.2, spaceBetween: 25 },
+        1280: { slidesPerView: 4.2, spaceBetween: 30 }
+      }
+    });
   } catch (error) {
     console.error('Error loading movies:', error);
-    container.innerHTML = '<div class="movie-marquee-item" style="display:inline-flex; padding:20px;">⚠️ Unable to load movies. Please refresh.</div>';
+    swiperWrapper.innerHTML = '<div class="swiper-slide" style="text-align:center;">⚠️ Failed to load movies. Please refresh.</div>';
   }
 }
 
@@ -473,8 +516,8 @@ function toggleFaq(btn) { const item = btn.parentElement; const isOpen = item.cl
 function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
 window.onclick = function(event) { if (event.target.classList.contains('modal-overlay')) { event.target.style.display = 'none'; } }
 
-// ========== INITIALIZATION ==========
-fetchMoviesFromTMDB();
+// Initialize
+fetchAndInitSwiper();
 </script>
 </body>
 </html>
