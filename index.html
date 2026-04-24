@@ -31,7 +31,6 @@
   }
   .nav-cta:hover { background: var(--red-dark); }
 
-  /* Hero Section - العرض التقديمي */
   .hero {
     position: relative; min-height: 550px;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -64,20 +63,216 @@
   .hero-actions { position: relative; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
   .btn-primary {
     background: var(--cyan); color: var(--black); border: none;
-    padding: 14px 36px; border-radius: 10px; font-family: 'Inter', sans-serif;
-    font-size: 16px; font-weight: 700; cursor: pointer; transition: all 0.2s;
-    text-decoration: none; display: inline-block;
+    padding: 14px 28px; border-radius: 10px; font-family: 'Inter', sans-serif;
+    font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
   }
   .btn-primary:hover { background: #00b8e6; transform: translateY(-2px); }
   .btn-ghost {
     background: transparent; color: white; border: 1px solid rgba(255,255,255,0.25);
-    padding: 14px 36px; border-radius: 10px; font-family: 'Inter', sans-serif;
+    padding: 14px 28px; border-radius: 10px; font-family: 'Inter', sans-serif;
     font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s;
-    text-decoration: none; display: inline-block;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
   }
   .btn-ghost:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.05); transform: translateY(-2px); }
 
-  /* Plans Section with Background Image */
+  /* Movies Marquee Section */
+  .movies-marquee-section {
+    background: linear-gradient(90deg, #0a0a0a 0%, #1a1a2a 25%, #0f0f1a 75%, #0a0a0a 100%);
+    padding: 30px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+  }
+  .marquee-content-right-to-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 25px;
+    animation: scrollRightToLeft 40s linear infinite;
+  }
+  .marquee-content-right-to-left:hover {
+    animation-play-state: paused;
+  }
+  @keyframes scrollRightToLeft {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .marquee-content-left-to-right {
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+    animation: scrollLeftToRight 40s linear infinite;
+  }
+  .marquee-content-left-to-right:hover {
+    animation-play-state: paused;
+  }
+  @keyframes scrollLeftToRight {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+  .movie-marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,212,255,0.1);
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid rgba(0,212,255,0.3);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .movie-marquee-item:hover {
+    transform: scale(1.02);
+    background: rgba(0,212,255,0.2);
+  }
+  .movie-marquee-poster {
+    width: 45px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .movie-marquee-info {
+    text-align: left;
+  }
+  .movie-marquee-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .movie-marquee-year {
+    font-size: 11px;
+    color: var(--gold);
+  }
+  .movie-marquee-rating {
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  .match-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(0,212,255,0.1);
+    padding: 8px 20px;
+    border-radius: 50px;
+    border: 1px solid rgba(0,212,255,0.3);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+  }
+  .match-item:hover {
+    background: rgba(0,212,255,0.2);
+  }
+  .team-logo {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    background: white;
+    border-radius: 50%;
+    padding: 3px;
+  }
+  .team-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+  }
+  .vs-badge {
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--gold);
+  }
+  .match-time {
+    font-size: 11px;
+    color: var(--cyan);
+    font-weight: 600;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+  .league-badge {
+    font-size: 10px;
+    color: var(--muted);
+    margin-right: 5px;
+    background: rgba(255,255,255,0.1);
+    padding: 3px 8px;
+    border-radius: 20px;
+  }
+
+  /* Hover Preview Modal */
+  .preview-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(15px);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .preview-overlay.show {
+    display: flex;
+    opacity: 1;
+  }
+  .preview-content {
+    max-width: 500px;
+    width: 90%;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--cyan);
+    box-shadow: 0 0 40px rgba(0,212,255,0.3);
+    animation: previewZoom 0.3s ease;
+  }
+  @keyframes previewZoom {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  .preview-image {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+  .preview-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--cyan);
+    margin-bottom: 8px;
+  }
+  .preview-info {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .preview-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 40px;
+    cursor: pointer;
+    color: white;
+    transition: color 0.2s;
+  }
+  .preview-close:hover {
+    color: var(--cyan);
+  }
+
   .plans-section {
     position: relative;
     background: url('https://images.pexels.com/photos/4098169/pexels-photo-4098169.jpeg?auto=compress&cs=tinysrgb&w=1600');
@@ -101,11 +296,6 @@
   }
   
   section { padding: 72px 24px; max-width: 1100px; margin: 0 auto; }
-  .section-header { text-align: center; margin-bottom: 48px; }
-  .section-label { font-size: 12px; font-weight: 700; letter-spacing: 3px; color: var(--cyan); text-transform: uppercase; margin-bottom: 12px; }
-  .section-title { font-size: clamp(26px, 4vw, 40px); font-weight: 800; letter-spacing: -1px; }
-  .section-sub { font-size: 15px; color: var(--muted); margin-top: 10px; }
-
   .plans {
     display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;
   }
@@ -156,14 +346,30 @@
 
   .payment-section { background: var(--dark); }
   .payment-inner { max-width: 1100px; margin: 0 auto; padding: 72px 24px; }
-  .payment-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; margin-bottom: 48px; }
-  .payment-card {
-    background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px;
-    padding: 20px 16px; text-align: center; cursor: pointer; transition: all 0.2s;
+  .payment-methods { 
+    display: flex; 
+    justify-content: center; 
+    gap: 30px; 
+    flex-wrap: wrap; 
+    margin-bottom: 48px; 
   }
-  .payment-card:hover, .payment-card.selected { border-color: var(--cyan); background: rgba(0,212,255,0.1); }
-  .payment-logo { font-size: 28px; margin-bottom: 8px; }
-  .payment-name { font-size: 14px; font-weight: 700; margin-bottom: 2px; }
+  .payment-card {
+    background: var(--card-bg); 
+    border: 1px solid var(--border); 
+    border-radius: 16px;
+    padding: 25px 30px; 
+    text-align: center; 
+    cursor: pointer; 
+    transition: all 0.2s;
+    min-width: 160px;
+  }
+  .payment-card:hover, .payment-card.selected { 
+    border-color: var(--cyan); 
+    background: rgba(0,212,255,0.1); 
+    transform: translateY(-3px);
+  }
+  .payment-logo { font-size: 40px; margin-bottom: 12px; }
+  .payment-name { font-size: 18px; font-weight: 800; margin-bottom: 6px; color: var(--cyan); }
   .payment-note { font-size: 12px; color: var(--muted); }
 
   .order-form {
@@ -178,8 +384,8 @@
   label { font-size: 13px; font-weight: 600; color: #bbb; }
   input, select {
     background: rgba(255,255,255,0.08); border: 1px solid var(--border); border-radius: 12px;
-    padding: 12px 14px; color: white; font-family: 'Inter', sans-serif; font-size: 14px;
-    transition: border-color 0.2s; outline: none;
+    padding: 12px 14px; color: white; font-family: 'Inter', sans-serif;
+    font-size: 14px; transition: border-color 0.2s; outline: none;
   }
   input:focus, select:focus { border-color: var(--cyan); }
   select option { background: #1a1a1a; }
@@ -208,7 +414,6 @@
   .faq-item.open .faq-a { max-height: 200px; padding: 0 20px 18px; }
   .faq-item.open .faq-arrow { transform: rotate(180deg); }
 
-  /* Trust Section - أسفل الصفحة */
   .trust-footer {
     background: linear-gradient(180deg, #0f0f0f 0%, #0a0a0a 100%);
     border-top: 1px solid var(--border);
@@ -247,43 +452,107 @@
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
 
-  /* Modal Popup Styles */
-  .modal {
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95); backdrop-filter: blur(8px); z-index: 1000;
-    justify-content: center; align-items: center;
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
   }
   .modal-content {
-    background: var(--card-bg); backdrop-filter: blur(8px);
-    border: 1px solid var(--border); border-radius: 24px;
-    padding: 32px; max-width: 450px; width: 90%; position: relative;
+    background: var(--card-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
     animation: modalFadeIn 0.3s ease;
+    text-align: center;
   }
   @keyframes modalFadeIn {
     from { opacity: 0; transform: scale(0.95); }
     to { opacity: 1; transform: scale(1); }
   }
   .modal-close {
-    position: absolute; top: 16px; right: 20px; font-size: 28px; cursor: pointer;
-    color: var(--muted); transition: color 0.2s;
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--muted);
+    transition: color 0.2s;
   }
   .modal-close:hover { color: var(--cyan); }
-  .modal-title { font-size: 24px; font-weight: 800; margin-bottom: 8px; }
-  .modal-sub { font-size: 14px; color: var(--cyan); margin-bottom: 24px; }
+  .modal-title {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 16px;
+    color: var(--cyan);
+  }
+  .modal-sub {
+    font-size: 16px;
+    color: var(--muted);
+    margin-bottom: 24px;
+    line-height: 1.6;
+  }
+  .modal-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+  .modal-btn-primary, .modal-btn-secondary {
+    padding: 14px 20px;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .modal-btn-primary {
+    background: var(--cyan);
+    color: var(--black);
+  }
+  .modal-btn-primary:hover {
+    background: #00b8e6;
+    transform: translateY(-2px);
+  }
+  .modal-btn-secondary {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid var(--border);
+  }
+  .modal-btn-secondary:hover {
+    background: rgba(255,255,255,0.2);
+  }
   .modal-input {
-    width: 100%; margin-bottom: 16px; padding: 14px;
-    background: rgba(255,255,255,0.1); border: 1px solid var(--border);
-    border-radius: 12px; color: white; font-family: 'Inter', sans-serif;
-    font-size: 14px; outline: none;
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 14px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
   }
   .modal-input:focus { border-color: var(--cyan); }
-  .modal-btn {
-    width: 100%; padding: 14px; background: var(--cyan); color: var(--black);
-    border: none; border-radius: 12px; font-family: 'Inter', sans-serif;
-    font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 8px;
-  }
-  .modal-btn:hover { background: #00b8e6; }
-  .modal-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 16px; }
 
   @media (max-width: 600px) {
     nav { padding: 0 16px; }
@@ -291,6 +560,15 @@
     .form-grid { grid-template-columns: 1fr; }
     .form-group.full { grid-column: 1; }
     .plans { gap: 16px; }
+    .hero-actions { gap: 10px; }
+    .btn-primary, .btn-ghost { padding: 10px 18px; font-size: 13px; }
+    .payment-methods { gap: 15px; }
+    .payment-card { padding: 15px 20px; min-width: 120px; }
+    .payment-logo { font-size: 30px; }
+    .match-item, .movie-marquee-item { padding: 5px 12px; gap: 8px; }
+    .team-logo { width: 25px; height: 25px; }
+    .team-name, .movie-marquee-title { font-size: 11px; }
+    .movie-marquee-poster { width: 35px; height: 50px; }
   }
 </style>
 </head>
@@ -307,12 +585,42 @@
   <h1>Subscribe to <em>StreamZone</em><br>Best Prices</h1>
   <p>Official IPTV subscriptions — thousands of channels in HD, Full HD & 4K. Instant delivery after payment.</p>
   <div class="hero-actions">
-    <a href="#plans" class="btn-primary">View Plans</a>
-    <button class="btn-ghost" onclick="openWhatsApp()">How It Works?</button>
+    <a href="#plans" class="btn-primary">📺 View Plans</a>
+    <button class="btn-ghost" onclick="openContactModal()">💬 How It Works?</button>
+    <button class="btn-ghost" onclick="openTrialModal()">🎬 Free Trial</button>
+    <button class="btn-ghost" onclick="document.getElementById('channels').scrollIntoView({behavior:'smooth'})">📡 Channels</button>
   </div>
 </div>
 
-<!-- Plans Section with Background Image -->
+<!-- Hover Preview Modal -->
+<div id="previewModal" class="preview-overlay" onclick="closePreview()">
+  <span class="preview-close" onclick="closePreview()">&times;</span>
+  <div class="preview-content" onclick="event.stopPropagation()">
+    <img id="previewImage" class="preview-image" src="" alt="Preview">
+    <div id="previewTitle" class="preview-title"></div>
+    <div id="previewInfo" class="preview-info"></div>
+  </div>
+</div>
+
+<!-- Football Matches Marquee Section (LEFT TO RIGHT) -->
+<div class="movies-marquee-section" id="matches">
+  <div class="marquee-container">
+    <div id="marqueeMatches" class="marquee-content-left-to-right">
+      <div class="marquee-loading">⚽ Loading upcoming matches...</div>
+    </div>
+  </div>
+</div>
+
+<!-- Latest Movies Added Marquee Section (RIGHT TO LEFT) -->
+<div class="movies-marquee-section">
+  <div class="marquee-container">
+    <div id="marqueeMovies" class="marquee-content-right-to-left">
+      <div class="marquee-loading">🎬 Loading latest movies from TMDB...</div>
+    </div>
+  </div>
+</div>
+
+<!-- Plans Section -->
 <div class="plans-section" id="plans">
   <section>
     <div class="section-header">
@@ -321,7 +629,6 @@
       <p class="section-sub">All plans include all channels & content — no restrictions</p>
     </div>
     <div class="plans">
-      <!-- 3 Months Plan -->
       <div class="plan">
         <div class="plan-duration">3 <span>Months</span></div>
         <div class="plan-price">$19 <sub>USD</sub></div>
@@ -336,10 +643,8 @@
           <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
           <li><span class="feat-check">✓</span> All Devices Support</li>
         </ul>
-        <button class="plan-btn plan-btn-outline" onclick="openModal('3 Months', 19)">Select Plan</button>
+        <button class="plan-btn plan-btn-outline" onclick="openOrderModal('3 Months', 19)">Select Plan</button>
       </div>
-
-      <!-- 6 Months Plan -->
       <div class="plan">
         <div class="plan-duration">6 <span>Months</span></div>
         <div class="plan-price">$29 <sub>USD</sub></div>
@@ -354,10 +659,8 @@
           <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
           <li><span class="feat-check">✓</span> All Devices Support</li>
         </ul>
-        <button class="plan-btn plan-btn-outline" onclick="openModal('6 Months', 29)">Select Plan</button>
+        <button class="plan-btn plan-btn-outline" onclick="openOrderModal('6 Months', 29)">Select Plan</button>
       </div>
-
-      <!-- 12 Months Plan (Most Popular) -->
       <div class="plan popular">
         <div class="popular-badge">🔥 Best Value</div>
         <div class="plan-duration">12 <span>Months</span></div>
@@ -374,10 +677,8 @@
           <li><span class="feat-check">✓</span> All Devices Support</li>
           <li><span class="feat-check">✓</span> Bonus: 1 Month Free</li>
         </ul>
-        <button class="plan-btn plan-btn-red" onclick="openModal('12 Months', 59)">Select Plan</button>
+        <button class="plan-btn plan-btn-red" onclick="openOrderModal('12 Months', 59)">Select Plan</button>
       </div>
-
-      <!-- 24 Months Plan -->
       <div class="plan">
         <div class="plan-duration">24 <span>Months</span></div>
         <div class="plan-price">$99 <sub>USD</sub></div>
@@ -393,7 +694,7 @@
           <li><span class="feat-check">✓</span> All Devices Support</li>
           <li><span class="feat-check">✓</span> Best Value — Save 72%</li>
         </ul>
-        <button class="plan-btn plan-btn-outline" onclick="openModal('24 Months', 99)">Select Plan</button>
+        <button class="plan-btn plan-btn-outline" onclick="openOrderModal('24 Months', 99)">Select Plan</button>
       </div>
     </div>
   </section>
@@ -404,38 +705,23 @@
     <div class="section-header">
       <div class="section-label">PAYMENT METHODS</div>
       <h2 class="section-title">Pay Your Way</h2>
-      <p class="section-sub">Secure & fast payment options available worldwide</p>
+      <p class="section-sub">Select a payment method — we'll send you the details on WhatsApp</p>
     </div>
     <div class="payment-methods">
-      <div class="payment-card" onclick="selectPayment(this,'Credit Card / Debit Card')">
-        <div class="payment-logo">💳</div>
-        <div class="payment-name">Credit / Debit Card</div>
-        <div class="payment-note">Visa · Mastercard</div>
+      <div class="payment-card" onclick="sendPaymentRequest('CashPlus', '💵 CashPlus - دفع نقدي')">
+        <div class="payment-logo">💵</div>
+        <div class="payment-name">CashPlus</div>
+        <div class="payment-note">Cash payment · Available in Morocco</div>
       </div>
-      <div class="payment-card" onclick="selectPayment(this,'PayPal')">
-        <div class="payment-logo">🇵🇾</div>
-        <div class="payment-name">PayPal</div>
-        <div class="payment-note">Secure PayPal</div>
-      </div>
-      <div class="payment-card" onclick="selectPayment(this,'Bank Transfer')">
+      <div class="payment-card" onclick="sendPaymentRequest('CIH Bank', '🏦 CIH Bank - تحويل بنكي')">
         <div class="payment-logo">🏦</div>
-        <div class="payment-name">Bank Transfer</div>
-        <div class="payment-note">CIB · Attijari · BMCE</div>
+        <div class="payment-name">CIH Bank</div>
+        <div class="payment-note">Bank transfer · Mobile & Web</div>
       </div>
-      <div class="payment-card" onclick="selectPayment(this,'Crypto')">
-        <div class="payment-logo">₿</div>
-        <div class="payment-name">Cryptocurrency</div>
-        <div class="payment-note">BTC · USDT · ETH</div>
-      </div>
-      <div class="payment-card" onclick="selectPayment(this,'Wise / Revolut')">
-        <div class="payment-logo">🌍</div>
-        <div class="payment-name">Wise / Revolut</div>
-        <div class="payment-note">International Transfer</div>
-      </div>
-      <div class="payment-card" onclick="selectPayment(this,'Western Union')">
-        <div class="payment-logo">📮</div>
-        <div class="payment-name">Western Union</div>
-        <div class="payment-note">Cash Pickup</div>
+      <div class="payment-card" onclick="sendPaymentRequest('CashExpress', '💸 CashExpress - تحويل سريع')">
+        <div class="payment-logo">💸</div>
+        <div class="payment-name">CashExpress</div>
+        <div class="payment-note">Express cash transfer service</div>
       </div>
     </div>
     <div class="order-form">
@@ -447,7 +733,7 @@
         </div>
         <div class="form-group">
           <label>Phone / WhatsApp</label>
-          <input type="tel" id="inp-phone" placeholder="+1 234 567 8900">
+          <input type="tel" id="inp-phone" placeholder="+212 6XX XXX XXX">
         </div>
         <div class="form-group full">
           <label>Email Address</label>
@@ -467,12 +753,9 @@
           <label>Payment Method</label>
           <select id="inp-payment">
             <option value="">Select payment method...</option>
-            <option>Credit Card / Debit Card</option>
-            <option>PayPal</option>
-            <option>Bank Transfer</option>
-            <option>Crypto (BTC/USDT/ETH)</option>
-            <option>Wise / Revolut</option>
-            <option>Western Union</option>
+            <option>CashPlus</option>
+            <option>CIH Bank</option>
+            <option>CashExpress</option>
           </select>
         </div>
       </div>
@@ -482,44 +765,58 @@
   </div>
 </div>
 
-<section>
+<section id="channels">
   <div class="section-header">
-    <div class="section-label">FAQ</div>
-    <h2 class="section-title">Frequently Asked Questions</h2>
+    <div class="section-label">📡 CHANNELS & CONTENT</div>
+    <h2 class="section-title">What's Included</h2>
+    <p class="section-sub">Over 31,550 live channels + 124,350 movies + 39,330 series</p>
   </div>
-  <div class="faq-list">
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Are these official IPTV subscriptions?
-        <span class="faq-arrow">▾</span>
-      </button>
-      <div class="faq-a">Yes, 100% official subscriptions directly from IPTV providers. No shared accounts or anything unofficial.</div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+    <div class="channel-category" style="background:var(--card-bg);border-radius:20px;padding:24px;border:1px solid var(--border);">
+      <div style="font-size:28px;margin-bottom:12px;">📺</div>
+      <div style="font-size:20px;font-weight:800;color:var(--cyan);margin-bottom:16px;">LIVE Channels</div>
+      <ul style="list-style:none;">
+        <li style="padding:6px 0;color:#ccc;">✓ ✯عيدكم مبارك✯ · ✯☾رمضان يجمعنا☽✯</li>
+        <li style="padding:6px 0;color:#ccc;">✓ MBC · SYRIA · LEBANON · IRAQ · EGYPT · MOROCCO</li>
+        <li style="padding:6px 0;color:#ccc;">✓ BEIN SPORTS (8K/SS/F/BE/UHD) · TOD SPORT PPV</li>
+        <li style="padding:6px 0;color:#ccc;">✓ UEFA CHAMPIONS LEAGUE · STARZPLAY SPORT</li>
+        <li style="padding:6px 0;color:#ccc;">✓ NETFLIX · PRIME VIDEO · HBO · Disney+</li>
+        <li style="padding:6px 0;color:#ccc;">✓ All Arab Countries + International (US, UK, FR, DE, IT, ES, TR, IR, IN, PK, BR)</li>
+      </ul>
     </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        How do I receive my subscription?
-        <span class="faq-arrow">▾</span>
-      </button>
-      <div class="faq-a">After payment confirmation, we send your subscription details via email or WhatsApp within less than 1 hour.</div>
+    <div class="channel-category" style="background:var(--card-bg);border-radius:20px;padding:24px;border:1px solid var(--border);">
+      <div style="font-size:28px;margin-bottom:12px;">🎬</div>
+      <div style="font-size:20px;font-weight:800;color:var(--cyan);margin-bottom:16px;">MOVIES</div>
+      <ul style="list-style:none;">
+        <li style="padding:6px 0;color:#ccc;">✓ 4K افلام عربية فائقة الوضوح</li>
+        <li style="padding:6px 0;color:#ccc;">✓ افلام عادل امام · احمد حلمي · كريم عبد العزيز</li>
+        <li style="padding:6px 0;color:#ccc;">✓ MARVEL · DC · جيمس بوند</li>
+        <li style="padding:6px 0;color:#ccc;">✓ افلام اسيوية · هندية · تركية · المانية</li>
+        <li style="padding:6px 0;color:#ccc;">✓ NETFLIX · DISNEY+ · APPLE+ · PRIME VIDEO</li>
+      </ul>
     </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Is there a guarantee if I have issues?
-        <span class="faq-arrow">▾</span>
-      </button>
-      <div class="faq-a">Yes, if you have any problem with your subscription, we provide a full refund or replacement. Contact us on WhatsApp and we'll solve it immediately.</div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        How can I contact support?
-        <span class="faq-arrow">▾</span>
-      </button>
-      <div class="faq-a">You can reach us via WhatsApp (click the Buy Now button or send the order form). Support is available 7 days a week.</div>
+    <div class="channel-category" style="background:var(--card-bg);border-radius:20px;padding:24px;border:1px solid var(--border);">
+      <div style="font-size:28px;margin-bottom:12px;">📺</div>
+      <div style="font-size:20px;font-weight:800;color:var(--cyan);margin-bottom:16px;">SERIES</div>
+      <ul style="list-style:none;">
+        <li style="padding:6px 0;color:#ccc;">✓ يعرض الان (عربي · تركي · اجنبي · هندي · انمي)</li>
+        <li style="padding:6px 0;color:#ccc;">✓ 4K رمضانك فائق الوضوح 2026</li>
+        <li style="padding:6px 0;color:#ccc;">✓ مسلسلات شاهد · واتش ات · تود · فيو الأصلية</li>
+        <li style="padding:6px 0;color:#ccc;">✓ مسلسلات تركية (مترجمة · مدبلجة) ☪</li>
+        <li style="padding:6px 0;color:#ccc;">✓ NETFLIX · PRIME VIDEO · DISNEY+ · APPLE+</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- Trust Section - أسفل الصفحة -->
+<div class="faq-list" style="max-width:720px;margin:40px auto;padding:0 24px;">
+  <div class="section-header"><div class="section-label">FAQ</div><h2 class="section-title">Frequently Asked Questions</h2></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Are these official IPTV subscriptions?<span class="faq-arrow">▾</span></button><div class="faq-a">Yes, 100% official subscriptions directly from IPTV providers. No shared accounts or anything unofficial.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How do I receive my subscription?<span class="faq-arrow">▾</span></button><div class="faq-a">After payment confirmation, we send your subscription details via email or WhatsApp within less than 1 hour.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Is there a guarantee if I have issues?<span class="faq-arrow">▾</span></button><div class="faq-a">Yes, if you have any problem with your subscription, we provide a full refund or replacement. Contact us on WhatsApp and we'll solve it immediately.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How can I contact support?<span class="faq-arrow">▾</span></button><div class="faq-a">You can reach us via WhatsApp (click the Buy Now button or send the order form). Support is available 7 days a week.</div></div>
+</div>
+
 <div class="trust-footer">
   <div class="trust-container">
     <div class="trust-item"><span class="trust-icon">🔒</span> 100% Official Subscriptions</div>
@@ -527,127 +824,154 @@
     <div class="trust-item"><span class="trust-icon">📺</span> 20,000+ Channels & VOD</div>
     <div class="trust-item"><span class="trust-icon">💬</span> WhatsApp Support</div>
     <div class="trust-item"><span class="trust-icon">↩️</span> Money-Back Guarantee</div>
-    <div class="trust-item"><span class="trust-icon">🌍</span> Worldwide Payment</div>
+    <div class="trust-item"><span class="trust-icon">🌍</span> Morocco Payment</div>
   </div>
 </div>
 
 <footer>
   <div class="footer-logo">STREAMZONE</div>
   <p>Official Subscriptions · Instant Delivery · 24/7 Support</p>
-  <p style="margin-top:8px;font-size:12px;">This store is an independent reseller of official IPTV subscriptions.</p>
+  <p style="margin-top:8px;font-size:12px;">Data provided by TMDB · Payment: CashPlus · CIH Bank · CashExpress</p>
 </footer>
 
 <div class="toast" id="toast">✅ Done!</div>
 
-<!-- Modal Popup -->
-<div id="orderModal" class="modal">
+<!-- Modals -->
+<div id="trialModal" class="modal-overlay">
   <div class="modal-content">
-    <span class="modal-close" onclick="closeModal()">&times;</span>
-    <div class="modal-title">Complete Your Order</div>
-    <div class="modal-sub" id="modalPlanInfo">Plan: --</div>
-    <input type="text" id="modalName" class="modal-input" placeholder="Full Name">
-    <input type="tel" id="modalPhone" class="modal-input" placeholder="Phone / WhatsApp">
-    <input type="email" id="modalEmail" class="modal-input" placeholder="Email Address">
-    <button class="modal-btn" onclick="submitModalOrder()">Submit Order →</button>
-    <div class="modal-note">🔒 We'll send you payment details via email</div>
+    <span class="modal-close" onclick="closeModal('trialModal')">&times;</span>
+    <div class="modal-title">🎬 2-Hour Free Trial</div>
+    <div class="modal-sub">Test our service before you buy! Get instant access for 2 hours completely free.</div>
+    <input type="text" id="trialName" class="modal-input" placeholder="Your Full Name">
+    <input type="tel" id="trialPhone" class="modal-input" placeholder="WhatsApp Number">
+    <input type="email" id="trialEmail" class="modal-input" placeholder="Email Address">
+    <select id="trialDevice" class="modal-input"><option value="">Select your device</option><option>Android TV / Google TV</option><option>LG TV (webOS)</option><option>Samsung TV (Tizen)</option><option>Android Box / Fire Stick</option><option>iOS / iPhone / iPad</option><option>Windows / Mac</option></select>
+    <div class="modal-buttons"><button class="modal-btn-primary" onclick="requestTrial()">🚀 Request Free Trial</button></div>
   </div>
 </div>
+<div id="contactModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('contactModal')">&times;</span><div class="modal-title">💬 How It Works</div><div class="modal-sub" style="text-align:left;"><p><strong>1️⃣ Choose your plan</strong> — Select 3, 6, 12, or 24 months.</p><p><strong>2️⃣ Contact us on WhatsApp</strong> — Share your details.</p><p><strong>3️⃣ Complete payment</strong> — Via CashPlus / CIH Bank / CashExpress.</p><p><strong>4️⃣ Get activated</strong> — Receive login details within 1 hour.</p><p><strong>5️⃣ Start watching</strong> — Enjoy 20,000+ channels & VOD!</p></div><div class="modal-buttons"><button class="modal-btn-primary" onclick="openWhatsApp()">📱 Chat on WhatsApp</button><button class="modal-btn-secondary" onclick="closeModal('contactModal')">Close</button></div></div></div>
+<div id="orderModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('orderModal')">&times;</span><div class="modal-title">Complete Your Order</div><div class="modal-sub" id="modalPlanInfo">Plan: --</div><input type="text" id="modalName" class="modal-input" placeholder="Full Name"><input type="tel" id="modalPhone" class="modal-input" placeholder="Phone / WhatsApp"><input type="email" id="modalEmail" class="modal-input" placeholder="Email Address"><div class="modal-buttons"><button class="modal-btn-primary" onclick="submitModalOrder()">Submit Order →</button></div><div class="modal-note" style="margin-top:16px;font-size:11px;color:var(--muted);">🔒 We'll send you payment details via email</div></div></div>
 
 <script>
 let selectedPlan = { name: '', price: 0 };
 const ADMIN_EMAIL = 'karimakon08@gmail.com';
 const WHATSAPP_NUMBER = '212670965351';
+const TMDB_API_KEY = '0de67f2ee06f23a99475aaffe093d1e7';
+const TMDB_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
-function openModal(planName, price) {
-  selectedPlan = { name: planName, price: price };
-  document.getElementById('modalPlanInfo').innerHTML = `📦 ${planName} — $${price} USD`;
-  document.getElementById('orderModal').style.display = 'flex';
-  document.getElementById('modalName').value = '';
-  document.getElementById('modalPhone').value = '';
-  document.getElementById('modalEmail').value = '';
+// Upcoming matches data
+const upcomingMatches = [
+  { homeTeam: "Real Madrid", awayTeam: "Barcelona", league: "La Liga", time: "Today 21:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/real-madrid.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/barcelona.png" },
+  { homeTeam: "Liverpool", awayTeam: "Manchester City", league: "Premier League", time: "Today 18:30", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/liverpool.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/manchester-city.png" },
+  { homeTeam: "Bayern Munich", awayTeam: "Borussia Dortmund", league: "Bundesliga", time: "Tomorrow 19:30", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/bayern-munich.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/borussia-dortmund.png" },
+  { homeTeam: "Paris SG", awayTeam: "Marseille", league: "Ligue 1", time: "Tomorrow 21:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/paris-saint-germain.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/marseille.png" },
+  { homeTeam: "AC Milan", awayTeam: "Inter Milan", league: "Serie A", time: "Sunday 20:45", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/ac-milan.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/internazionale.png" },
+  { homeTeam: "Wydad AC", awayTeam: "Raja Casablanca", league: "Botola Pro", time: "Monday 20:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/wydad-ac.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/raja-casablanca.png" },
+  { homeTeam: "Arsenal", awayTeam: "Chelsea", league: "Premier League", time: "Monday 21:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/arsenal.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/chelsea.png" },
+  { homeTeam: "Juventus", awayTeam: "Napoli", league: "Serie A", time: "Tuesday 20:45", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/juventus.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/napoli.png" },
+  { homeTeam: "Atletico Madrid", awayTeam: "Sevilla", league: "La Liga", time: "Tuesday 22:00", homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/atletico-madrid.png", awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/sevilla.png" }
+];
+
+function showPreview(imageUrl, title, info) {
+  document.getElementById('previewImage').src = imageUrl;
+  document.getElementById('previewTitle').innerHTML = title;
+  document.getElementById('previewInfo').innerHTML = info;
+  const modal = document.getElementById('previewModal');
+  modal.classList.add('show');
 }
 
-function closeModal() {
-  document.getElementById('orderModal').style.display = 'none';
+function closePreview() {
+  const modal = document.getElementById('previewModal');
+  modal.classList.remove('show');
 }
 
-function submitModalOrder() {
-  const name = document.getElementById('modalName').value.trim();
-  const phone = document.getElementById('modalPhone').value.trim();
-  const email = document.getElementById('modalEmail').value.trim();
-  
-  if (!name || !phone || !email) {
-    showToast('⚠️ Please fill all fields');
-    return;
+function loadMarqueeMatches() {
+  const container = document.getElementById('marqueeMatches');
+  const doubledMatches = [...upcomingMatches, ...upcomingMatches];
+  const matchesHTML = doubledMatches.map((match, idx) => `
+    <div class="match-item" onmouseenter="showMatchPreview('${match.homeTeam}', '${match.awayTeam}', '${match.league}', '${match.time}', '${match.homeLogo}', '${match.awayLogo}')">
+      <span class="league-badge">${match.league}</span>
+      <img class="team-logo" src="${match.homeLogo}" alt="${match.homeTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
+      <span class="team-name">${match.homeTeam}</span>
+      <span class="vs-badge">VS</span>
+      <img class="team-logo" src="${match.awayLogo}" alt="${match.awayTeam}" onerror="this.src='https://placehold.co/40x40/00d4ff/white?text=FC'">
+      <span class="team-name">${match.awayTeam}</span>
+      <span class="match-time">⏰ ${match.time}</span>
+    </div>
+  `).join('');
+  container.innerHTML = matchesHTML;
+}
+
+function showMatchPreview(homeTeam, awayTeam, league, time, homeLogo, awayLogo) {
+  const previewHtml = `
+    <div style="display: flex; gap: 20px; justify-content: center; align-items: center; margin-bottom: 20px;">
+      <div style="text-align: center;">
+        <img src="${homeLogo}" style="width: 80px; height: 80px; object-fit: contain; background: white; border-radius: 50%; padding: 10px;" onerror="this.src='https://placehold.co/80x80/00d4ff/white?text=FC'">
+        <div style="margin-top: 8px; font-weight: bold;">${homeTeam}</div>
+      </div>
+      <div style="font-size: 24px; font-weight: 800; color: var(--gold);">VS</div>
+      <div style="text-align: center;">
+        <img src="${awayLogo}" style="width: 80px; height: 80px; object-fit: contain; background: white; border-radius: 50%; padding: 10px;" onerror="this.src='https://placehold.co/80x80/00d4ff/white?text=FC'">
+        <div style="margin-top: 8px; font-weight: bold;">${awayTeam}</div>
+      </div>
+    </div>
+    <div><strong>📋 League:</strong> ${league}</div>
+    <div><strong>⏰ Time:</strong> ${time}</div>
+  `;
+  showPreview(homeLogo, `${homeTeam} vs ${awayTeam}`, previewHtml);
+}
+
+function showMoviePreview(posterUrl, title, year, rating) {
+  const previewHtml = `
+    <div><strong>📅 Year:</strong> ${year}</div>
+    <div><strong>⭐ Rating:</strong> ${rating}/10</div>
+    <div style="margin-top: 12px;"><em>Hover preview from TMDB</em></div>
+  `;
+  showPreview(posterUrl, title, previewHtml);
+}
+
+async function loadLatestMoviesMarquee() {
+  const container = document.getElementById('marqueeMovies');
+  try {
+    const url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${TMDB_API_KEY}&language=en-US&page=1`;
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Failed to fetch movies');
+    const data = await response.json();
+    const movies = data.results.slice(0, 20);
+    const doubledMovies = [...movies, ...movies];
+    const moviesHTML = doubledMovies.map(movie => `
+      <div class="movie-marquee-item" onmouseenter="showMoviePreview('${movie.poster_path ? TMDB_IMAGE_URL + movie.poster_path : 'https://placehold.co/200x300/00d4ff/white?text=No+Poster'}', '${movie.title.replace(/'/g, "\\'")}', '${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'}', '${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}')">
+        <img class="movie-marquee-poster" src="${movie.poster_path ? TMDB_IMAGE_URL + movie.poster_path : 'https://placehold.co/200x300/00d4ff/white?text=No+Poster'}" alt="${movie.title}">
+        <div class="movie-marquee-info">
+          <div class="movie-marquee-title">${movie.title.length > 25 ? movie.title.substring(0, 22) + '...' : movie.title}</div>
+          <div class="movie-marquee-year">${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'}</div>
+          <div class="movie-marquee-rating">⭐ ${movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}/10</div>
+        </div>
+      </div>
+    `).join('');
+    container.innerHTML = moviesHTML;
+  } catch (error) {
+    console.error('Error loading movies:', error);
+    container.innerHTML = '<div class="marquee-error">⚠️ Unable to load latest movies. Please refresh.</div>';
   }
-  
-  const subject = `New StreamZone Order: ${selectedPlan.name}`;
-  const body = `New StreamZone IPTV Order!\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📦 Plan: ${selectedPlan.name}\n💰 Price: $${selectedPlan.price} USD\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n⏰ Date: ${new Date().toLocaleString()}`;
-  
-  window.location.href = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  
-  const whatsappMsg = `*NEW STREAMZONE ORDER*%0A%0A📦 Plan: ${selectedPlan.name} — $${selectedPlan.price}%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}`;
-  window.open('https://wa.me/${WHATSAPP_NUMBER}?text=' + whatsappMsg, '_blank');
-  
-  closeModal();
-  showToast('✅ Order sent! Check your email');
 }
 
-function openWhatsApp() {
-  window.open('https://wa.me/${WHATSAPP_NUMBER}', '_blank');
-}
-
-function selectPayment(card, name) {
-  document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
-  card.classList.add('selected');
-  const sel = document.getElementById('inp-payment');
-  for (let o of sel.options) { 
-    if (o.text === name || (name === 'Credit Card / Debit Card' && o.text === 'Credit Card / Debit Card') ||
-        (name === 'Crypto' && o.text.includes('Crypto')) ||
-        (name === 'Bank Transfer' && o.text === 'Bank Transfer') ||
-        (name === 'Wise / Revolut' && o.text === 'Wise / Revolut') ||
-        (name === 'Western Union' && o.text === 'Western Union')) {
-      sel.value = o.text;
-      break;
-    }
-  }
-}
-
-function submitOrder() {
-  const name = document.getElementById('inp-name').value.trim();
-  const phone = document.getElementById('inp-phone').value.trim();
-  const email = document.getElementById('inp-email').value.trim();
-  const plan = document.getElementById('inp-plan').value;
-  const payment = document.getElementById('inp-payment').value;
-  
-  if (!name || !phone || !email || !plan || !payment) {
-    showToast('⚠️ Please fill all fields'); 
-    return;
-  }
-  
-  const msg = `*NEW STREAMZONE ORDER*%0A%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}%0A📦 Plan: ${plan}%0A💳 Payment: ${payment}`;
-  window.open('https://wa.me/${WHATSAPP_NUMBER}?text=' + msg, '_blank');
-  showToast('📱 Opening WhatsApp...');
-}
-
-function toggleFaq(btn) {
-  const item = btn.parentElement;
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  if (!isOpen) item.classList.add('open');
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 3000);
-}
-
-window.onclick = function(event) {
-  const modal = document.getElementById('orderModal');
-  if (event.target === modal) closeModal();
-}
+function sendPaymentRequest(method, methodName) { const name = document.getElementById('inp-name').value.trim(); const phone = document.getElementById('inp-phone').value.trim(); const email = document.getElementById('inp-email').value.trim(); const plan = document.getElementById('inp-plan').value; if (!name || !phone || !email || !plan) { showToast('⚠️ Please fill your name, phone, email and select a plan first'); return; } const sel = document.getElementById('inp-payment'); for (let o of sel.options) { if (o.text === method) { sel.value = o.text; break; } } const msg = `━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A💰 *NEW PAYMENT REQUEST - STREAMZONE* 💰%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A👤 *Customer Name:* ${name}%0A📞 *Phone:* ${phone}%0A📧 *Email:* ${email}%0A📦 *Plan:* ${plan}%0A💳 *Payment Method:* ${methodName}%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A📌 *Action Required:*%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A✅ Please send the customer the payment details for ${method}%0A✅ Send bank account / CashPlus / CashExpress information%0A✅ Ask for payment receipt confirmation%0A✅ After confirmation, send IPTV login details%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A⏰ Request sent at: ${new Date().toLocaleString()}%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank'); showToast(`📱 Opening WhatsApp with ${method} payment request`); }
+function openOrderModal(planName, price) { selectedPlan = { name: planName, price: price }; document.getElementById('modalPlanInfo').innerHTML = `📦 ${planName} — $${price} USD`; document.getElementById('orderModal').style.display = 'flex'; document.getElementById('modalName').value = ''; document.getElementById('modalPhone').value = ''; document.getElementById('modalEmail').value = ''; }
+function openTrialModal() { document.getElementById('trialModal').style.display = 'flex'; }
+function openContactModal() { document.getElementById('contactModal').style.display = 'flex'; }
+function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
+function requestTrial() { const name = document.getElementById('trialName').value.trim(); const phone = document.getElementById('trialPhone').value.trim(); const email = document.getElementById('trialEmail').value.trim(); const device = document.getElementById('trialDevice').value; if (!name || !phone || !email || !device) { showToast('⚠️ Please fill all fields'); return; } const msg = `*FREE TRIAL REQUEST - STREAMZONE*%0A%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}%0A📱 Device: ${device}%0A⏰ Requested: 2-Hour Trial%0A%0APlease send trial access details.`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank'); closeModal('trialModal'); showToast('🎬 Trial request sent! Check WhatsApp'); }
+function submitModalOrder() { const name = document.getElementById('modalName').value.trim(); const phone = document.getElementById('modalPhone').value.trim(); const email = document.getElementById('modalEmail').value.trim(); if (!name || !phone || !email) { showToast('⚠️ Please fill all fields'); return; } const subject = `New StreamZone Order: ${selectedPlan.name}`; const body = `New StreamZone IPTV Order!\n\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n📦 Plan: ${selectedPlan.name}\n💰 Price: $${selectedPlan.price} USD\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n👤 Name: ${name}\n📞 Phone: ${phone}\n📧 Email: ${email}\n━━━━━━━━━━━━━━━━━━━━━━━━━━━\n⏰ Date: ${new Date().toLocaleString()}`; window.location.href = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; const whatsappMsg = `*NEW STREAMZONE ORDER*%0A%0A📦 Plan: ${selectedPlan.name} — $${selectedPlan.price}%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMsg}`, '_blank'); closeModal('orderModal'); showToast('✅ Order sent! Check your email'); }
+function openWhatsApp() { window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank'); }
+function submitOrder() { const name = document.getElementById('inp-name').value.trim(); const phone = document.getElementById('inp-phone').value.trim(); const email = document.getElementById('inp-email').value.trim(); const plan = document.getElementById('inp-plan').value; const payment = document.getElementById('inp-payment').value; if (!name || !phone || !email || !plan || !payment) { showToast('⚠️ Please fill all fields'); return; } const msg = `*NEW STREAMZONE ORDER*%0A%0A👤 Name: ${name}%0A📞 Phone: ${phone}%0A📧 Email: ${email}%0A📦 Plan: ${plan}%0A💳 Payment: ${payment}%0A%0A━━━━━━━━━━━━━━━━━━━━%0A📌 Please send payment details for ${payment}`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank'); showToast('📱 Opening WhatsApp...'); }
+function toggleFaq(btn) { const item = btn.parentElement; const isOpen = item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); if (!isOpen) item.classList.add('open'); }
+function showToast(msg) { const t = document.getElementById('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3000); }
+window.onclick = function(event) { if (event.target.classList.contains('modal-overlay')) { event.target.style.display = 'none'; } }
+window.addEventListener('load', () => {
+  loadMarqueeMatches();
+  loadLatestMoviesMarquee();
+});
 </script>
 </body>
 </html>
