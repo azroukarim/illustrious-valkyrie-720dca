@@ -220,31 +220,44 @@
     transform: translateY(-2px);
   }
 
-  /* Movies Marquee Sections */
-  .movies-marquee-section {
+  /* Marquee Sections */
+  .marquee-section {
     background: linear-gradient(90deg, #0a0a0a 0%, #1a1a2a 25%, #0f0f1a 75%, #0a0a0a 100%);
-    padding: 30px 0;
+    padding: 20px 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    overflow: hidden;
     position: relative;
+    overflow: hidden;
+  }
+
+  .marquee-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
   }
 
   .marquee-container {
-    width: 100%;
+    flex: 1;
     overflow: hidden;
     white-space: nowrap;
     position: relative;
   }
 
-  /* Animation base classes - will be toggled by JS on hover */
+  .marquee-content {
+    display: inline-flex;
+    align-items: center;
+    gap: 25px;
+    animation: scrollRightToLeft 40s linear infinite;
+  }
+
+  /* Custom animation classes controlled by JS */
   .animate-right-to-left {
-    animation: scrollRightToLeft 120
-    s linear infinite;
+    animation: scrollRightToLeft var(--speed, 40s) linear infinite;
   }
 
   .animate-left-to-right {
-    animation: scrollLeftToRight 120s linear infinite;
+    animation: scrollLeftToRight var(--speed, 40s) linear infinite;
   }
 
   @keyframes scrollRightToLeft {
@@ -267,10 +280,62 @@
     }
   }
 
-  .marquee-content {
-    display: inline-flex;
+  /* Control Buttons */
+  .control-btn {
+    background: rgba(0, 212, 255, 0.15);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
     align-items: center;
-    gap: 25px;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 20px;
+    flex-shrink: 0;
+    z-index: 10;
+  }
+
+  .control-btn:hover {
+    background: var(--cyan);
+    color: var(--black);
+    transform: scale(1.05);
+  }
+
+  .speed-control-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .speed-btn {
+    background: transparent;
+    border: none;
+    color: var(--cyan);
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+
+  .speed-btn:hover {
+    background: rgba(0, 212, 255, 0.3);
+  }
+
+  .speed-value {
+    font-size: 12px;
+    color: white;
+    min-width: 45px;
+    text-align: center;
   }
 
   /* Individual items */
@@ -437,12 +502,11 @@
     color: var(--muted);
   }
 
-  /* Plans & other sections (unchanged but kept for consistency) */
+  /* Rest of the styles (Plans, Payment, FAQ, etc.) remain as before */
   .plans-section {
     position: relative;
     background: url('https://images.pexels.com/photos/4098169/pexels-photo-4098169.jpeg?auto=compress&cs=tinysrgb&w=1600');
     background-size: cover;
-    background-position: center 30%;
     background-attachment: fixed;
   }
 
@@ -899,7 +963,6 @@
     transform: translateX(-50%) translateY(0);
   }
 
-  /* Modal Overlay for forms */
   .modal-overlay {
     display: none;
     position: fixed;
@@ -1092,6 +1155,21 @@
       width: 35px;
       height: 50px;
     }
+
+    .control-btn {
+      width: 32px;
+      height: 32px;
+      font-size: 16px;
+    }
+
+    .speed-control-group {
+      padding: 2px 8px;
+    }
+
+    .speed-btn {
+      padding: 2px 6px;
+      font-size: 12px;
+    }
   }
 </style>
 </head>
@@ -1125,20 +1203,38 @@
 </div>
 
 <!-- Football Matches Marquee Section -->
-<div class="movies-marquee-section" id="matches">
-  <div class="marquee-container">
-    <div id="marqueeMatches" class="marquee-content animate-left-to-right"></div>
+<div class="marquee-section" id="matches">
+  <div class="marquee-wrapper" style="padding: 0 20px;">
+    <div class="control-btn" id="matchesPlayPauseBtn" title="Play/Pause">⏸️</div>
+    <div class="marquee-container">
+      <div id="marqueeMatches" class="marquee-content animate-left-to-right"></div>
+    </div>
+    <div class="speed-control-group">
+      <button class="speed-btn" id="matchesSpeedDown" title="Slower">🐢</button>
+      <span id="matchesSpeedValue" class="speed-value">40s</span>
+      <button class="speed-btn" id="matchesSpeedUp" title="Faster">🐇</button>
+    </div>
+    <div class="control-btn" id="matchesResetBtn" title="Reset Speed">⟳</div>
   </div>
 </div>
 
-<!-- Latest Movies Added Marquee Section -->
-<div class="movies-marquee-section">
-  <div class="marquee-container">
-    <div id="marqueeMovies" class="marquee-content animate-right-to-left"></div>
+<!-- Movies Marquee Section -->
+<div class="marquee-section">
+  <div class="marquee-wrapper" style="padding: 0 20px;">
+    <div class="control-btn" id="moviesPlayPauseBtn" title="Play/Pause">⏸️</div>
+    <div class="marquee-container">
+      <div id="marqueeMovies" class="marquee-content animate-right-to-left"></div>
+    </div>
+    <div class="speed-control-group">
+      <button class="speed-btn" id="moviesSpeedDown" title="Slower">🐢</button>
+      <span id="moviesSpeedValue" class="speed-value">40s</span>
+      <button class="speed-btn" id="moviesSpeedUp" title="Faster">🐇</button>
+    </div>
+    <div class="control-btn" id="moviesResetBtn" title="Reset Speed">⟳</div>
   </div>
 </div>
 
-<!-- Plans Section -->
+<!-- Plans Section (abbreviated for brevity, same as before) -->
 <div class="plans-section" id="plans">
   <section>
     <div class="section-header">
@@ -1421,97 +1517,101 @@
   const TMDB_API_KEY = '0de67f2ee06f23a99475aaffe093d1e7';
   const TMDB_IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
 
-  // Upcoming matches data (logos are illustrative)
-  const upcomingMatches = [{
-      homeTeam: "Real Madrid",
-      awayTeam: "Barcelona",
-      league: "La Liga",
-      time: "Today 21:00",
-      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/real-madrid.png",
-      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/barcelona.png"
-    },
-    {
-      homeTeam: "Liverpool",
-      awayTeam: "Manchester City",
-      league: "Premier League",
-      time: "Today 18:30",
-      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/liverpool.png",
-      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/manchester-city.png"
-    },
-    {
-      homeTeam: "Bayern Munich",
-      awayTeam: "Borussia Dortmund",
-      league: "Bundesliga",
-      time: "Tomorrow 19:30",
-      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/bayern-munich.png",
-      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/borussia-dortmund.png"
-    },
-    {
-      homeTeam: "Paris SG",
-      awayTeam: "Marseille",
-      league: "Ligue 1",
-      time: "Tomorrow 21:00",
-      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/paris-saint-germain.png",
-      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/marseille.png"
-    },
-    {
-      homeTeam: "AC Milan",
-      awayTeam: "Inter Milan",
-      league: "Serie A",
-      time: "Sunday 20:45",
-      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/ac-milan.png",
-      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/internazionale.png"
-    },
-    {
-      homeTeam: "Wydad AC",
-      awayTeam: "Raja Casablanca",
-      league: "Botola Pro",
-      time: "Monday 20:00",
-      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/wydad-ac.png",
-      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/raja-casablanca.png"
-    },
-    {
-      homeTeam: "Arsenal",
-      awayTeam: "Chelsea",
-      league: "Premier League",
-      time: "Monday 21:00",
-      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/arsenal.png",
-      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/chelsea.png"
-    },
-    {
-      homeTeam: "Juventus",
-      awayTeam: "Napoli",
-      league: "Serie A",
-      time: "Tuesday 20:45",
-      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/juventus.png",
-      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/napoli.png"
-    },
-    {
-      homeTeam: "Atletico Madrid",
-      awayTeam: "Sevilla",
-      league: "La Liga",
-      time: "Tuesday 22:00",
-      homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/atletico-madrid.png",
-      awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/sevilla.png"
-    }
-  ];
+  // ========== MATCHES DATA ==========
+  // Generate dynamic upcoming matches with real dates
+  function getDynamicMatches() {
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const day2 = new Date(today);
+    day2.setDate(day2.getDate() + 2);
+    const day3 = new Date(today);
+    day3.setDate(day3.getDate() + 3);
+    
+    const formatDate = (date, dayName) => {
+      return `${dayName} ${date.getDate()}/${date.getMonth() + 1} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+    };
+    
+    return [{
+        homeTeam: "Real Madrid",
+        awayTeam: "Barcelona",
+        league: "La Liga",
+        time: formatDate(today, "Today"),
+        homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/real-madrid.png",
+        awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/barcelona.png"
+      },
+      {
+        homeTeam: "Liverpool",
+        awayTeam: "Manchester City",
+        league: "Premier League",
+        time: formatDate(today, "Today"),
+        homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/liverpool.png",
+        awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/manchester-city.png"
+      },
+      {
+        homeTeam: "Bayern Munich",
+        awayTeam: "Borussia Dortmund",
+        league: "Bundesliga",
+        time: formatDate(tomorrow, "Tomorrow"),
+        homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/bayern-munich.png",
+        awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/borussia-dortmund.png"
+      },
+      {
+        homeTeam: "Paris SG",
+        awayTeam: "Marseille",
+        league: "Ligue 1",
+        time: formatDate(tomorrow, "Tomorrow"),
+        homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/paris-saint-germain.png",
+        awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/marseille.png"
+      },
+      {
+        homeTeam: "AC Milan",
+        awayTeam: "Inter Milan",
+        league: "Serie A",
+        time: formatDate(day2, day2.toLocaleDateString('en', { weekday: 'long' })),
+        homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/ac-milan.png",
+        awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/internazionale.png"
+      },
+      {
+        homeTeam: "Wydad AC",
+        awayTeam: "Raja Casablanca",
+        league: "Botola Pro",
+        time: formatDate(day2, day2.toLocaleDateString('en', { weekday: 'long' })),
+        homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/wydad-ac.png",
+        awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/raja-casablanca.png"
+      },
+      {
+        homeTeam: "Arsenal",
+        awayTeam: "Chelsea",
+        league: "Premier League",
+        time: formatDate(day3, day3.toLocaleDateString('en', { weekday: 'long' })),
+        homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/arsenal.png",
+        awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/chelsea.png"
+      },
+      {
+        homeTeam: "Juventus",
+        awayTeam: "Napoli",
+        league: "Serie A",
+        time: formatDate(day3, day3.toLocaleDateString('en', { weekday: 'long' })),
+        homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/juventus.png",
+        awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/napoli.png"
+      },
+      {
+        homeTeam: "Atletico Madrid",
+        awayTeam: "Sevilla",
+        league: "La Liga",
+        time: formatDate(day3, day3.toLocaleDateString('en', { weekday: 'long' })),
+        homeLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/atletico-madrid.png",
+        awayLogo: "https://cdn.ssref.net/req/202403221/tlogo/fb/sevilla.png"
+      }
+    ];
+  }
 
   // DOM elements
   const previewModal = document.getElementById('previewModal');
   const previewImage = document.getElementById('previewImage');
   const previewTitle = document.getElementById('previewTitle');
   const previewInfo = document.getElementById('previewInfo');
-  const marqueeMatchesEl = document.getElementById('marqueeMatches');
-  const marqueeMoviesEl = document.getElementById('marqueeMovies');
-
-  // Helper: pause / resume animations
-  function pauseMarquee(container, pause) {
-    if (pause) {
-      container.style.animationPlayState = 'paused';
-    } else {
-      container.style.animationPlayState = 'running';
-    }
-  }
 
   // Preview functions
   function showPreview(imageUrl, title, infoHtml) {
@@ -1553,9 +1653,10 @@
     showPreview(posterUrl, title, infoHtml);
   }
 
-  // Build matches marquee
+  // Build matches marquee with dynamic dates
   function buildMatchesMarquee() {
-    const doubledMatches = [...upcomingMatches, ...upcomingMatches];
+    const matches = getDynamicMatches();
+    const doubledMatches = [...matches, ...matches];
     const matchesHTML = doubledMatches.map(match => `
       <div class="match-item" 
            onmouseenter="showMatchPreview('${match.homeTeam.replace(/'/g, "\\'")}', '${match.awayTeam.replace(/'/g, "\\'")}', '${match.league}', '${match.time}', '${match.homeLogo}', '${match.awayLogo}')"
@@ -1569,7 +1670,7 @@
         <span class="match-time">⏰ ${match.time}</span>
       </div>
     `).join('');
-    marqueeMatchesEl.innerHTML = matchesHTML;
+    document.getElementById('marqueeMatches').innerHTML = matchesHTML;
   }
 
   // Build movies marquee from TMDB
@@ -1599,43 +1700,81 @@
           </div>
         `;
       }).join('');
-      marqueeMoviesEl.innerHTML = moviesHTML;
+      document.getElementById('marqueeMovies').innerHTML = moviesHTML;
     } catch (error) {
       console.error('Error loading movies:', error);
-      marqueeMoviesEl.innerHTML = '<div class="marquee-error" style="display:inline-block; padding:0 20px;">⚠️ Unable to load latest movies. Please refresh.</div>';
+      document.getElementById('marqueeMovies').innerHTML = '<div class="marquee-error" style="display:inline-block; padding:0 20px;">⚠️ Unable to load latest movies. Please refresh.</div>';
     }
   }
 
-  // Set up hover pause/resume for entire marquee areas
-  function setupMarqueePause(marqueeElement, containerElement) {
-    if (!marqueeElement || !containerElement) return;
-    const marqueeContent = marqueeElement.querySelector('.marquee-content');
-    if (!marqueeContent) return;
-    containerElement.addEventListener('mouseenter', () => {
-      marqueeContent.style.animationPlayState = 'paused';
-    });
-    containerElement.addEventListener('mouseleave', () => {
-      marqueeContent.style.animationPlayState = 'running';
-    });
-  }
-
-  // Initialize all
-  function init() {
-    buildMatchesMarquee();
-    buildMoviesMarquee().then(() => {
-      // After movies are loaded, attach pause/resume to the containers
-      const matchesContainer = document.querySelector('#matches .marquee-container');
-      const moviesContainer = document.querySelector('#matches + .movies-marquee-section .marquee-container');
-      if (matchesContainer && marqueeMatchesEl) {
-        setupMarqueePause(matchesContainer, matchesContainer);
+  // ========== MARQUEE CONTROL LOGIC ==========
+  function setupMarqueeControls(marqueeElement, playPauseBtnId, speedUpBtnId, speedDownBtnId, resetBtnId, speedValueId) {
+    if (!marqueeElement) return;
+    
+    let currentSpeed = 40; // seconds
+    let isPaused = false;
+    const updateSpeed = () => {
+      marqueeElement.style.setProperty('--speed', `${currentSpeed}s`);
+      if (document.getElementById(speedValueId)) {
+        document.getElementById(speedValueId).innerText = `${currentSpeed}s`;
       }
-      if (moviesContainer && marqueeMoviesEl) {
-        setupMarqueePause(moviesContainer, moviesContainer);
+    };
+    
+    // Play/Pause
+    document.getElementById(playPauseBtnId).addEventListener('click', () => {
+      if (isPaused) {
+        marqueeElement.style.animationPlayState = 'running';
+        document.getElementById(playPauseBtnId).innerHTML = '⏸️';
+        isPaused = false;
+      } else {
+        marqueeElement.style.animationPlayState = 'paused';
+        document.getElementById(playPauseBtnId).innerHTML = '▶️';
+        isPaused = true;
       }
     });
+    
+    // Speed Up
+    document.getElementById(speedUpBtnId).addEventListener('click', () => {
+      if (currentSpeed > 5) {
+        currentSpeed = Math.max(5, currentSpeed - 5);
+        updateSpeed();
+        // Resume if paused to see effect
+        if (isPaused) {
+          marqueeElement.style.animationPlayState = 'running';
+          document.getElementById(playPauseBtnId).innerHTML = '⏸️';
+          isPaused = false;
+        }
+      }
+    });
+    
+    // Speed Down
+    document.getElementById(speedDownBtnId).addEventListener('click', () => {
+      if (currentSpeed < 60) {
+        currentSpeed = Math.min(60, currentSpeed + 5);
+        updateSpeed();
+        if (isPaused) {
+          marqueeElement.style.animationPlayState = 'running';
+          document.getElementById(playPauseBtnId).innerHTML = '⏸️';
+          isPaused = false;
+        }
+      }
+    });
+    
+    // Reset Speed
+    document.getElementById(resetBtnId).addEventListener('click', () => {
+      currentSpeed = 40;
+      updateSpeed();
+      if (isPaused) {
+        marqueeElement.style.animationPlayState = 'running';
+        document.getElementById(playPauseBtnId).innerHTML = '⏸️';
+        isPaused = false;
+      }
+    });
+    
+    updateSpeed();
   }
 
-  // --- Form and utility functions (unchanged from previous working version) ---
+  // Form utilities (keeping the same)
   function sendPaymentRequest(method, methodName) {
     const name = document.getElementById('inp-name').value.trim();
     const phone = document.getElementById('inp-phone').value.trim();
@@ -1658,10 +1797,7 @@
   }
 
   function openOrderModal(planName, price) {
-    selectedPlan = {
-      name: planName,
-      price: price
-    };
+    selectedPlan = { name: planName, price: price };
     document.getElementById('modalPlanInfo').innerHTML = `📦 ${planName} — $${price} USD`;
     document.getElementById('orderModal').style.display = 'flex';
     document.getElementById('modalName').value = '';
@@ -1669,17 +1805,9 @@
     document.getElementById('modalEmail').value = '';
   }
 
-  function openTrialModal() {
-    document.getElementById('trialModal').style.display = 'flex';
-  }
-
-  function openContactModal() {
-    document.getElementById('contactModal').style.display = 'flex';
-  }
-
-  function closeModal(modalId) {
-    document.getElementById(modalId).style.display = 'none';
-  }
+  function openTrialModal() { document.getElementById('trialModal').style.display = 'flex'; }
+  function openContactModal() { document.getElementById('contactModal').style.display = 'flex'; }
+  function closeModal(modalId) { document.getElementById(modalId).style.display = 'none'; }
 
   function requestTrial() {
     const name = document.getElementById('trialName').value.trim();
@@ -1713,9 +1841,7 @@
     showToast('✅ Order sent! Check your email');
   }
 
-  function openWhatsApp() {
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank');
-  }
+  function openWhatsApp() { window.open(`https://wa.me/${WHATSAPP_NUMBER}`, '_blank'); }
 
   function submitOrder() {
     const name = document.getElementById('inp-name').value.trim();
@@ -1752,7 +1878,24 @@
     }
   }
 
-  // Start everything
+  // Initialize
+  async function init() {
+    buildMatchesMarquee();
+    await buildMoviesMarquee();
+    
+    // Setup controls for matches marquee
+    const matchesMarquee = document.getElementById('marqueeMatches');
+    if (matchesMarquee) {
+      setupMarqueeControls(matchesMarquee, 'matchesPlayPauseBtn', 'matchesSpeedUp', 'matchesSpeedDown', 'matchesResetBtn', 'matchesSpeedValue');
+    }
+    
+    // Setup controls for movies marquee
+    const moviesMarquee = document.getElementById('marqueeMovies');
+    if (moviesMarquee) {
+      setupMarqueeControls(moviesMarquee, 'moviesPlayPauseBtn', 'moviesSpeedUp', 'moviesSpeedDown', 'moviesResetBtn', 'moviesSpeedValue');
+    }
+  }
+  
   init();
 </script>
 </body>
