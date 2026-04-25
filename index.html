@@ -3,13 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StreamZone — Premium IPTV | Red Blue Yellow Edition</title>
+<title>StreamZone — Premium IPTV | 6 Plans</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <style>
   /* ========== RED • BLUE • YELLOW COLOR PALETTE ========== */
   :root {
-    /* Base Colors */
     --red: #ef4444;
     --red-dark: #dc2626;
     --red-glow: rgba(239, 68, 68, 0.3);
@@ -19,23 +18,15 @@
     --yellow: #fbbf24;
     --yellow-dark: #f59e0b;
     --yellow-glow: rgba(251, 191, 36, 0.25);
-    
-    /* Backgrounds */
     --bg-primary: #0a0a0f;
     --bg-secondary: #111827;
     --bg-card: rgba(17, 24, 39, 0.85);
     --bg-card-solid: #1f2937;
     --bg-elevated: rgba(31, 41, 55, 0.95);
-    
-    /* Text */
     --text-primary: #ffffff;
     --text-secondary: #d1d5db;
     --text-muted: #9ca3af;
-    
-    /* Borders */
     --border-color: rgba(59, 130, 246, 0.3);
-    
-    /* Shadows */
     --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
     --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.5);
@@ -45,7 +36,6 @@
   }
   
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  
   html { scroll-behavior: smooth; }
   
   body {
@@ -578,7 +568,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 30px;
-    max-width: 1100px;
+    max-width: 1400px;
     margin: 0 auto;
     position: relative;
     z-index: 1;
@@ -1135,6 +1125,7 @@
     .channels-complete-section { padding: 40px 20px; }
     .filter-tabs { gap: 8px; }
     .filter-tab { padding: 6px 16px; font-size: 11px; }
+    .plans { gap: 20px; }
   }
   @media (max-width: 600px) {
     .trust-container { gap: 20px; }
@@ -1145,8 +1136,9 @@
     .league-img { width: 55px; height: 55px; padding: 8px; }
     .league-name { font-size: 9px; }
     .leagues-container { gap: 25px; }
-    .plan-duration { font-size: 32px; }
-    .plan-price { font-size: 28px; }
+    .plan-duration { font-size: 28px; }
+    .plan-price { font-size: 24px; }
+    .plan { padding: 20px; }
   }
 </style>
 </head>
@@ -1197,16 +1189,118 @@
   </div>
 </div>
 
+<!-- ========== PLANS SECTION WITH 6 PLANS ========== -->
 <div class="plans-section" id="plans">
+  <div class="section-header"><div class="section-label">PLANS</div><h2 class="section-title">Choose Your Duration</h2><p class="section-sub">All plans include all channels & content — no restrictions</p></div>
   <div class="plans">
-    <div class="plan"><div class="plan-duration">3 <span>Months</span></div><div class="plan-price">$19 <sub>USD</sub></div><div class="save-badge">Save 37%</div><div class="price-per-month">Monthly: <strong>$6.3/month</strong></div><div class="plan-divider"></div><ul class="plan-features"><li><span class="feat-check">✓</span> 20,000+ Live Channels</li><li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li><li><span class="feat-check">✓</span> All Sports Channels</li><li><span class="feat-check">✓</span> Arabic & International</li><li><span class="feat-check">✓</span> 4K / Full HD Support</li><li><span class="feat-check">✓</span> All Devices Support</li></ul><button class="plan-btn plan-btn-outline" onclick="openOrderModal('3 Months', 19)">Select Plan</button></div>
-    <div class="plan"><div class="plan-duration">6 <span>Months</span></div><div class="plan-price">$29 <sub>USD</sub></div><div class="save-badge">Save 52%</div><div class="price-per-month">Monthly: <strong>$4.8/month</strong></div><div class="plan-divider"></div><ul class="plan-features"><li><span class="feat-check">✓</span> 20,000+ Live Channels</li><li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li><li><span class="feat-check">✓</span> All Sports Channels</li><li><span class="feat-check">✓</span> Arabic & International</li><li><span class="feat-check">✓</span> 4K / Full HD Support</li><li><span class="feat-check">✓</span> All Devices Support</li></ul><button class="plan-btn plan-btn-outline" onclick="openOrderModal('6 Months', 29)">Select Plan</button></div>
-    <div class="plan popular"><div class="popular-badge">🔥 Best Value</div><div class="plan-duration">12 <span>Months</span></div><div class="plan-price">$59 <sub>USD</sub></div><div class="save-badge">Save 67%</div><div class="price-per-month">Monthly: <strong>$4.9/month</strong></div><div class="plan-divider"></div><ul class="plan-features"><li><span class="feat-check">✓</span> 20,000+ Live Channels</li><li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li><li><span class="feat-check">✓</span> All Sports Channels</li><li><span class="feat-check">✓</span> Arabic & International</li><li><span class="feat-check">✓</span> 4K / Full HD Support</li><li><span class="feat-check">✓</span> All Devices Support</li><li><span class="feat-check">✓</span> Bonus: 1 Month Free</li></ul><button class="plan-btn plan-btn-red" onclick="openOrderModal('12 Months', 59)">Select Plan</button></div>
-    <div class="plan"><div class="plan-duration">24 <span>Months</span></div><div class="plan-price">$99 <sub>USD</sub></div><div class="save-badge">Save 72%</div><div class="price-per-month">Monthly: <strong>$4.1/month</strong></div><div class="plan-divider"></div><ul class="plan-features"><li><span class="feat-check">✓</span> 20,000+ Live Channels</li><li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li><li><span class="feat-check">✓</span> All Sports Channels</li><li><span class="feat-check">✓</span> Arabic & International</li><li><span class="feat-check">✓</span> 4K / Full HD Support</li><li><span class="feat-check">✓</span> All Devices Support</li><li><span class="feat-check">✓</span> Best Value — Save 72%</li></ul><button class="plan-btn plan-btn-outline" onclick="openOrderModal('24 Months', 99)">Select Plan</button></div>
+    <!-- 1 Month -->
+    <div class="plan">
+      <div class="plan-duration">1 <span>Month</span></div>
+      <div class="plan-price">$9 <sub>USD</sub></div>
+      <div class="save-badge">No commitment</div>
+      <div class="price-per-month">Monthly: <strong>$9/month</strong></div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><span class="feat-check">✓</span> 20,000+ Live Channels</li>
+        <li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li>
+        <li><span class="feat-check">✓</span> All Sports Channels</li>
+        <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
+      </ul>
+      <button class="plan-btn plan-btn-outline" onclick="openOrderModal('1 Month', 9)">Select Plan</button>
+    </div>
+    <!-- 3 Months -->
+    <div class="plan">
+      <div class="plan-duration">3 <span>Months</span></div>
+      <div class="plan-price">$25 <sub>USD</sub></div>
+      <div class="save-badge">Save 7%</div>
+      <div class="price-per-month">Monthly: <strong>$8.3/month</strong></div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><span class="feat-check">✓</span> 20,000+ Live Channels</li>
+        <li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li>
+        <li><span class="feat-check">✓</span> All Sports Channels</li>
+        <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
+        <li><span class="feat-check">✓</span> All Devices Support</li>
+      </ul>
+      <button class="plan-btn plan-btn-outline" onclick="openOrderModal('3 Months', 25)">Select Plan</button>
+    </div>
+    <!-- 6 Months (Most Popular) -->
+    <div class="plan popular">
+      <div class="popular-badge">🔥 Best Value</div>
+      <div class="plan-duration">6 <span>Months</span></div>
+      <div class="plan-price">$45 <sub>USD</sub></div>
+      <div class="save-badge">Save 17%</div>
+      <div class="price-per-month">Monthly: <strong>$7.5/month</strong></div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><span class="feat-check">✓</span> 20,000+ Live Channels</li>
+        <li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li>
+        <li><span class="feat-check">✓</span> All Sports Channels</li>
+        <li><span class="feat-check">✓</span> Arabic & International</li>
+        <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
+        <li><span class="feat-check">✓</span> All Devices Support</li>
+        <li><span class="feat-check">✓</span> Bonus: 1 Week Free</li>
+      </ul>
+      <button class="plan-btn plan-btn-red" onclick="openOrderModal('6 Months', 45)">Select Plan</button>
+    </div>
+    <!-- 12 Months -->
+    <div class="plan">
+      <div class="plan-duration">12 <span>Months</span></div>
+      <div class="plan-price">$79 <sub>USD</sub></div>
+      <div class="save-badge">Save 27%</div>
+      <div class="price-per-month">Monthly: <strong>$6.6/month</strong></div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><span class="feat-check">✓</span> 20,000+ Live Channels</li>
+        <li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li>
+        <li><span class="feat-check">✓</span> All Sports Channels</li>
+        <li><span class="feat-check">✓</span> Arabic & International</li>
+        <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
+        <li><span class="feat-check">✓</span> All Devices Support</li>
+        <li><span class="feat-check">✓</span> Priority Support</li>
+      </ul>
+      <button class="plan-btn plan-btn-outline" onclick="openOrderModal('12 Months', 79)">Select Plan</button>
+    </div>
+    <!-- 18 Months -->
+    <div class="plan">
+      <div class="plan-duration">18 <span>Months</span></div>
+      <div class="plan-price">$109 <sub>USD</sub></div>
+      <div class="save-badge">Save 33%</div>
+      <div class="price-per-month">Monthly: <strong>$6.1/month</strong></div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><span class="feat-check">✓</span> 20,000+ Live Channels</li>
+        <li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li>
+        <li><span class="feat-check">✓</span> All Sports Channels</li>
+        <li><span class="feat-check">✓</span> Arabic & International</li>
+        <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
+        <li><span class="feat-check">✓</span> All Devices Support</li>
+        <li><span class="feat-check">✓</span> 1 Month Free</li>
+      </ul>
+      <button class="plan-btn plan-btn-outline" onclick="openOrderModal('18 Months', 109)">Select Plan</button>
+    </div>
+    <!-- 24 Months -->
+    <div class="plan">
+      <div class="plan-duration">24 <span>Months</span></div>
+      <div class="plan-price">$139 <sub>USD</sub></div>
+      <div class="save-badge">Save 36%</div>
+      <div class="price-per-month">Monthly: <strong>$5.8/month</strong></div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><span class="feat-check">✓</span> 20,000+ Live Channels</li>
+        <li><span class="feat-check">✓</span> 60,000+ Movies & VOD</li>
+        <li><span class="feat-check">✓</span> All Sports Channels</li>
+        <li><span class="feat-check">✓</span> Arabic & International</li>
+        <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
+        <li><span class="feat-check">✓</span> All Devices Support</li>
+        <li><span class="feat-check">✓</span> 2 Months Free + VIP Support</li>
+      </ul>
+      <button class="plan-btn plan-btn-outline" onclick="openOrderModal('24 Months', 139)">Select Plan</button>
+    </div>
   </div>
 </div>
 
-<div class="payment-section" id="order"><div class="payment-inner"><div class="section-header"><div class="section-label">PAYMENT METHODS</div><h2 class="section-title">Pay Your Way</h2><p class="section-sub">Select a payment method — we'll send you the details on WhatsApp</p></div><div class="payment-methods"><div class="payment-card" onclick="sendPaymentRequest('CashPlus', '💵 CashPlus - Cash payment')"><div class="payment-logo">💵</div><div class="payment-name">CashPlus</div><div class="payment-note">Available in Morocco</div></div><div class="payment-card" onclick="sendPaymentRequest('CIH Bank', '🏦 CIH Bank - Bank transfer')"><div class="payment-logo">🏦</div><div class="payment-name">CIH Bank</div><div class="payment-note">Mobile & Web</div></div><div class="payment-card" onclick="sendPaymentRequest('CashExpress', '💸 CashExpress - Express transfer')"><div class="payment-logo">💸</div><div class="payment-name">CashExpress</div><div class="payment-note">Fast cash transfer</div></div></div><div class="order-form"><div class="form-title">📋 Complete Your Order</div><div class="form-grid"><div class="form-group"><label>Full Name</label><input type="text" id="inp-name" placeholder="John Doe"></div><div class="form-group"><label>Phone / WhatsApp</label><input type="tel" id="inp-phone" placeholder="+212 6XX XXX XXX"></div><div class="form-group full"><label>Email Address</label><input type="email" id="inp-email" placeholder="example@gmail.com"></div><div class="form-group"><label>Plan</label><select id="inp-plan"><option value="">Select plan...</option><option>3 Months — $19 USD</option><option>6 Months — $29 USD</option><option>12 Months — $59 USD</option><option>24 Months — $99 USD</option></select></div><div class="form-group"><label>Payment Method</label><select id="inp-payment"><option value="">Select payment method...</option><option>CashPlus</option><option>CIH Bank</option><option>CashExpress</option></select></div></div><button class="form-submit" onclick="submitOrder()">🚀 Send Order via WhatsApp</button><p class="form-note">🔒 Your information is secure — We'll contact you on WhatsApp to confirm your order and payment</p></div></div></div>
+<div class="payment-section" id="order"><div class="payment-inner"><div class="section-header"><div class="section-label">PAYMENT METHODS</div><h2 class="section-title">Pay Your Way</h2><p class="section-sub">Select a payment method — we'll send you the details on WhatsApp</p></div><div class="payment-methods"><div class="payment-card" onclick="sendPaymentRequest('CashPlus', '💵 CashPlus - Cash payment')"><div class="payment-logo">💵</div><div class="payment-name">CashPlus</div><div class="payment-note">Available in Morocco</div></div><div class="payment-card" onclick="sendPaymentRequest('CIH Bank', '🏦 CIH Bank - Bank transfer')"><div class="payment-logo">🏦</div><div class="payment-name">CIH Bank</div><div class="payment-note">Mobile & Web</div></div><div class="payment-card" onclick="sendPaymentRequest('CashExpress', '💸 CashExpress - Express transfer')"><div class="payment-logo">💸</div><div class="payment-name">CashExpress</div><div class="payment-note">Fast cash transfer</div></div></div><div class="order-form"><div class="form-title">📋 Complete Your Order</div><div class="form-grid"><div class="form-group"><label>Full Name</label><input type="text" id="inp-name" placeholder="John Doe"></div><div class="form-group"><label>Phone / WhatsApp</label><input type="tel" id="inp-phone" placeholder="+212 6XX XXX XXX"></div><div class="form-group full"><label>Email Address</label><input type="email" id="inp-email" placeholder="example@gmail.com"></div><div class="form-group"><label>Plan</label><select id="inp-plan"><option value="">Select plan...</option><option>1 Month — $9 USD</option><option>3 Months — $25 USD</option><option>6 Months — $45 USD</option><option>12 Months — $79 USD</option><option>18 Months — $109 USD</option><option>24 Months — $139 USD</option></select></div><div class="form-group"><label>Payment Method</label><select id="inp-payment"><option value="">Select payment method...</option><option>CashPlus</option><option>CIH Bank</option><option>CashExpress</option></select></div></div><button class="form-submit" onclick="submitOrder()">🚀 Send Order via WhatsApp</button><p class="form-note">🔒 Your information is secure — We'll contact you on WhatsApp to confirm your order and payment</p></div></div></div>
 
 <div class="faq-list">
   <div class="section-header"><div class="section-label">FAQ</div><h2 class="section-title">Frequently Asked Questions</h2></div>
@@ -1223,7 +1317,7 @@
 <div class="toast" id="toast">✅ Done!</div>
 
 <div id="trialModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('trialModal')">&times;</span><div class="modal-title">🎬 2-Hour Free Trial</div><div class="modal-sub">Test our service before you buy! Get instant access for 2 hours completely free.</div><input type="text" id="trialName" class="modal-input" placeholder="Full Name"><input type="tel" id="trialPhone" class="modal-input" placeholder="WhatsApp Number"><input type="email" id="trialEmail" class="modal-input" placeholder="Email Address"><select id="trialDevice" class="modal-input"><option value="">Select device</option><option>Android TV / Google TV</option><option>LG TV (webOS)</option><option>Samsung TV (Tizen)</option><option>Android Box / Fire Stick</option><option>iOS / iPhone / iPad</option><option>Windows / Mac</option></select><div class="modal-buttons"><button class="modal-btn-primary" onclick="requestTrial()">🚀 Request Free Trial</button></div></div></div>
-<div id="contactModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('contactModal')">&times;</span><div class="modal-title">💬 How It Works</div><div class="modal-sub" style="text-align:left;"><p><strong>1️⃣ Choose your plan</strong> — Select 3, 6, 12, or 24 months.</p><p><strong>2️⃣ Contact us on WhatsApp</strong> — Share your details.</p><p><strong>3️⃣ Complete payment</strong> — Via CashPlus / CIH Bank / CashExpress.</p><p><strong>4️⃣ Get activated</strong> — Receive login details within 1 hour.</p><p><strong>5️⃣ Start watching</strong> — Enjoy 20,000+ channels & VOD!</p></div><div class="modal-buttons"><button class="modal-btn-primary" onclick="openWhatsApp()">📱 Chat on WhatsApp</button><button class="modal-btn-secondary" onclick="closeModal('contactModal')">Close</button></div></div></div>
+<div id="contactModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('contactModal')">&times;</span><div class="modal-title">💬 How It Works</div><div class="modal-sub" style="text-align:left;"><p><strong>1️⃣ Choose your plan</strong> — Select 1, 3, 6, 12, 18, or 24 months.</p><p><strong>2️⃣ Contact us on WhatsApp</strong> — Share your details.</p><p><strong>3️⃣ Complete payment</strong> — Via CashPlus / CIH Bank / CashExpress.</p><p><strong>4️⃣ Get activated</strong> — Receive login details within 1 hour.</p><p><strong>5️⃣ Start watching</strong> — Enjoy 20,000+ channels & VOD!</p></div><div class="modal-buttons"><button class="modal-btn-primary" onclick="openWhatsApp()">📱 Chat on WhatsApp</button><button class="modal-btn-secondary" onclick="closeModal('contactModal')">Close</button></div></div></div>
 <div id="orderModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('orderModal')">&times;</span><div class="modal-title">Complete Your Order</div><div class="modal-sub" id="modalPlanInfo">Plan: --</div><input type="text" id="modalName" class="modal-input" placeholder="Full Name"><input type="tel" id="modalPhone" class="modal-input" placeholder="Phone / WhatsApp"><input type="email" id="modalEmail" class="modal-input" placeholder="Email Address"><div class="modal-buttons"><button class="modal-btn-primary" onclick="submitModalOrder()">Submit Order →</button></div><div class="modal-note" style="margin-top:16px;font-size:11px;color:var(--text-muted);">🔒 We'll send you payment details via email</div></div></div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
