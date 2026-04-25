@@ -672,6 +672,7 @@
     font-size: 16px;
     flex-shrink: 0;
   }
+  /* ========== UNIFIED BUTTON STYLES ========== */
   .plan-btn {
     width: 100%;
     padding: 13px;
@@ -682,24 +683,12 @@
     cursor: pointer;
     transition: all 0.3s ease;
     border: none;
-  }
-  .plan-btn-red {
     background: linear-gradient(135deg, var(--red), var(--blue));
     color: white;
   }
-  .plan-btn-red:hover {
+  .plan-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 20px var(--blue-glow);
-  }
-  .plan-btn-outline {
-    background: rgba(59, 130, 246, 0.1);
-    color: var(--text-primary);
-    border: 1px solid var(--border-color) !important;
-  }
-  .plan-btn-outline:hover {
-    background: rgba(239, 68, 68, 0.15);
-    border-color: var(--red) !important;
-    transform: translateY(-2px);
   }
 
   /* ========== PAYMENT SECTION ========== */
@@ -1189,7 +1178,7 @@
   </div>
 </div>
 
-<!-- ========== PLANS SECTION WITH 6 PLANS ========== -->
+<!-- ========== PLANS SECTION WITH 6 PLANS (UNIFIED SELECT PLAN BUTTONS) ========== -->
 <div class="plans-section" id="plans">
   <div class="section-header"><div class="section-label">PLANS</div><h2 class="section-title">Choose Your Duration</h2><p class="section-sub">All plans include all channels & content — no restrictions</p></div>
   <div class="plans">
@@ -1206,7 +1195,7 @@
         <li><span class="feat-check">✓</span> All Sports Channels</li>
         <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
       </ul>
-      <button class="plan-btn plan-btn-outline" onclick="openOrderModal('1 Month', 8)">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('1 Month', 8)">Select Plan</button>
     </div>
     <!-- 3 Months -->
     <div class="plan">
@@ -1222,7 +1211,7 @@
         <li><span class="feat-check">✓</span> 4K / Full HD Support</li>
         <li><span class="feat-check">✓</span> All Devices Support</li>
       </ul>
-      <button class="plan-btn plan-btn-outline" onclick="openOrderModal('3 Months', 19)">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('3 Months', 19)">Select Plan</button>
     </div>
     <!-- 6 Months (Most Popular) -->
     <div class="plan popular">
@@ -1241,7 +1230,7 @@
         <li><span class="feat-check">✓</span> All Devices Support</li>
         <li><span class="feat-check">✓</span> Bonus: 1 month Free</li>
       </ul>
-      <button class="plan-btn plan-btn-red" onclick="openOrderModal('6 Months', 34)">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('6 Months', 34)">Select Plan</button>
     </div>
     <!-- 12 Months -->
     <div class="plan">
@@ -1259,7 +1248,7 @@
         <li><span class="feat-check">✓</span> All Devices Support</li>
         <li><span class="feat-check">✓</span> Priority Support</li>
       </ul>
-      <button class="plan-btn plan-btn-outline" onclick="openOrderModal('12 Months', 59)">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('12 Months', 59)">Select Plan</button>
     </div>
     <!-- 18 Months -->
     <div class="plan">
@@ -1277,7 +1266,7 @@
         <li><span class="feat-check">✓</span> All Devices Support</li>
         <li><span class="feat-check">✓</span> 1 Month Free</li>
       </ul>
-      <button class="plan-btn plan-btn-outline" onclick="openOrderModal('18 Months', 109)">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('18 Months', 109)">Select Plan</button>
     </div>
     <!-- 24 Months -->
     <div class="plan">
@@ -1295,7 +1284,7 @@
         <li><span class="feat-check">✓</span> All Devices Support</li>
         <li><span class="feat-check">✓</span> 2 Months Free + VIP Support</li>
       </ul>
-      <button class="plan-btn plan-btn-outline" onclick="openOrderModal('24 Months', 139)">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('24 Months', 139)">Select Plan</button>
     </div>
   </div>
 </div>
