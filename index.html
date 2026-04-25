@@ -1500,15 +1500,22 @@
     "IBO PLAYER PRO": "https://iboplayer.pro/m3u/logo-512.png",
     "IPTV SMARTER PRO": "https://pic.clubic.com/v1/images/2194657/raw?fit=smartCrop&width=240&height=240&hash=a11708f59f5ac8f0783f475e649282fcf05e9371",
     "DUPLEX PLAYER": "https://sc.filehippo.net/images/t_app-icon-l/p/d1fa96f4-902e-46ee-a5fd-d9f5e614aead/3908985731/duplex-play-logo",
-    "ENIGMA2": "https://vuplus-images.co.uk/data/attachments/27/27221-309e54304e017683069bbcb1573075da.jpg?hash=MJ5UME4Bdo"
+    "ENIGMA2": "https://vuplus-images.co.uk/data/attachments/27/27221-309e54304e017683069bbcb1573075da.jpg?hash=MJ5UME4Bdo",
+    "DREAM4K": "https://d4kpanel.com/pntv/assets/img/dream4k1.png",
+    "EAGLE4K": "https://e4kpremuim.com/e4k/assets/img/eagle4k2.png",
+    "STRONG8K": "https://8k.cms-only.ru/assets/images/8k_tv_gold_new.png",
+    "NEO4K": "https://4k.cms-only.ru/assets/images/neo_4k_animation.gif",
+    "DINO": "http://www.dinoiptv.org/images/dino-logo.png",
+    "TREX": "https://trexiptv.tv/trexlogo.png",
+    "PYTHON": "https://cms.pythonlive.net/img/logo100.png"
   };
 
   function loadLeagues() {
     const container = document.getElementById('leaguesContainer');
-    const leagues = ["IBO PLAYER", "FAMILTY 4K PLAYER", "BOB PLAYER", "HOT PLAYER", "TIVIMATE", "IBO PLAYER PRO", "IPTV SMARTER PRO", "DUPLEX PLAYER", "ENIGMA2"];
+    const leagues = ["IBO PLAYER", "FAMILTY 4K PLAYER", "BOB PLAYER", "HOT PLAYER", "TIVIMATE", "IBO PLAYER PRO", "IPTV SMARTER PRO", "DUPLEX PLAYER", "ENIGMA2", "DREAM4K", "EAGLE4K", "STRONG8K", "NEO4K", "DINO", "TREX", "PYTHON"];
     container.innerHTML = leagues.map(league => `<div class="league-item" onclick="showToast('${league} details coming soon!')"><img class="league-img" src="${leagueImages[league]}" alt="${league}" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/70x70/3b82f6/white?text=${league.charAt(0)}'"><div class="league-name">${league}</div></div>`).join('');
   }
-
+  
   const previewModal = document.getElementById('previewModal');
   const previewImage = document.getElementById('previewImage');
   const previewTitle = document.getElementById('previewTitle');
