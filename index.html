@@ -127,10 +127,14 @@
   .nav-link:hover::after {
     width: 100%;
   }
+  .right-nav {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
   .lang-buttons {
     display: flex;
     gap: 8px;
-    margin-right: 15px;
   }
   .lang-btn {
     background: rgba(59, 130, 246, 0.15);
@@ -181,11 +185,6 @@
   .nav-cta:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 20px var(--red-glow);
-  }
-  .right-nav {
-    display: flex;
-    align-items: center;
-    gap: 15px;
   }
 
   /* ========== HERO SECTION ========== */
@@ -292,7 +291,7 @@
     flex-direction: column;
     align-items: center;
     gap: 8px;
-    transition: all 0.3s ease;
+    transition: transform 0.2s;
     cursor: pointer;
   }
   .league-item:hover {
@@ -948,10 +947,9 @@
     color: var(--text-muted);
   }
   .footer-credit {
-    margin-top: 8px;
+    margin-top: 12px;
     font-size: 12px;
     color: var(--text-muted);
-    text-align: center;
   }
   .footer-credit a {
     color: var(--blue);
@@ -1152,7 +1150,7 @@
     .nav-logo { font-size: 18px; }
     .right-nav { gap: 8px; }
     .lang-btn { padding: 4px 10px; font-size: 10px; }
-    .nav-cta { padding: 6px 14px; font-size: 12px; }
+    .nav-cta { padding: 6px 12px; font-size: 12px; }
     .channels-grid { grid-template-columns: 1fr; gap: 20px; }
     .channels-complete-section { padding: 40px 20px; }
     .filter-tabs { gap: 8px; }
@@ -1179,24 +1177,24 @@
 <nav>
   <div class="nav-logo">STREAM<span>ZONE</span></div>
   <div class="nav-links">
-    <a href="#plans" class="nav-link" data-key="viewPlans">📺 View Plans</a>
-    <a href="#" class="nav-link" data-key="howItWorks" onclick="openContactModal(); return false;">💬 How It Works?</a>
-    <a href="#" class="nav-link" data-key="freeTrial" onclick="openTrialModal(); return false;">🎬 Free Trial</a>
-    <a href="#channels" class="nav-link" data-key="channels">📡 Channels</a>
+    <a href="#plans" class="nav-link" data-en="📺 View Plans" data-fr="📺 Voir les offres">📺 View Plans</a>
+    <a href="#" class="nav-link" data-en="💬 How It Works?" data-fr="💬 Comment ça marche?" onclick="openContactModal(); return false;">💬 How It Works?</a>
+    <a href="#" class="nav-link" data-en="🎬 Free Trial" data-fr="🎬 Essai gratuit" onclick="openTrialModal(); return false;">🎬 Free Trial</a>
+    <a href="#channels" class="nav-link" data-en="📡 Channels" data-fr="📡 Chaînes">📡 Channels</a>
   </div>
   <div class="right-nav">
     <div class="lang-buttons">
-      <button class="lang-btn" onclick="setLanguage('en')">🇬🇧 EN</button>
+      <button class="lang-btn active" onclick="setLanguage('en')">🇬🇧 EN</button>
       <button class="lang-btn" onclick="setLanguage('fr')">🇫🇷 FR</button>
     </div>
-    <button class="nav-cta" onclick="openWhatsApp()" data-key="buyNow">Buy Now</button>
+    <button class="nav-cta" data-en="Buy Now" data-fr="Acheter" onclick="openWhatsApp()">Buy Now</button>
   </div>
 </nav>
 
 <div class="hero">
-  <div class="hero-badge" data-key="heroBadge">100% Official IPTV Subscriptions</div>
-  <h1><span data-key="heroTitle1">Subscribe to </span><em>StreamZone</em><span data-key="heroTitle2"><br>Best Prices</span></h1>
-  <p data-key="heroDesc">Official IPTV subscriptions — thousands of channels in HD, Full HD & 4K. Instant delivery after payment.</p>
+  <div class="hero-badge" data-en="100% Official IPTV Subscriptions" data-fr="Abonnements IPTV 100% officiels">100% Official IPTV Subscriptions</div>
+  <h1><span data-en="Subscribe to " data-fr="Abonnez-vous à ">Subscribe to </span><em>StreamZone</em><span data-en="<br>Best Prices" data-fr="<br>Meilleurs prix"><br>Best Prices</span></h1>
+  <p data-en="Official IPTV subscriptions — thousands of channels in HD, Full HD & 4K. Instant delivery after payment." data-fr="Abonnements IPTV officiels — des milliers de chaînes en HD, Full HD et 4K. Livraison instantanée après paiement.">Official IPTV subscriptions — thousands of channels in HD, Full HD & 4K. Instant delivery after payment.</p>
 </div>
 
 <div id="previewModal" class="preview-overlay"><div class="preview-content"><img id="previewImage" class="preview-image" src=""><div id="previewTitle" class="preview-title"></div><div id="previewInfo" class="preview-info"></div></div></div>
@@ -1205,13 +1203,13 @@
 
 <div class="combined-slider-section">
   <div class="section-header">
-    <div class="section-label" data-key="topRatedLabel">🎬 TOP RATED</div>
-    <h2 class="section-title" data-key="topRatedTitle">Movies & Series from TMDB</h2>
+    <div class="section-label" data-en="🎬 TOP RATED" data-fr="🎬 LES MIEUX NOTÉS">🎬 TOP RATED</div>
+    <h2 class="section-title" data-en="Movies & Series from TMDB" data-fr="Films et séries de TMDB">Movies & Series from TMDB</h2>
   </div>
   <div class="filter-tabs">
-    <button class="filter-tab active" data-filter="all" data-key="filterAll">🎯 All</button>
-    <button class="filter-tab" data-filter="movie" data-key="filterMovies">🎬 Movies</button>
-    <button class="filter-tab" data-filter="tv" data-key="filterSeries">📺 TV Series</button>
+    <button class="filter-tab active" data-filter="all" data-en="🎯 All" data-fr="🎯 Tout">🎯 All</button>
+    <button class="filter-tab" data-filter="movie" data-en="🎬 Movies" data-fr="🎬 Films">🎬 Movies</button>
+    <button class="filter-tab" data-filter="tv" data-en="📺 TV Series" data-fr="📺 Séries TV">📺 TV Series</button>
   </div>
   <div class="swiper combinedSwiper"><div class="swiper-wrapper" id="combinedWrapper"><div class="swiper-slide">Loading content from TMDB...</div></div></div>
   <div class="swiper-nav"><div class="swiper-button-custom swiper-button-prev-combined">◀</div><div class="swiper-button-custom swiper-button-next-combined">▶</div></div>
@@ -1220,18 +1218,18 @@
 <div class="channels-complete-section" id="channels">
   <div class="container-full">
     <div class="section-header">
-      <div class="section-label" data-key="channelsLabel">📡 CHANNELS & CONTENT</div>
-      <h2 class="section-title" data-key="channelsTitle">What's Included</h2>
-      <p class="section-sub" data-key="channelsSub">Over 31,550 live channels + 124,350 movies + 39,330 series</p>
+      <div class="section-label" data-en="📡 CHANNELS & CONTENT" data-fr="📡 CHAÎNES & CONTENU">📡 CHANNELS & CONTENT</div>
+      <h2 class="section-title" data-en="What's Included" data-fr="Ce qui est inclus">What's Included</h2>
+      <p class="section-sub" data-en="Over 31,550 live channels + 124,350 movies + 39,330 series" data-fr="Plus de 31 550 chaînes en direct + 124 350 films + 39 330 séries">Over 31,550 live channels + 124,350 movies + 39,330 series</p>
     </div>
     <div class="channels-grid">
-      <div class="channel-card"><div class="channel-card-title" data-key="liveChannels">📺 LIVE CHANNELS</div>
+      <div class="channel-card"><div class="channel-card-title" data-en="📺 LIVE CHANNELS" data-fr="📺 CHAÎNES EN DIRECT">📺 LIVE CHANNELS</div>
         <ul class="channel-list"><li>4K UHD 3840P⭐</li><li>RELAX UHD 3840P⭐</li><li>SPORT ON AIR ⁸ᴷ ⭐</li><li>UK ULTIMATE</li><li>HORSE RACING⭐</li><li>TENNIS⭐</li><li>GERMANY ULTIMATE</li><li>AUSTRIA</li><li>NETHERLAND ULTIMATE</li><li>Belgium</li><li>ITALY ULTIMATE</li><li>FRANCE ULTIMATE</li><li>SPAIN ULTIMATE</li><li>Portugal</li><li>Switzerland</li><li>Poland</li><li>GREECE ULTIMATE</li><li>CYPRUS ULTIMATE</li><li>SWEDEN ULTIMATE</li><li>DENMARK ULTIMATE</li><li>NORWAY ULTIMATE</li><li>FINLAND ULTIMATE</li><li>Special - SWEDEN ULTIMATE</li><li>Special - DENMARK ULTIMATE</li><li>Special - NORWAY ULTIMATE</li><li>Special - FINLAND ULTIMATE</li><li>ICELAND ULTIMATE</li><li>Hungary</li><li>Romania</li><li>KOSOVO/ALBANIA</li><li>Russian</li><li>UKRAINE</li><li>HEBREW</li><li>AUSTRALIA</li><li>NEW ZEALAND</li><li>MALTA</li><li>Czech Republic</li><li>EXYU 24/7</li><li>SERBIA</li><li>BOSNIA</li><li>CROATIA</li><li>MACEDONIA</li><li>SLOVENIA</li><li>MONTENEGRO</li><li>BULGARIA</li><li>Estonia</li><li>TURKISH</li><li>KURDISH</li><li>IRAN</li><li>Afghanistan</li><li>AFRICA ULTIMATE</li><li>PAKISTAN</li><li>WORLD CRICKET⭐</li><li>INDIA</li><li>CANADA ULTIMATE</li><li>USA ULTIMATE</li><li>SINGAPORE</li><li>BRAZIL ULTIMATE</li><li>SURINAME</li><li>MEXICO ULTIMATE</li><li>LATINO</li><li>CARIBBEAN</li><li>JAPAN⭐</li><li>TAIWAN</li><li>CAMEROONIAN</li><li>SAINT LUCIA⭐</li><li>PHILIPINES</li><li>Georgia</li><li>Azerbaijan</li><li>UZBEKISTAN</li><li>Armenia</li><li>VENEZUELA</li><li>HONGKONG⭐</li><li>CHINA</li><li>Vietnam</li><li>Malaysia</li><li>INDONESIA</li><li>SOUTH KOREA</li><li>THAILAND</li><li>KAZACHSTAN</li><li>LITHUANIA</li><li>RADIO</li><li>RELAX 4K⭐</li><li>✯☾Ramadan Brings Us Together☽✯</li><li>ARABIC UHD 3840P⭐</li><li>ALWAN ENTERTAINMENT</li><li>WATCH IT ⭐</li><li>STARZ PLAY PPV⭐</li><li>JAWWY⭐</li><li>ITUNES⭐</li><li>BEIN SPORT FULL⚽</li><li>TOD SPORT PPV ⚽</li><li>BEIN SPORT 8K⚽</li><li>BEIN SPORT SS⚽</li><li>BEIN SPORT F⚽</li><li>BEIN SPORT BE⚽</li><li>BEIN SPORT ◉⚽</li><li>BEIN SPORT UHD⚽</li><li>BEIN SPORT ᴺᴹ⚽</li><li>BEIN SPORT OFF⚽</li><li>BEIN SPORT SA⚽</li><li>UEFA CHAMPIONS LEAGUE⚽</li><li>1001 ◉⚽</li><li>ALFAJER SPORT ⚽</li><li>ALFAJER SPORT BE ⚽</li><li>ALWAN SPORT F⚽</li><li>POST SPORT⚽</li><li>WATER SPORT ᴮᴱ</li><li>SHASHA SPORT ᴮᴱ ⚽</li><li>SHASHA SPORT F ⚽</li><li>ARABIC SPORT FTA⚽</li><li>StarzPlay / AD SPORTS 4K ⚽</li><li>StarzPlay / AD SPORTS M ⚽</li><li>StarzPlay / AD SPORTS BE ⚽</li><li>StarzPlay / AD SPORTS F ⚽</li><li>THMANYAH 8K⚽</li><li>THMANYAH F⚽</li><li>THMANYAH BE⚽</li><li>THMANYAH ◉⚽</li><li>THMANYAH SA⚽</li><li>THMANYAH ᴺᴹ⚽</li><li>SHAHID PPV ⚽</li><li>SHAHID PPV F ⚽</li><li>SHAHID BUNDESLIGA ᴮᴱ ⚽</li><li>SHAHID BUNDESLIGA ◉ ⚽</li><li>SHAHID BUNDESLIGA ᴺᴹ⚽</li><li>AL-KASS BE⚽</li><li>AL-KASS ◉⚽</li><li>SPORTS PPV ᴺᴹ ⚽</li><li>DAZN MENA PPV ⭐</li><li>STC EXCLUSIVE ⭐</li><li>MBC</li><li>LEBANON</li><li>SYRIA</li><li>MOROCCO</li><li>OSN PLATINUM</li><li>OSN F</li><li>OSN BE</li><li>GOBX PLATINUM</li><li>GOBX BE</li><li>MYHD F</li><li>ROTANA & ART</li><li>EGYPT</li><li>NEWS</li><li>KIDS</li><li>CINE 24-7 ᴹᵁᴸᵀᴵ⁻ᴬᵁᴰᴵᴼ</li><li>SHAHID VIP</li><li>SHAHID CINEMA</li><li>WEYYAK</li><li>SHOOF DRAMA</li><li>SHOOF COMEDY</li><li>ON DEMAND</li><li>NETFLIX GERMANY</li><li>NETFLIX</li><li>BOX OFFICE</li><li>WORLD OF COOKING</li><li>️ACTORS ⭐</li><li>️TOD ⭐</li><li>️HBO ⭐</li><li>PRIME VIDEO ▶⭐</li><li>️WATCH BOX ⭐</li><li>️HULU ⭐</li><li>️VIVO ⭐</li><li>️POWER ⭐</li><li>️MAJESTIC⭐</li><li>BEIN OD PLATINUM</li><li>BEIN ENTERTAINMENT ᵀᴼᴰ</li><li>BEIN ENTERTAINMENT ᴺᴹ</li><li>BEIN ENTERTAINMENT SS</li><li>BEIN ENTERTAINMENT 4K</li><li>BEIN ENTERTAINMENT F</li><li>BEIN ENTERTAINMENT ᴮᴱ</li><li>ALRABIAA ᴺᴹ</li><li>ZINA ᴺᴹ</li><li>ONC ᴺᴹ</li><li>24/7 ᴺᴹ</li><li>EMIRATES</li><li>IRAQ</li><li>AL-MAJD</li><li>AL-MAJD BE</li><li>SAUDI</li><li>KUWAIT</li><li>QATAR</li><li>OMAN</li><li>BAHRAIN</li><li>JORDAN</li><li>PALESTINE</li><li>TUNISIA</li><li>ALGERIA</li><li>YEMEN</li><li>LIBYA</li><li>SUDAN</li><li>ANGHAMI</li><li>MUSIC</li><li>DISCOVERY+ ARABIC RAW</li><li>DOCUMENTARY</li><li>QURAN HD</li><li>ISLAMIC</li><li>ISLAMIC NASHEEDS</li><li>MUSLIM TV</li><li>CHRISTIAN</li><li>ARABIC EXCLUSIVE LQ⭐</li><li>SPORT EXCLUSIVE LQ⭐</li><li>ARABIC +6H USA</li></ul>
       </div>
-      <div class="channel-card"><div class="channel-card-title" data-key="moviesVod">🎬 MOVIES VOD</div>
+      <div class="channel-card"><div class="channel-card-title" data-en="🎬 MOVIES VOD" data-fr="🎬 FILMS VOD">🎬 MOVIES VOD</div>
         <ul class="channel-list"><li>VOD - TOP MOVIES DOLBY AUDIO 4K 3840p</li><li>VOD - TOP MOVIES BLURAY (MULTI-SUBS)⭐</li><li>VOD - ASIA MOVIES (MULTI-SUBS)</li><li>VOD - NETFLIX DOLBY AUDIO 4K 3840P⭐</li><li>VOD - NETFLIX DOLBY AUDIO ⭐</li><li>VOD - NETFLIX ⭐</li><li>VOD - AMAZON ⭐</li><li>VOD - DISNEY+ MOVIES MENA⭐</li><li>VOD - DISNEY+ SERIES MENA⭐</li><li>VOD - DISCOVERY+ SERIES MENA⭐</li><li>VOD - DISNEY+ ⭐</li><li>VOD - APPLE+ ⭐</li><li>VOD - DISCOVERY+⭐</li><li>VOD - HBO MAX 4K 3840P</li><li>VOD - HBO MAX</li><li>VOD - VIAPLAY⭐</li><li>VOD - SKY⭐</li><li>VOD - SHOWTIME⭐</li><li>VOD - DREAMWORKS⭐</li><li>VOD - UNIVERSAL⭐</li><li>VOD - PARAMOUNT+⭐</li><li>VOD - PEACOCK⭐</li><li>VOD - NICKELODEON⭐</li><li>VOD - CRUNCHYROLL⭐</li><li>VOD - MARVEL MOVIES⭐</li><li>VOD - MARVEL SERIES⭐</li><li>VOD - OSN+ SERIES 4K 3840P⭐</li><li>VOD - ASIA SERIES (MULTI-SUBS)⭐</li><li>VOD - ENGLISH</li><li>VOD - CHRISTIAN MOVIES</li><li>VOD - SOCCER</li><li>VOD - GERMANY</li><li>VOD - GERMANY FUSSBALL</li><li>VOD - ITALY</li><li>VOD - NETHERLANDS</li><li>VOD - BELGIUM (DUTCH)⭐</li><li>VOD - BELGIUM (FRENCH)⭐</li><li>VOD - PORTUGAL/BRAZIL</li><li>VOD - SPAIN</li><li>VOD - LATINO ESPAÑA⭐️</li><li>VOD - AFRIQUE</li><li>VOD - FRANCE 4K HDR DOLBY</li><li>VOD - FRANCE</li><li>VOD - QUÉBEC FRANCE</li><li>VOD - FRANCE SPORTS</li><li>VOD - POLAND</li><li>VOD - GREECE</li><li>VOD - GREEK</li><li>VOD - HEBREW⭐</li><li>VOD - NORDIC 4K 3840P DOLBY AUDIO</li><li>VOD - NORDIC</li><li>VOD - SWEDEN</li><li>VOD - DENMARK</li><li>VOD - NORWAY</li><li>VOD - FINLAND</li><li>VOD - ICELAND 4K 3840P DOLBY AUDIO</li><li>VOD - ICELAND</li><li>VOD - Russian</li><li>VOD - Hungary</li><li>VOD - Malta</li><li>VOD - BULGARIA</li><li>VOD - Romania</li><li>VOD - ALBANIA</li><li>VOD - EX-YU</li><li>VOD - KURDISH</li><li>VOD - TURKISH</li><li>VOD - IRAN</li><li>VOD - SOMALIA</li><li>VOD - INDIA</li><li>VOD - BENGALI</li><li>VOD - PAKISTAN</li><li>VOD - Brazil</li><li>VOD - CHINA</li><li>VOD - PHILIPINES</li><li>VOD - PHILIPINES RATED R</li><li>VOD - JAPANESE</li><li>VOD - OSN+ MOVIES 4K 3840P⭐</li><li>VOD - 4K DOLBY AUDIO ARABIC SERIES</li><li>VOD - ARABIC SERIES ULTRA HD</li><li>VOD - SHAHID SERIES ULTRA HD</li><li>VOD - TOD SERIES ULTRA HD</li><li>VOD - TURKISH SERIES ULTRA HD</li><li>VOD - ARABIC PROGRAMS ULTRA HD</li><li>VOD - DOLBY AUDIO ARABIC SERIES</li><li>VOD - NOW SHOWING ARABIC</li><li>VOD - NOW SHOWING TURKISH</li><li>VOD - NOW SHOWING FOREIGN</li><li>VOD - NOW SHOWING ASIAN</li><li>VOD - NOW SHOWING INDIAN</li><li>VOD - NOW SHOWING ANIME</li><li>VOD - NOW SHOWING PROGRAMS</li><li>VOD - RAMADAN ULTRA HD</li></ul>
       </div>
-      <div class="channel-card"><div class="channel-card-title" data-key="seriesVod">📺 SERIES VOD</div>
+      <div class="channel-card"><div class="channel-card-title" data-en="📺 SERIES VOD" data-fr="📺 SÉRIES VOD">📺 SERIES VOD</div>
         <ul class="channel-list"><li>VOD - RAMADAN SYRIAN LEBANESE SERIES</li><li>VOD - RAMADAN EGYPTIAN SERIES</li><li>VOD - RAMADAN GULF IRAQI SERIES</li><li>VOD - RAMADAN MOROCCAN SERIES</li><li>VOD - RAMADAN TUNISIAN ALGERIAN LIBYAN</li><li>VOD - RAMADAN YEMENI SERIES</li><li>VOD - RAMADAN JORDANIAN PALESTINIAN</li><li>VOD - RAMADAN ALGERIAN SERIES</li><li>VOD - RAMADAN LIBYAN SERIES</li><li>VOD - RAMADAN KIDS</li><li>VOD - RAMADAN PROGRAMS</li><li>VOD - SHORT ARABIC SERIES</li><li>VOD - SHAHID ORIGINAL SERIES</li><li>VOD - WATCH IT ORIGINAL SERIES</li><li>VOD - TOD ORIGINAL SERIES</li><li>VOD - VIEW ORIGINAL SERIES</li><li>VOD - LEVANTINE SERIES</li><li>VOD - SYRIAN LEBANESE SERIES</li><li>VOD - EGYPTIAN SERIES</li><li>VOD - GULF SERIES</li><li>VOD - IRAQI SERIES</li><li>VOD - MOROCCAN SERIES</li><li>VOD - TUNISIAN SERIES</li><li>VOD - ALGERIAN LIBYAN SERIES</li><li>VOD - YEMENI SERIES</li><li>VOD - JORDANIAN PALESTINIAN SERIES</li><li>VOD - BEDOUIN SERIES</li><li>VOD - CHRISTIAN RITUALS</li><li>VOD - TURKISH SERIES (SUBTITLED)</li><li>VOD - TURKISH SERIES (DUBBED)</li><li>VOD - RUSSIAN SERIES (SUBTITLED)</li><li>VOD - DUBBED SERIES</li><li>VOD - FOREIGN SERIES ULTRA HD</li><li>VOD - FOREIGN SERIES</li><li>VOD - SHORT FOREIGN SERIES DUBBED</li><li>VOD - SHORT FOREIGN SERIES SUBTITLED</li><li>VOD - GERMAN SERIES</li><li>VOD - ASIAN SERIES SUBTITLED</li><li>VOD - ASIAN SERIES DUBBED</li><li>VOD - SHORT ASIAN SERIES SUBTITLED</li><li>VOD - SHORT ASIAN SERIES DUBBED</li><li>VOD - INDIAN SERIES DUBBED</li><li>VOD - INDIAN SERIES SUBTITLED</li><li>VOD - DISCOVERY+ DUBBED</li><li>VOD - AL MASHHAD PROGRAMS</li><li>VOD - NATIONAL GEOGRAPHIC SERIES</li><li>VOD - DOCUMENTARY SERIES SUBTITLED</li><li>VOD - DOCUMENTARY SERIES DUBBED</li><li>VOD - MOROCCAN DOCUMENTARY SERIES</li><li>VOD - ANIME ULTRA HD</li><li>VOD - ANIME</li><li>VOD - CHINESE ANIME</li><li>VOD - SHAHID KIDS SERIES</li><li>VOD - TOD KIDS SERIES</li><li>VOD - KIDS SERIES</li><li>VOD - ISLAMIC KIDS SERIES</li><li>VOD - OLD CARTOON SERIES</li><li>VOD - MOROCCAN KIDS SERIES</li><li>VOD - TUNISIAN KIDS SERIES</li><li>VOD - ADULT CARTOON SERIES</li><li>VOD - THEATER PERFORMANCES</li><li>VOD - RELIGIOUS PROGRAMS</li><li>VOD - OLD ARABIC SERIES</li><li>VOD - LATEST MATCHES</li><li>VOD - WRESTLING</li><li>VOD - FIFA+ SERIES</li><li>VOD - VARIETY PROGRAMS</li><li>VOD - AL JAZEERA 360</li><li>VOD - PODCASTS</li><li>VOD - ISLAMIC SERIES</li><li>VOD - STAND-UP COMEDY</li><li>VOD - 4K DOLBY AUDIO ARABIC MOVIES</li><li>VOD - ARABIC MOVIES ULTRA HD</li><li>VOD - THEATER PERFORMANCES ULTRA HD</li><li>VOD - DOLBY AUDIO ARABIC MOVIES</li><li>VOD - ARAB STARS MOVIES</li><li>VOD - ADEL IMAM MOVIES</li><li>VOD - AHMED HELMY MOVIES</li><li>VOD - AHMED EZZ MOVIES</li><li>VOD - KARIM ABDULAZIZ MOVIES</li><li>VOD - AHMED EL SAKA MOVIES</li><li>VOD - MOHAMED HENIDI MOVIES</li><li>VOD - HANY RAMZY MOVIES</li><li>VOD - DUREID LAHHAM MOVIES</li></ul>
       </div>
     </div>
@@ -1241,114 +1239,114 @@
 <!-- ========== PLANS SECTION WITH 6 PLANS ========== -->
 <div class="plans-section" id="plans">
   <div class="section-header">
-    <div class="section-label" data-key="plansLabel">PLANS</div>
-    <h2 class="section-title" data-key="plansTitle">Choose Your Duration</h2>
-    <p class="section-sub" data-key="plansSub">All plans include all channels & content — no restrictions</p>
+    <div class="section-label" data-en="PLANS" data-fr="OFFRES">PLANS</div>
+    <h2 class="section-title" data-en="Choose Your Duration" data-fr="Choisissez votre durée">Choose Your Duration</h2>
+    <p class="section-sub" data-en="All plans include all channels & content — no restrictions" data-fr="Toutes les offres incluent toutes les chaînes et tout le contenu — sans restriction">All plans include all channels & content — no restrictions</p>
   </div>
   <div class="plans">
     <!-- 1 Month -->
     <div class="plan">
-      <div class="plan-duration">1 <span data-key="month">Month</span></div>
+      <div class="plan-duration">1 <span data-en="Month" data-fr="Mois">Month</span></div>
       <div class="plan-price">$10 <sub>USD</sub></div>
-      <div class="save-badge" data-key="noCommitment">No commitment</div>
-      <div class="price-per-month" data-key="monthlyPrice">Monthly: <strong>$10/month</strong></div>
+      <div class="save-badge" data-en="No commitment" data-fr="Sans engagement">No commitment</div>
+      <div class="price-per-month" data-en="Monthly: $10/month" data-fr="Prix mensuel: $10/mois">Monthly: <strong>$10/month</strong></div>
       <div class="plan-divider"></div>
       <ul class="plan-features">
-        <li><span class="feat-check">✓</span> <span data-key="featureChannels">20,000+ Live Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureMovies">60,000+ Movies & VOD</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureSports">All Sports Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="feature4k">4K / Full HD Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="20,000+ Live Channels" data-fr="20 000+ chaînes en direct">20,000+ Live Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="60,000+ Movies & VOD" data-fr="60 000+ films et VOD">60,000+ Movies & VOD</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Sports Channels" data-fr="Toutes les chaînes sportives">All Sports Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="4K / Full HD Support" data-fr="Support 4K / Full HD">4K / Full HD Support</span></li>
       </ul>
-      <button class="plan-btn" onclick="openOrderModal('1 Month', 8)" data-key="selectPlan">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('1 Month', 8)" data-en="Select Plan" data-fr="Choisir">Select Plan</button>
     </div>
     <!-- 3 Months -->
     <div class="plan">
-      <div class="plan-duration">3 <span data-key="months">Months</span></div>
+      <div class="plan-duration">3 <span data-en="Months" data-fr="Mois">Months</span></div>
       <div class="plan-price">$20 <sub>USD</sub></div>
-      <div class="save-badge" data-key="save7">Save 7%</div>
-      <div class="price-per-month">Monthly: <strong>$6.7/month</strong></div>
+      <div class="save-badge" data-en="Save 7%" data-fr="Économisez 7%">Save 7%</div>
+      <div class="price-per-month" data-en="Monthly: $6.7/month" data-fr="Prix mensuel: $6.7/mois">Monthly: <strong>$6.7/month</strong></div>
       <div class="plan-divider"></div>
       <ul class="plan-features">
-        <li><span class="feat-check">✓</span> <span data-key="featureChannels">20,000+ Live Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureMovies">60,000+ Movies & VOD</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureSports">All Sports Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="feature4k">4K / Full HD Support</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureDevices">All Devices Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="20,000+ Live Channels" data-fr="20 000+ chaînes en direct">20,000+ Live Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="60,000+ Movies & VOD" data-fr="60 000+ films et VOD">60,000+ Movies & VOD</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Sports Channels" data-fr="Toutes les chaînes sportives">All Sports Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="4K / Full HD Support" data-fr="Support 4K / Full HD">4K / Full HD Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Devices Support" data-fr="Support tous appareils">All Devices Support</span></li>
       </ul>
-      <button class="plan-btn" onclick="openOrderModal('3 Months', 19)" data-key="selectPlan">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('3 Months', 19)" data-en="Select Plan" data-fr="Choisir">Select Plan</button>
     </div>
     <!-- 6 Months (Most Popular) -->
     <div class="plan popular">
-      <div class="popular-badge" data-key="bestValue">🔥 Best Value</div>
-      <div class="plan-duration">6 <span data-key="months">Months</span></div>
+      <div class="popular-badge" data-en="🔥 Best Value" data-fr="🔥 Meilleure valeur">🔥 Best Value</div>
+      <div class="plan-duration">6 <span data-en="Months" data-fr="Mois">Months</span></div>
       <div class="plan-price">$35 <sub>USD</sub></div>
-      <div class="save-badge" data-key="save17">Save 17%</div>
-      <div class="price-per-month">Monthly: <strong>$5.8/month</strong></div>
+      <div class="save-badge" data-en="Save 17%" data-fr="Économisez 17%">Save 17%</div>
+      <div class="price-per-month" data-en="Monthly: $5.8/month" data-fr="Prix mensuel: $5.8/mois">Monthly: <strong>$5.8/month</strong></div>
       <div class="plan-divider"></div>
       <ul class="plan-features">
-        <li><span class="feat-check">✓</span> <span data-key="featureChannels">20,000+ Live Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureMovies">60,000+ Movies & VOD</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureSports">All Sports Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureArabic">Arabic & International</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="feature4k">4K / Full HD Support</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureDevices">All Devices Support</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="bonus1Month">Bonus: 1 month Free</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="20,000+ Live Channels" data-fr="20 000+ chaînes en direct">20,000+ Live Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="60,000+ Movies & VOD" data-fr="60 000+ films et VOD">60,000+ Movies & VOD</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Sports Channels" data-fr="Toutes les chaînes sportives">All Sports Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="Arabic & International" data-fr="Arabe et international">Arabic & International</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="4K / Full HD Support" data-fr="Support 4K / Full HD">4K / Full HD Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Devices Support" data-fr="Support tous appareils">All Devices Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="Bonus: 1 month Free" data-fr="Bonus: 1 mois gratuit">Bonus: 1 month Free</span></li>
       </ul>
-      <button class="plan-btn" onclick="openOrderModal('6 Months', 34)" data-key="selectPlan">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('6 Months', 34)" data-en="Select Plan" data-fr="Choisir">Select Plan</button>
     </div>
     <!-- 12 Months -->
     <div class="plan">
-      <div class="plan-duration">12 <span data-key="months">Months</span></div>
+      <div class="plan-duration">12 <span data-en="Months" data-fr="Mois">Months</span></div>
       <div class="plan-price">$59 <sub>USD</sub></div>
-      <div class="save-badge" data-key="save27">Save 27%</div>
-      <div class="price-per-month">Monthly: <strong>$4.9/month</strong></div>
+      <div class="save-badge" data-en="Save 27%" data-fr="Économisez 27%">Save 27%</div>
+      <div class="price-per-month" data-en="Monthly: $4.9/month" data-fr="Prix mensuel: $4.9/mois">Monthly: <strong>$4.9/month</strong></div>
       <div class="plan-divider"></div>
       <ul class="plan-features">
-        <li><span class="feat-check">✓</span> <span data-key="featureChannels">20,000+ Live Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureMovies">60,000+ Movies & VOD</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureSports">All Sports Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureArabic">Arabic & International</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="feature4k">4K / Full HD Support</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureDevices">All Devices Support</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="prioritySupport">Priority Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="20,000+ Live Channels" data-fr="20 000+ chaînes en direct">20,000+ Live Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="60,000+ Movies & VOD" data-fr="60 000+ films et VOD">60,000+ Movies & VOD</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Sports Channels" data-fr="Toutes les chaînes sportives">All Sports Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="Arabic & International" data-fr="Arabe et international">Arabic & International</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="4K / Full HD Support" data-fr="Support 4K / Full HD">4K / Full HD Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Devices Support" data-fr="Support tous appareils">All Devices Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="Priority Support" data-fr="Support Prioritaire">Priority Support</span></li>
       </ul>
-      <button class="plan-btn" onclick="openOrderModal('12 Months', 59)" data-key="selectPlan">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('12 Months', 59)" data-en="Select Plan" data-fr="Choisir">Select Plan</button>
     </div>
     <!-- 18 Months -->
     <div class="plan">
-      <div class="plan-duration">18 <span data-key="months">Months</span></div>
+      <div class="plan-duration">18 <span data-en="Months" data-fr="Mois">Months</span></div>
       <div class="plan-price">$90 <sub>USD</sub></div>
-      <div class="save-badge" data-key="save33">Save 33%</div>
-      <div class="price-per-month">Monthly: <strong>$5/month</strong></div>
+      <div class="save-badge" data-en="Save 33%" data-fr="Économisez 33%">Save 33%</div>
+      <div class="price-per-month" data-en="Monthly: $5/month" data-fr="Prix mensuel: $5/mois">Monthly: <strong>$5/month</strong></div>
       <div class="plan-divider"></div>
       <ul class="plan-features">
-        <li><span class="feat-check">✓</span> <span data-key="featureChannels">20,000+ Live Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureMovies">60,000+ Movies & VOD</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureSports">All Sports Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureArabic">Arabic & International</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="feature4k">4K / Full HD Support</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureDevices">All Devices Support</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="bonus1MonthFree">1 Month Free</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="20,000+ Live Channels" data-fr="20 000+ chaînes en direct">20,000+ Live Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="60,000+ Movies & VOD" data-fr="60 000+ films et VOD">60,000+ Movies & VOD</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Sports Channels" data-fr="Toutes les chaînes sportives">All Sports Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="Arabic & International" data-fr="Arabe et international">Arabic & International</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="4K / Full HD Support" data-fr="Support 4K / Full HD">4K / Full HD Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Devices Support" data-fr="Support tous appareils">All Devices Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="1 Month Free" data-fr="1 mois gratuit">1 Month Free</span></li>
       </ul>
-      <button class="plan-btn" onclick="openOrderModal('18 Months', 109)" data-key="selectPlan">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('18 Months', 109)" data-en="Select Plan" data-fr="Choisir">Select Plan</button>
     </div>
     <!-- 24 Months -->
     <div class="plan">
-      <div class="plan-duration">24 <span data-key="months">Months</span></div>
+      <div class="plan-duration">24 <span data-en="Months" data-fr="Mois">Months</span></div>
       <div class="plan-price">$120 <sub>USD</sub></div>
-      <div class="save-badge" data-key="save36">Save 36%</div>
-      <div class="price-per-month">Monthly: <strong>$5/month</strong></div>
+      <div class="save-badge" data-en="Save 36%" data-fr="Économisez 36%">Save 36%</div>
+      <div class="price-per-month" data-en="Monthly: $5/month" data-fr="Prix mensuel: $5/mois">Monthly: <strong>$5/month</strong></div>
       <div class="plan-divider"></div>
       <ul class="plan-features">
-        <li><span class="feat-check">✓</span> <span data-key="featureChannels">20,000+ Live Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureMovies">60,000+ Movies & VOD</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureSports">All Sports Channels</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureArabic">Arabic & International</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="feature4k">4K / Full HD Support</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="featureDevices">All Devices Support</span></li>
-        <li><span class="feat-check">✓</span> <span data-key="bonus2Months">2 Months Free + VIP Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="20,000+ Live Channels" data-fr="20 000+ chaînes en direct">20,000+ Live Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="60,000+ Movies & VOD" data-fr="60 000+ films et VOD">60,000+ Movies & VOD</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Sports Channels" data-fr="Toutes les chaînes sportives">All Sports Channels</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="Arabic & International" data-fr="Arabe et international">Arabic & International</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="4K / Full HD Support" data-fr="Support 4K / Full HD">4K / Full HD Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="All Devices Support" data-fr="Support tous appareils">All Devices Support</span></li>
+        <li><span class="feat-check">✓</span> <span data-en="2 Months Free + VIP Support" data-fr="2 mois gratuits + Support VIP">2 Months Free + VIP Support</span></li>
       </ul>
-      <button class="plan-btn" onclick="openOrderModal('24 Months', 139)" data-key="selectPlan">Select Plan</button>
+      <button class="plan-btn" onclick="openOrderModal('24 Months', 139)" data-en="Select Plan" data-fr="Choisir">Select Plan</button>
     </div>
   </div>
 </div>
@@ -1356,9 +1354,9 @@
 <div class="payment-section" id="order">
   <div class="payment-inner">
     <div class="section-header">
-      <div class="section-label" data-key="paymentLabel">PAYMENT METHODS</div>
-      <h2 class="section-title" data-key="paymentTitle">Pay Your Way</h2>
-      <p class="section-sub" data-key="paymentSub">Select a payment method — we'll send you the details on WhatsApp</p>
+      <div class="section-label" data-en="PAYMENT METHODS" data-fr="MÉTHODES DE PAIEMENT">PAYMENT METHODS</div>
+      <h2 class="section-title" data-en="Pay Your Way" data-fr="Payez à votre façon">Pay Your Way</h2>
+      <p class="section-sub" data-en="Select a payment method — we'll send you the details on WhatsApp" data-fr="Sélectionnez un mode de paiement — nous vous enverrons les détails sur WhatsApp">Select a payment method — we'll send you the details on WhatsApp</p>
     </div>
     <div class="payment-methods">
       <div class="payment-card" onclick="sendPaymentRequest('CashPlus', '💵 CashPlus - Cash payment')"><div class="payment-logo">💵</div><div class="payment-name">CashPlus</div><div class="payment-note">Available in Morocco</div></div>
@@ -1366,137 +1364,72 @@
       <div class="payment-card" onclick="sendPaymentRequest('CashExpress', '💸 CashExpress - Express transfer')"><div class="payment-logo">💸</div><div class="payment-name">CashExpress</div><div class="payment-note">Fast cash transfer</div></div>
     </div>
     <div class="order-form">
-      <div class="form-title" data-key="formTitle">📋 Complete Your Order</div>
+      <div class="form-title" data-en="📋 Complete Your Order" data-fr="📋 Complétez votre commande">📋 Complete Your Order</div>
       <div class="form-grid">
-        <div class="form-group"><label data-key="fullName">Full Name</label><input type="text" id="inp-name" placeholder="John Doe"></div>
-        <div class="form-group"><label data-key="phoneWhatsapp">Phone / WhatsApp</label><input type="tel" id="inp-phone" placeholder="+212 6XX XXX XXX"></div>
-        <div class="form-group full"><label data-key="emailAddress">Email Address</label><input type="email" id="inp-email" placeholder="example@gmail.com"></div>
-        <div class="form-group"><label data-key="planLabel">Plan</label><select id="inp-plan"><option value="">Select plan...</option><option>1 Month — $10 USD</option><option>3 Months — $20 USD</option><option>6 Months — $35 USD</option><option>12 Months — $59 USD</option><option>18 Months — $90 USD</option><option>24 Months — $120 USD</option></select></div>
-        <div class="form-group"><label data-key="paymentMethodLabel">Payment Method</label><select id="inp-payment"><option value="">Select payment method...</option><option>CashPlus</option><option>CIH Bank</option><option>CashExpress</option></select></div>
+        <div class="form-group"><label data-en="Full Name" data-fr="Nom complet">Full Name</label><input type="text" id="inp-name" placeholder="John Doe"></div>
+        <div class="form-group"><label data-en="Phone / WhatsApp" data-fr="Téléphone / WhatsApp">Phone / WhatsApp</label><input type="tel" id="inp-phone" placeholder="+212 6XX XXX XXX"></div>
+        <div class="form-group full"><label data-en="Email Address" data-fr="Adresse email">Email Address</label><input type="email" id="inp-email" placeholder="example@gmail.com"></div>
+        <div class="form-group"><label data-en="Plan" data-fr="Forfait">Plan</label><select id="inp-plan"><option value="">Select plan...</option><option>1 Month — $10 USD</option><option>3 Months — $20 USD</option><option>6 Months — $35 USD</option><option>12 Months — $59 USD</option><option>18 Months — $90 USD</option><option>24 Months — $120 USD</option></select></div>
+        <div class="form-group"><label data-en="Payment Method" data-fr="Mode de paiement">Payment Method</label><select id="inp-payment"><option value="">Select payment method...</option><option>CashPlus</option><option>CIH Bank</option><option>CashExpress</option></select></div>
       </div>
-      <button class="form-submit" onclick="submitOrder()" data-key="sendOrder">🚀 Send Order via WhatsApp</button>
-      <p class="form-note" data-key="formNote">🔒 Your information is secure — We'll contact you on WhatsApp to confirm your order and payment</p>
+      <button class="form-submit" onclick="submitOrder()" data-en="🚀 Send Order via WhatsApp" data-fr="🚀 Envoyer la commande via WhatsApp">🚀 Send Order via WhatsApp</button>
+      <p class="form-note" data-en="🔒 Your information is secure — We'll contact you on WhatsApp to confirm your order and payment" data-fr="🔒 Vos informations sont sécurisées — Nous vous contacterons sur WhatsApp pour confirmer votre commande et votre paiement">🔒 Your information is secure — We'll contact you on WhatsApp to confirm your order and payment</p>
     </div>
   </div>
 </div>
 
 <div class="faq-list">
-  <div class="section-header"><div class="section-label" data-key="faqLabel">FAQ</div><h2 class="section-title" data-key="faqTitle">Frequently Asked Questions</h2></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-key="faq1q">Are these official IPTV subscriptions?</span><span class="faq-arrow">▾</span></button><div class="faq-a" data-key="faq1a">Yes, 100% official subscriptions directly from IPTV providers. No shared accounts or anything unofficial.</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-key="faq2q">How do I receive my subscription?</span><span class="faq-arrow">▾</span></button><div class="faq-a" data-key="faq2a">After payment confirmation, we send your subscription details via email or WhatsApp within less than 1 hour.</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-key="faq3q">Is there a guarantee if I have issues?</span><span class="faq-arrow">▾</span></button><div class="faq-a" data-key="faq3a">Yes, if you have any problem with your subscription, we provide a full refund or replacement. Contact us on WhatsApp and we'll solve it immediately.</div></div>
-  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-key="faq4q">How can I contact support?</span><span class="faq-arrow">▾</span></button><div class="faq-a" data-key="faq4a">You can reach us via WhatsApp (click the Buy Now button or send the order form). Support is available 7 days a week.</div></div>
+  <div class="section-header"><div class="section-label" data-en="FAQ" data-fr="FAQ">FAQ</div><h2 class="section-title" data-en="Frequently Asked Questions" data-fr="Questions fréquentes">Frequently Asked Questions</h2></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-en="Are these official IPTV subscriptions?" data-fr="S'agit-il d'abonnements IPTV officiels ?">Are these official IPTV subscriptions?</span><span class="faq-arrow">▾</span></button><div class="faq-a" data-en="Yes, 100% official subscriptions directly from IPTV providers. No shared accounts or anything unofficial." data-fr="Oui, abonnements 100% officiels directement auprès des fournisseurs IPTV. Pas de comptes partagés ou quoi que ce soit de non officiel.">Yes, 100% official subscriptions directly from IPTV providers. No shared accounts or anything unofficial.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-en="How do I receive my subscription?" data-fr="Comment recevrai-je mon abonnement ?">How do I receive my subscription?</span><span class="faq-arrow">▾</span></button><div class="faq-a" data-en="After payment confirmation, we send your subscription details via email or WhatsApp within less than 1 hour." data-fr="Après confirmation du paiement, nous vous envoyons les détails de votre abonnement par email ou WhatsApp en moins d'une heure.">After payment confirmation, we send your subscription details via email or WhatsApp within less than 1 hour.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-en="Is there a guarantee if I have issues?" data-fr="Y a-t-il une garantie en cas de problème ?">Is there a guarantee if I have issues?</span><span class="faq-arrow">▾</span></button><div class="faq-a" data-en="Yes, if you have any problem with your subscription, we provide a full refund or replacement. Contact us on WhatsApp and we'll solve it immediately." data-fr="Oui, si vous avez un problème avec votre abonnement, nous vous remboursons intégralement ou remplaçons. Contactez-nous sur WhatsApp et nous résolvons immédiatement.">Yes, if you have any problem with your subscription, we provide a full refund or replacement. Contact us on WhatsApp and we'll solve it immediately.</div></div>
+  <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)"><span data-en="How can I contact support?" data-fr="Comment puis-je contacter le support ?">How can I contact support?</span><span class="faq-arrow">▾</span></button><div class="faq-a" data-en="You can reach us via WhatsApp (click the Buy Now button or send the order form). Support is available 7 days a week." data-fr="Vous pouvez nous joindre via WhatsApp (cliquez sur le bouton Acheter maintenant ou envoyez le formulaire de commande). Le support est disponible 7 jours sur 7.">You can reach us via WhatsApp (click the Buy Now button or send the order form). Support is available 7 days a week.</div></div>
 </div>
 
 <div class="trust-footer">
   <div class="trust-container">
-    <div class="trust-item"><span class="trust-icon">🔒</span> <span data-key="trust1">100% Official Subscriptions</span></div>
-    <div class="trust-item"><span class="trust-icon">⚡</span> <span data-key="trust2">Instant Delivery</span></div>
-    <div class="trust-item"><span class="trust-icon">📺</span> <span data-key="trust3">20,000+ Channels & VOD</span></div>
-    <div class="trust-item"><span class="trust-icon">💬</span> <span data-key="trust4">WhatsApp Support</span></div>
-    <div class="trust-item"><span class="trust-icon">↩️</span> <span data-key="trust5">Money-Back Guarantee</span></div>
-    <div class="trust-item"><span class="trust-icon">🌍</span> <span data-key="trust6">Morocco Payment</span></div>
+    <div class="trust-item"><span class="trust-icon">🔒</span> <span data-en="100% Official Subscriptions" data-fr="Abonnements 100% officiels">100% Official Subscriptions</span></div>
+    <div class="trust-item"><span class="trust-icon">⚡</span> <span data-en="Instant Delivery" data-fr="Livraison instantanée">Instant Delivery</span></div>
+    <div class="trust-item"><span class="trust-icon">📺</span> <span data-en="20,000+ Channels & VOD" data-fr="20 000+ chaînes et VOD">20,000+ Channels & VOD</span></div>
+    <div class="trust-item"><span class="trust-icon">💬</span> <span data-en="WhatsApp Support" data-fr="Support WhatsApp">WhatsApp Support</span></div>
+    <div class="trust-item"><span class="trust-icon">↩️</span> <span data-en="Money-Back Guarantee" data-fr="Garantie remboursement">Money-Back Guarantee</span></div>
+    <div class="trust-item"><span class="trust-icon">🌍</span> <span data-en="Morocco Payment" data-fr="Paiement Maroc">Morocco Payment</span></div>
   </div>
 </div>
 
 <footer>
   <div class="footer-logo">STREAMZONE</div>
-  <p data-key="footerText">Official Subscriptions · Instant Delivery · 24/7 Support</p>
+  <p data-en="Official Subscriptions · Instant Delivery · 24/7 Support" data-fr="Abonnements officiels · Livraison instantanée · Support 24/7">Official Subscriptions · Instant Delivery · 24/7 Support</p>
   <div class="footer-credit">Powered by <a href="https://github.com/markettv1" target="_blank">MARKETTV1 (GITHUB)</a> · Payment: CashPlus · CIH Bank · CashExpress</div>
 </footer>
 
 <div class="toast" id="toast">✅ Done!</div>
 
 <!-- Modals -->
-<div id="trialModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('trialModal')">&times;</span><div class="modal-title" data-key="trialTitle">🎬 2-Hour Free Trial</div><div class="modal-sub" data-key="trialSub">Test our service before you buy! Get instant access for 2 hours completely free.</div><input type="text" id="trialName" class="modal-input" placeholder="Full Name"><input type="tel" id="trialPhone" class="modal-input" placeholder="WhatsApp Number"><input type="email" id="trialEmail" class="modal-input" placeholder="Email Address"><select id="trialDevice" class="modal-input"><option value="">Select device</option><option>Android TV / Google TV</option><option>LG TV (webOS)</option><option>Samsung TV (Tizen)</option><option>Android Box / Fire Stick</option><option>iOS / iPhone / iPad</option><option>Windows / Mac</option></select><div class="modal-buttons"><button class="modal-btn-primary" onclick="requestTrial()" data-key="requestTrialBtn">🚀 Request Free Trial</button></div></div></div>
-<div id="contactModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('contactModal')">&times;</span><div class="modal-title" data-key="howItWorksTitle">💬 How It Works</div><div class="modal-sub" style="text-align:left;"><p><strong data-key="step1">1️⃣ Choose your plan</strong> <span data-key="step1text">— Select 1, 3, 6, 12, 18, or 24 months.</span></p><p><strong data-key="step2">2️⃣ Contact us on WhatsApp</strong> <span data-key="step2text">— Share your details.</span></p><p><strong data-key="step3">3️⃣ Complete payment</strong> <span data-key="step3text">— Via CashPlus / CIH Bank / CashExpress.</span></p><p><strong data-key="step4">4️⃣ Get activated</strong> <span data-key="step4text">— Receive login details within 1 hour.</span></p><p><strong data-key="step5">5️⃣ Start watching</strong> <span data-key="step5text">— Enjoy 20,000+ channels & VOD!</span></p></div><div class="modal-buttons"><button class="modal-btn-primary" onclick="openWhatsApp()" data-key="chatWhatsApp">📱 Chat on WhatsApp</button><button class="modal-btn-secondary" onclick="closeModal('contactModal')" data-key="closeBtn">Close</button></div></div></div>
-<div id="orderModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('orderModal')">&times;</span><div class="modal-title" data-key="orderTitle">Complete Your Order</div><div class="modal-sub" id="modalPlanInfo">Plan: --</div><input type="text" id="modalName" class="modal-input" placeholder="Full Name"><input type="tel" id="modalPhone" class="modal-input" placeholder="Phone / WhatsApp"><input type="email" id="modalEmail" class="modal-input" placeholder="Email Address"><div class="modal-buttons"><button class="modal-btn-primary" onclick="submitModalOrder()" data-key="submitOrderBtn">Submit Order →</button></div><div class="modal-note" style="margin-top:16px;font-size:11px;color:var(--text-muted);" data-key="orderNote">🔒 We'll send you payment details via email</div></div></div>
+<div id="trialModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('trialModal')">&times;</span><div class="modal-title" data-en="🎬 2-Hour Free Trial" data-fr="🎬 Essai gratuit de 2 heures">🎬 2-Hour Free Trial</div><div class="modal-sub" data-en="Test our service before you buy! Get instant access for 2 hours completely free." data-fr="Testez notre service avant d'acheter ! Accès instantané gratuit pendant 2 heures.">Test our service before you buy! Get instant access for 2 hours completely free.</div><input type="text" id="trialName" class="modal-input" placeholder="Full Name"><input type="tel" id="trialPhone" class="modal-input" placeholder="WhatsApp Number"><input type="email" id="trialEmail" class="modal-input" placeholder="Email Address"><select id="trialDevice" class="modal-input"><option value="">Select device</option><option>Android TV / Google TV</option><option>LG TV (webOS)</option><option>Samsung TV (Tizen)</option><option>Android Box / Fire Stick</option><option>iOS / iPhone / iPad</option><option>Windows / Mac</option></select><div class="modal-buttons"><button class="modal-btn-primary" onclick="requestTrial()" data-en="🚀 Request Free Trial" data-fr="🚀 Demander un essai gratuit">🚀 Request Free Trial</button></div></div></div>
+<div id="contactModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('contactModal')">&times;</span><div class="modal-title" data-en="💬 How It Works" data-fr="💬 Comment ça marche">💬 How It Works</div><div class="modal-sub" style="text-align:left;"><p><strong data-en="1️⃣ Choose your plan" data-fr="1️⃣ Choisissez votre offre">1️⃣ Choose your plan</strong> <span data-en="— Select 1, 3, 6, 12, 18, or 24 months." data-fr="— Sélectionnez 1, 3, 6, 12, 18 ou 24 mois.">— Select 1, 3, 6, 12, 18, or 24 months.</span></p><p><strong data-en="2️⃣ Contact us on WhatsApp" data-fr="2️⃣ Contactez-nous sur WhatsApp">2️⃣ Contact us on WhatsApp</strong> <span data-en="— Share your details." data-fr="— Partagez vos coordonnées.">— Share your details.</span></p><p><strong data-en="3️⃣ Complete payment" data-fr="3️⃣ Effectuez le paiement">3️⃣ Complete payment</strong> <span data-en="— Via CashPlus / CIH Bank / CashExpress." data-fr="— Via CashPlus / CIH Bank / CashExpress.">— Via CashPlus / CIH Bank / CashExpress.</span></p><p><strong data-en="4️⃣ Get activated" data-fr="4️⃣ Activation">4️⃣ Get activated</strong> <span data-en="— Receive login details within 1 hour." data-fr="— Recevez vos identifiants dans l'heure.">— Receive login details within 1 hour.</span></p><p><strong data-en="5️⃣ Start watching" data-fr="5️⃣ Commencez à regarder">5️⃣ Start watching</strong> <span data-en="— Enjoy 20,000+ channels & VOD!" data-fr="— Profitez de 20 000+ chaînes et VOD !">— Enjoy 20,000+ channels & VOD!</span></p></div><div class="modal-buttons"><button class="modal-btn-primary" onclick="openWhatsApp()" data-en="📱 Chat on WhatsApp" data-fr="📱 Discuter sur WhatsApp">📱 Chat on WhatsApp</button><button class="modal-btn-secondary" onclick="closeModal('contactModal')" data-en="Close" data-fr="Fermer">Close</button></div></div></div>
+<div id="orderModal" class="modal-overlay"><div class="modal-content"><span class="modal-close" onclick="closeModal('orderModal')">&times;</span><div class="modal-title" data-en="Complete Your Order" data-fr="Complétez votre commande">Complete Your Order</div><div class="modal-sub" id="modalPlanInfo">Plan: --</div><input type="text" id="modalName" class="modal-input" placeholder="Full Name"><input type="tel" id="modalPhone" class="modal-input" placeholder="Phone / WhatsApp"><input type="email" id="modalEmail" class="modal-input" placeholder="Email Address"><div class="modal-buttons"><button class="modal-btn-primary" onclick="submitModalOrder()" data-en="Submit Order →" data-fr="Envoyer la commande →">Submit Order →</button></div><div class="modal-note" style="margin-top:16px;font-size:11px;color:var(--text-muted);" data-en="🔒 We'll send you payment details via email" data-fr="🔒 Nous vous enverrons les détails de paiement par email">🔒 We'll send you payment details via email</div></div></div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
-  // ========== LANGUAGE TRANSLATIONS ==========
-  const translations = {
-    en: {
-      viewPlans: "📺 View Plans", howItWorks: "💬 How It Works?", freeTrial: "🎬 Free Trial", channels: "📡 Channels",
-      buyNow: "Buy Now", heroBadge: "100% Official IPTV Subscriptions", heroTitle1: "Subscribe to ", heroTitle2: "<br>Best Prices",
-      heroDesc: "Official IPTV subscriptions — thousands of channels in HD, Full HD & 4K. Instant delivery after payment.",
-      topRatedLabel: "🎬 TOP RATED", topRatedTitle: "Movies & Series from TMDB",
-      filterAll: "🎯 All", filterMovies: "🎬 Movies", filterSeries: "📺 TV Series",
-      channelsLabel: "📡 CHANNELS & CONTENT", channelsTitle: "What's Included", channelsSub: "Over 31,550 live channels + 124,350 movies + 39,330 series",
-      liveChannels: "📺 LIVE CHANNELS", moviesVod: "🎬 MOVIES VOD", seriesVod: "📺 SERIES VOD",
-      plansLabel: "PLANS", plansTitle: "Choose Your Duration", plansSub: "All plans include all channels & content — no restrictions",
-      month: "Month", months: "Months", noCommitment: "No commitment", save7: "Save 7%", save17: "Save 17%", save27: "Save 27%", save33: "Save 33%", save36: "Save 36%",
-      bestValue: "🔥 Best Value", bonus1Month: "Bonus: 1 month Free", bonus1MonthFree: "1 Month Free", bonus2Months: "2 Months Free + VIP Support", prioritySupport: "Priority Support",
-      featureChannels: "20,000+ Live Channels", featureMovies: "60,000+ Movies & VOD", featureSports: "All Sports Channels", feature4k: "4K / Full HD Support",
-      featureDevices: "All Devices Support", featureArabic: "Arabic & International", selectPlan: "Select Plan",
-      paymentLabel: "PAYMENT METHODS", paymentTitle: "Pay Your Way", paymentSub: "Select a payment method — we'll send you the details on WhatsApp",
-      formTitle: "📋 Complete Your Order", fullName: "Full Name", phoneWhatsapp: "Phone / WhatsApp", emailAddress: "Email Address", planLabel: "Plan", paymentMethodLabel: "Payment Method",
-      sendOrder: "🚀 Send Order via WhatsApp", formNote: "🔒 Your information is secure — We'll contact you on WhatsApp to confirm your order and payment",
-      faqLabel: "FAQ", faqTitle: "Frequently Asked Questions",
-      faq1q: "Are these official IPTV subscriptions?", faq1a: "Yes, 100% official subscriptions directly from IPTV providers. No shared accounts or anything unofficial.",
-      faq2q: "How do I receive my subscription?", faq2a: "After payment confirmation, we send your subscription details via email or WhatsApp within less than 1 hour.",
-      faq3q: "Is there a guarantee if I have issues?", faq3a: "Yes, if you have any problem with your subscription, we provide a full refund or replacement. Contact us on WhatsApp and we'll solve it immediately.",
-      faq4q: "How can I contact support?", faq4a: "You can reach us via WhatsApp (click the Buy Now button or send the order form). Support is available 7 days a week.",
-      trust1: "100% Official Subscriptions", trust2: "Instant Delivery", trust3: "20,000+ Channels & VOD", trust4: "WhatsApp Support", trust5: "Money-Back Guarantee", trust6: "Morocco Payment",
-      footerText: "Official Subscriptions · Instant Delivery · 24/7 Support",
-      trialTitle: "🎬 2-Hour Free Trial", trialSub: "Test our service before you buy! Get instant access for 2 hours completely free.", requestTrialBtn: "🚀 Request Free Trial",
-      howItWorksTitle: "💬 How It Works", step1: "1️⃣ Choose your plan", step1text: "— Select 1, 3, 6, 12, 18, or 24 months.", step2: "2️⃣ Contact us on WhatsApp", step2text: "— Share your details.",
-      step3: "3️⃣ Complete payment", step3text: "— Via CashPlus / CIH Bank / CashExpress.", step4: "4️⃣ Get activated", step4text: "— Receive login details within 1 hour.",
-      step5: "5️⃣ Start watching", step5text: "— Enjoy 20,000+ channels & VOD!", chatWhatsApp: "📱 Chat on WhatsApp", closeBtn: "Close",
-      orderTitle: "Complete Your Order", submitOrderBtn: "Submit Order →", orderNote: "🔒 We'll send you payment details via email", monthlyPricePrefix: "Monthly: "
-    },
-    fr: {
-      viewPlans: "📺 Voir les offres", howItWorks: "💬 Comment ça marche?", freeTrial: "🎬 Essai gratuit", channels: "📡 Chaînes",
-      buyNow: "Acheter", heroBadge: "Abonnements IPTV 100% officiels", heroTitle1: "Abonnez-vous à ", heroTitle2: "<br>Meilleurs prix",
-      heroDesc: "Abonnements IPTV officiels — des milliers de chaînes en HD, Full HD et 4K. Livraison instantanée après paiement.",
-      topRatedLabel: "🎬 LES MIEUX NOTÉS", topRatedTitle: "Films et séries de TMDB",
-      filterAll: "🎯 Tout", filterMovies: "🎬 Films", filterSeries: "📺 Séries TV",
-      channelsLabel: "📡 CHAÎNES & CONTENU", channelsTitle: "Ce qui est inclus", channelsSub: "Plus de 31 550 chaînes en direct + 124 350 films + 39 330 séries",
-      liveChannels: "📺 CHAÎNES EN DIRECT", moviesVod: "🎬 FILMS VOD", seriesVod: "📺 SÉRIES VOD",
-      plansLabel: "OFFRES", plansTitle: "Choisissez votre durée", plansSub: "Toutes les offres incluent toutes les chaînes et tout le contenu — sans restriction",
-      month: "Mois", months: "Mois", noCommitment: "Sans engagement", save7: "Économisez 7%", save17: "Économisez 17%", save27: "Économisez 27%", save33: "Économisez 33%", save36: "Économisez 36%",
-      bestValue: "🔥 Meilleure valeur", bonus1Month: "Bonus: 1 mois gratuit", bonus1MonthFree: "1 mois gratuit", bonus2Months: "2 mois gratuits + Support VIP", prioritySupport: "Support Prioritaire",
-      featureChannels: "20 000+ chaînes en direct", featureMovies: "60 000+ films et VOD", featureSports: "Toutes les chaînes sportives", feature4k: "Support 4K / Full HD",
-      featureDevices: "Support tous appareils", featureArabic: "Arabe et international", selectPlan: "Choisir",
-      paymentLabel: "MÉTHODES DE PAIEMENT", paymentTitle: "Payez à votre façon", paymentSub: "Sélectionnez un mode de paiement — nous vous enverrons les détails sur WhatsApp",
-      formTitle: "📋 Complétez votre commande", fullName: "Nom complet", phoneWhatsapp: "Téléphone / WhatsApp", emailAddress: "Adresse email", planLabel: "Forfait", paymentMethodLabel: "Mode de paiement",
-      sendOrder: "🚀 Envoyer la commande via WhatsApp", formNote: "🔒 Vos informations sont sécurisées — Nous vous contacterons sur WhatsApp pour confirmer votre commande et votre paiement",
-      faqLabel: "FAQ", faqTitle: "Questions fréquentes",
-      faq1q: "S'agit-il d'abonnements IPTV officiels ?", faq1a: "Oui, abonnements 100% officiels directement auprès des fournisseurs IPTV. Pas de comptes partagés ou quoi que ce soit de non officiel.",
-      faq2q: "Comment recevrai-je mon abonnement ?", faq2a: "Après confirmation du paiement, nous vous envoyons les détails de votre abonnement par email ou WhatsApp en moins d'une heure.",
-      faq3q: "Y a-t-il une garantie en cas de problème ?", faq3a: "Oui, si vous avez un problème avec votre abonnement, nous vous remboursons intégralement ou remplaçons. Contactez-nous sur WhatsApp et nous résolvons immédiatement.",
-      faq4q: "Comment puis-je contacter le support ?", faq4a: "Vous pouvez nous joindre via WhatsApp (cliquez sur le bouton Acheter maintenant ou envoyez le formulaire de commande). Le support est disponible 7 jours sur 7.",
-      trust1: "Abonnements 100% officiels", trust2: "Livraison instantanée", trust3: "20 000+ chaînes et VOD", trust4: "Support WhatsApp", trust5: "Garantie remboursement", trust6: "Paiement Maroc",
-      footerText: "Abonnements officiels · Livraison instantanée · Support 24/7",
-      trialTitle: "🎬 Essai gratuit de 2 heures", trialSub: "Testez notre service avant d'acheter ! Accès instantané gratuit pendant 2 heures.", requestTrialBtn: "🚀 Demander un essai gratuit",
-      howItWorksTitle: "💬 Comment ça marche", step1: "1️⃣ Choisissez votre offre", step1text: "— Sélectionnez 1, 3, 6, 12, 18 ou 24 mois.", step2: "2️⃣ Contactez-nous sur WhatsApp", step2text: "— Partagez vos coordonnées.",
-      step3: "3️⃣ Effectuez le paiement", step3text: "— Via CashPlus / CIH Bank / CashExpress.", step4: "4️⃣ Activation", step4text: "— Recevez vos identifiants dans l'heure.",
-      step5: "5️⃣ Commencez à regarder", step5text: "— Profitez de 20 000+ chaînes et VOD !", chatWhatsApp: "📱 Discuter sur WhatsApp", closeBtn: "Fermer",
-      orderTitle: "Complétez votre commande", submitOrderBtn: "Envoyer la commande →", orderNote: "🔒 Nous vous enverrons les détails de paiement par email", monthlyPricePrefix: "Prix mensuel : "
-    }
-  };
-
-  let currentLang = 'en';
-
+  // ========== LANGUAGE SWITCH FUNCTION ==========
   function setLanguage(lang) {
-    currentLang = lang;
-    const t = translations[lang];
-    document.querySelectorAll('[data-key]').forEach(el => {
-      const key = el.getAttribute('data-key');
-      if (t[key]) {
+    document.querySelectorAll('[data-en], [data-fr]').forEach(el => {
+      const text = el.getAttribute(`data-${lang}`);
+      if (text !== null) {
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
-          el.placeholder = t[key];
+          el.placeholder = text;
         } else {
-          el.innerHTML = t[key];
+          el.innerHTML = text;
         }
       }
     });
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     document.querySelector(`.lang-btn[onclick="setLanguage('${lang}')"]`).classList.add('active');
-    showToast(`Language switched to ${lang.toUpperCase()}`);
+    showToast(lang === 'en' ? 'Language switched to English' : 'Langue changée en français');
   }
 
-  // ========== REST OF THE SCRIPT (unchanged) ==========
+  // ========== REST OF THE SCRIPT ==========
   let selectedPlan = { name: '', price: 0 };
   const ADMIN_EMAIL = 'karimakon08@gmail.com';
   const WHATSAPP_NUMBER = '212670965351';
@@ -1576,6 +1509,7 @@
     });
   }
 
+  // ========== FORM FUNCTIONS ==========
   function sendPaymentRequest(method, methodName) { const name = document.getElementById('inp-name').value.trim(); const phone = document.getElementById('inp-phone').value.trim(); const email = document.getElementById('inp-email').value.trim(); const plan = document.getElementById('inp-plan').value; if (!name || !phone || !email || !plan) { showToast('⚠️ Please fill all fields'); return; } const sel = document.getElementById('inp-payment'); for (let o of sel.options) { if (o.text === method) { sel.value = o.text; break; } } const msg = `━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A💰 *NEW PAYMENT REQUEST - STREAMZONE* 💰%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A👤 *Customer Name:* ${name}%0A📞 *Phone:* ${phone}%0A📧 *Email:* ${email}%0A📦 *Plan:* ${plan}%0A💳 *Payment Method:* ${methodName}%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A📌 *Action Required:*%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A%0A✅ Please send the customer the payment details for ${method}%0A✅ Send bank account / CashPlus / CashExpress information%0A✅ Ask for payment receipt confirmation%0A✅ After confirmation, send IPTV login details%0A%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━%0A⏰ Request sent at: ${new Date().toLocaleString()}%0A━━━━━━━━━━━━━━━━━━━━━━━━━━━`; window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${msg}`, '_blank'); showToast(`📱 Opening WhatsApp with ${method} payment request`); }
   function openOrderModal(planName, price) { selectedPlan = { name: planName, price: price }; document.getElementById('modalPlanInfo').innerHTML = `📦 ${planName} — $${price} USD`; document.getElementById('orderModal').style.display = 'flex'; document.getElementById('modalName').value = ''; document.getElementById('modalPhone').value = ''; document.getElementById('modalEmail').value = ''; }
   function openTrialModal() { document.getElementById('trialModal').style.display = 'flex'; }
